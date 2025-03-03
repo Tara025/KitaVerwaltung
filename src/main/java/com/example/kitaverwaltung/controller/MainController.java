@@ -15,10 +15,25 @@ public class MainController {
     private TableView<Verwalter> verwalterTable;
 
     @FXML
+    private TableColumn<Verwalter, String> verwalter_idColumn;
+
+    @FXML
+    private TableColumn<Verwalter, String> standort_idColumn;
+
+    @FXML
     private TableColumn<Verwalter, String> vornameColumn;
 
     @FXML
     private TableColumn<Verwalter, String> nachnameColumn;
+
+    @FXML
+    private TableColumn<Verwalter, String> emailColumn;
+
+    @FXML
+    private TableColumn<Verwalter, String> gehaltColumn;
+
+    @FXML
+    private TableColumn<Verwalter, String> adresseColumn;
 
     private ObservableList<Verwalter> verwalterListe = FXCollections.observableArrayList();
 
@@ -29,7 +44,13 @@ public class MainController {
         vornameColumn.setCellValueFactory(new PropertyValueFactory<>("vorname"));
 
         // Setze die CellValueFactory für die Nachname-Spalte
+        verwalter_idColumn.setCellValueFactory(new PropertyValueFactory<>("verwalter_id"));
+        standort_idColumn.setCellValueFactory(new PropertyValueFactory<>("standort_id"));
         nachnameColumn.setCellValueFactory(new PropertyValueFactory<>("nachname"));
+        adresseColumn.setCellValueFactory(new PropertyValueFactory<>("adresse"));
+        gehaltColumn.setCellValueFactory(new PropertyValueFactory<>("gehalt"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+
 
         // Lade die Verwalter-Daten aus der DAO
         ObservableList<Verwalter> verwalterList = FXCollections.observableArrayList(VerwalterDAO.getVerwalter());
