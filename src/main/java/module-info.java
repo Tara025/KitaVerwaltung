@@ -5,7 +5,7 @@ module com.example.kitaverwaltung {
     requires java.net.http;
 
 
-    opens com.example.kitaverwaltung to javafx.fxml;
+    opens com.example.kitaverwaltung.controller to javafx.fxml;
     opens com.example.kitaverwaltung.model to com.google.gson;
     exports com.example.kitaverwaltung;
     exports com.example.kitaverwaltung.db;
