@@ -10,4 +10,7 @@ module com.example.kitaverwaltung {
     exports com.example.kitaverwaltung;
     exports com.example.kitaverwaltung.db;
     opens com.example.kitaverwaltung.db to javafx.fxml;
+
+    exports com.example.kitaverwaltung.model;  // Stelle sicher, dass das Modul den Package exportiert
+
 }

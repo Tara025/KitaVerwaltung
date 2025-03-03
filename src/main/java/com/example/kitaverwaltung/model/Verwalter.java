@@ -4,20 +4,24 @@ import com.google.gson.annotations.Expose;
 
 public class Verwalter {
     @Expose
-    private String name;
+    private String vorname;
+    private String nachname;
 
-    // Standard-Konstruktor (Gson braucht ihn!)
-    public Verwalter() {}
 
-    public Verwalter(String name) {
-        this.name = name;
+
+        // Konstruktor
+        public Verwalter(String vorname, String nachname) {
+            this.vorname = vorname;
+            this.nachname = nachname;
+        }
+
+        // Getter für den Vornamen
+        public String getVorname() {
+            return vorname;
+        }
+
+        // Getter für den Nachnamen
+        public String getNachname() {
+            return nachname;
+        }
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {  // Setter hinzufügen
-        this.name = name;
-    }
-}
