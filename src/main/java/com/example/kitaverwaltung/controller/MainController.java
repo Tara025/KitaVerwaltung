@@ -18,7 +18,7 @@ public class MainController {
     private TableColumn<Verwalter, String> verwalter_idColumn;
 
     @FXML
-    private TableColumn<Verwalter, String> standort_idColumn;
+    private TableColumn<Verwalter, String> fk_standort_idColumn;
 
     @FXML
     private TableColumn<Verwalter, String> vornameColumn;
@@ -45,7 +45,7 @@ public class MainController {
 
         // Setze die CellValueFactory für die Nachname-Spalte
         verwalter_idColumn.setCellValueFactory(new PropertyValueFactory<>("verwalter_id"));
-        standort_idColumn.setCellValueFactory(new PropertyValueFactory<>("standort_id"));
+        fk_standort_idColumn.setCellValueFactory(new PropertyValueFactory<>("fk_standort_id"));
         nachnameColumn.setCellValueFactory(new PropertyValueFactory<>("nachname"));
         adresseColumn.setCellValueFactory(new PropertyValueFactory<>("adresse"));
         gehaltColumn.setCellValueFactory(new PropertyValueFactory<>("gehalt"));
@@ -61,7 +61,7 @@ public class MainController {
             System.out.println("Keine Verwalter-Daten gefunden.");
         } else {
             for (Verwalter verwalter : verwalterList) {
-                System.out.println("Verwalter Name: " + verwalter.getVorname() + " " + verwalter.getNachname());
+                //System.out.println("Verwalter Name: " + verwalter.getVorname() + " " + verwalter.getNachname());
             }
         }
         // Setze die Daten in die TableView

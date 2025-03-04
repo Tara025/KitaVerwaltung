@@ -5,7 +5,7 @@ import com.google.gson.annotations.Expose;
 public class Verwalter {
     @Expose
     private int verwalter_id;
-    private int standort_id;
+    private int fk_standort_id;
     private String vorname;
     private String nachname;
     private String adresse;
@@ -15,11 +15,9 @@ public class Verwalter {
 
 
    // Konstruktor
-
-
-    public Verwalter(int verwalter_id, int standort_id, String vorname, String nachname, String adresse, double gehalt, String email) {
+    public Verwalter(int verwalter_id, int fk_standort_id, String vorname, String nachname, String adresse, double gehalt, String email) {
         this.verwalter_id = verwalter_id;
-        this.standort_id = standort_id;
+        this.fk_standort_id = fk_standort_id;
         this.vorname = vorname;
         this.nachname = nachname;
         this.adresse = adresse;
@@ -35,12 +33,12 @@ public class Verwalter {
         this.verwalter_id = verwalter_id;
     }
 
-    public int getStandort_id() {
-        return standort_id;
+    public int getFk_standort_id() {
+        return fk_standort_id;
     }
 
-    public void setStandort_id(int standort_id) {
-        this.standort_id = standort_id;
+    public void setFk_standort_id(int fk_standort_id) {
+        this.fk_standort_id = fk_standort_id;
     }
 
     public String getVorname() {

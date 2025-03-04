@@ -17,7 +17,7 @@
     <!-- Tabelle für die Verwalter -->
     <TableView fx:id="verwalterTable">
         <columns>
-            <TableColumn text="StandortID" fx:id="standort_idColumn" />
+            <TableColumn text="StandortID" fx:id="fk_standort_idColumn" />
             <TableColumn text="VerwalterID" fx:id="verwalter_idColumn" />
             <TableColumn text="Vorname" fx:id="vornameColumn" />
             <TableColumn text="Nachname" fx:id="nachnameColumn" />

@@ -14,7 +14,7 @@ public class Kita extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Kita.class.getResource("kita.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);  // Fenstergröße ändern
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setTitle("Kita!");
         stage.setScene(scene);
 

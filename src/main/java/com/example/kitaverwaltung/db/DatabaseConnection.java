@@ -35,8 +35,8 @@ public class DatabaseConnection {
             // Antwort verarbeiten
             if (response.statusCode() == 200) {
                 String responseBody = response.body();
-                System.out.println("Daten empfangen: ");
-                System.out.println();
+                //System.out.println("Daten empfangen: ");
+                //System.out.println();
                // System.out.println(responseBody);
 
                 // Beispiel: JSON-Verarbeitung mit Gson
