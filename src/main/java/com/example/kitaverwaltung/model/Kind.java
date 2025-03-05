@@ -5,14 +5,16 @@ import java.util.Date;
 public class Kind {
 
     private int fk_gruppe_id;
+    private int kind_id;
     private String vorname;
     private String nachname;
     private Date geburtsdatum;
     private String bemerkung;
 
     // Konstruktor
-    public Kind(int fk_gruppe_id, String vorname, String nachname, Date geburtsdatum, String bemerkung) {
+    public Kind(int fk_gruppe_id, int kind_id, String vorname, String nachname, Date geburtsdatum, String bemerkung) {
         this.fk_gruppe_id = fk_gruppe_id;
+        this.kind_id = kind_id;
         this.vorname = vorname;
         this.nachname = nachname;
         this.geburtsdatum = geburtsdatum;
@@ -26,6 +28,14 @@ public class Kind {
 
     public void setFk_gruppe_id(int fk_gruppe_id) {
         this.fk_gruppe_id = fk_gruppe_id;
+    }
+
+    public int getKind_id() {
+        return kind_id;
+    }
+
+    public void setKind_id(int kind_id) {
+        this.kind_id = kind_id;
     }
 
     public String getVorname() {

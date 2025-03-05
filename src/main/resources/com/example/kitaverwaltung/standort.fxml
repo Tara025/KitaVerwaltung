@@ -9,12 +9,12 @@
 
     <TableView fx:id="standortTable" style="-fx-padding: 20;">
         <columns>
-            <TableColumn fx:id="standort_idColumn" text="ID"/>
-            <TableColumn fx:id="stadtColumn" text="Standort ID"/>
-            <TableColumn fx:id="nameColumn" text="Nachname"/>
-            <TableColumn fx:id="standortartColumn" text="Email"/>
-            <TableColumn fx:id="strasseColumn" text="Gehalt"/>
-            <TableColumn fx:id="plzColumn" text="Adresse"/>
+            <TableColumn fx:id="standort_idColumn" text="Standort-ID"/>
+            <TableColumn fx:id="stadtColumn" text="Stadt"/>
+            <TableColumn fx:id="nameColumn" text="Name"/>
+            <TableColumn fx:id="standortartColumn" text="Standortart"/>
+            <TableColumn fx:id="plzColumn" text="PLZ"/>
+            <TableColumn fx:id="strasseColumn" text="Adresse"/>
         </columns>
     </TableView>
     <HBox spacing="10">

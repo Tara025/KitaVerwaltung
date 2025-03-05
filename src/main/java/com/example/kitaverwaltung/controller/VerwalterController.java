@@ -9,6 +9,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.util.List;
+
 public class VerwalterController {
 
     @FXML private TableView<Verwalter> verwalterTable;
@@ -20,32 +22,33 @@ public class VerwalterController {
     @FXML private TableColumn<Verwalter, Double> gehaltColumn;
     @FXML private TableColumn<Verwalter, String> adresseColumn;
 
-    private ObservableList<Verwalter> verwalterListe = FXCollections.observableArrayList();
+    private final ObservableList<Verwalter> verwalterListe = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
-        // CellValueFactories setzen (damit die Spalten wissen, welche Daten sie anzeigen sollen)
+        // Spalten mit den richtigen Attributen verknüpfen
         verwalter_idColumn.setCellValueFactory(new PropertyValueFactory<>("verwalter_id"));
         fk_standort_idColumn.setCellValueFactory(new PropertyValueFactory<>("fk_standort_id"));
         vornameColumn.setCellValueFactory(new PropertyValueFactory<>("vorname"));
         nachnameColumn.setCellValueFactory(new PropertyValueFactory<>("nachname"));
-        adresseColumn.setCellValueFactory(new PropertyValueFactory<>("adresse"));
-        gehaltColumn.setCellValueFactory(new PropertyValueFactory<>("gehalt"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        gehaltColumn.setCellValueFactory(new PropertyValueFactory<>("gehalt"));
+        adresseColumn.setCellValueFactory(new PropertyValueFactory<>("adresse"));
 
-        // Daten aus der DAO laden
+        // Daten laden
         loadVerwalterData();
     }
 
     private void loadVerwalterData() {
-        ObservableList<Verwalter> verwalterList = FXCollections.observableArrayList(VerwalterDAO.getVerwalter());
+        List<Verwalter> verwalterList = VerwalterDAO.getVerwalter();
 
         if (verwalterList.isEmpty()) {
             System.out.println("❌ Keine Verwalter-Daten gefunden.");
         } else {
             System.out.println("✅ Verwalter-Daten erfolgreich geladen: " + verwalterList.size() + " Einträge");
+            verwalterListe.setAll(verwalterList);
         }
 
-        verwalterTable.setItems(verwalterList);
+        verwalterTable.setItems(verwalterListe);
     }
 }

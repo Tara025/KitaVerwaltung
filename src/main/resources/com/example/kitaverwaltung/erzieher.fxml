@@ -16,7 +16,7 @@
     <TableView fx:id="erzieherTable" style="-fx-padding: 20;">
         <!-- Table Columns for Erzieher -->
         <columns>
-        <TableColumn fx:id="erzieher_idColumn" text="ID"/>
+        <TableColumn fx:id="erzieher_idColumn" text="Erzieher-ID"/>
         <TableColumn fx:id="vornameColumn" text="Vorname"/>
         <TableColumn fx:id="nachnameColumn" text="Nachname"/>
         <TableColumn fx:id="emailColumn" text="Email"/>

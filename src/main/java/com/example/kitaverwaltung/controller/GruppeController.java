@@ -5,46 +5,44 @@ import com.example.kitaverwaltung.model.Gruppe;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.util.List;
 
 public class GruppeController {
 
     @FXML private TableView<Gruppe> gruppeTable;
     @FXML private TableColumn<Gruppe, Integer> gruppeIdColumn;
     @FXML private TableColumn<Gruppe, String> nameColumn;
-    @FXML private TableColumn<Gruppe, Integer> erzieherColumn;
+    @FXML private TableColumn<Gruppe, String> fk_erzieher_idColumn;
+    @FXML private TableColumn<Gruppe, Integer> fk_standort_idColumn;
 
-    private ObservableList<Gruppe> gruppeListe = FXCollections.observableArrayList();
+    private ObservableList<Gruppe> gruppeList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
-        // Initialisiere die TableColumns
-        initializeTableColumns();
+        gruppeIdColumn.setCellValueFactory(new PropertyValueFactory<>("gruppe_id"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        fk_erzieher_idColumn.setCellValueFactory(new PropertyValueFactory<>("fk_erzieher_id"));
+        fk_standort_idColumn.setCellValueFactory(new PropertyValueFactory<>("fk_standort_id"));
 
         // Lade die Gruppe-Daten
         loadGruppeData();
     }
 
-    private void initializeTableColumns() {
-        gruppeIdColumn.setCellValueFactory(new PropertyValueFactory<>("gruppe_id"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        erzieherColumn.setCellValueFactory(new PropertyValueFactory<>("fk_erzieher_id"));
-    }
-
     private void loadGruppeData() {
-        // Gruppe-Daten aus der DAO laden
-        gruppeListe.setAll(GruppeDAO.getGruppen());
+        List<Gruppe> gruppen = GruppeDAO.getGruppen();
 
-        if (gruppeListe.isEmpty()) {
-            System.out.println("❌ Keine Gruppe-Daten gefunden.");
+        if (gruppen.isEmpty()) {
+            System.out.println("❌ Keine Gruppen-Daten gefunden.");
         } else {
-            System.out.println("✅ Gruppe-Daten erfolgreich geladen.");
+            System.out.println("✅ Gruppen-Daten erfolgreich geladen.");
+            gruppeList.setAll(FXCollections.observableArrayList(gruppen));
         }
 
-        gruppeTable.setItems(gruppeListe);
+        gruppeTable.setItems(gruppeList);
     }
 
     @FXML

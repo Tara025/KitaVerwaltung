@@ -5,93 +5,113 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Map;
-import com.google.gson.Gson;
+
+import com.example.kitaverwaltung.config.Config;
+
+import static com.example.kitaverwaltung.config.Config.API_KEY;
 
 public class DatabaseConnection {
 
-    private static final String SUPABASE_URL = "https://foedwwepqjbyhopvxmod.supabase.co"; // Deine Supabase-URL
-    private static final String API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZvZWR3d2VwcWpieWhvcHZ4bW9kIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0MDk4NzYxMCwiZXhwIjoyMDU2NTYzNjEwfQ.W5SdMlCr7NwkHsoGSFr_IQqRDtL1pJwkwIO1rbL6oLQ";  // Dein API-Schlüssel
-    private static final String TABLE_NAME = "t_verwalter";  // Deine Tabelle
+    private static final String SUPABASE_URL = Config.SUPABASE_URL;
+    private static final String API_KEY = Config.API_KEY;  // Ersetze mit deinem echten API-Key
+    private static DatabaseConnection instance;
+    private final HttpClient client;
 
-    // Methode zum Abrufen von Daten (GET)
-    public static void connectAndFetchData() {
+    private DatabaseConnection() {
+        this.client = HttpClient.newHttpClient();
+    }
+
+    // Singleton-Methode für die Instanz
+    public static DatabaseConnection getInstance() {
+        if (instance == null) {
+            instance = new DatabaseConnection();
+        }
+        return instance;
+    }
+
+    // Allgemeine Methode für API-Anfragen (GET)
+    public String sendGetRequest(String tableName) {
         try {
-            // HTTP Client für die API-Abfrage erstellen
-            HttpClient client = HttpClient.newHttpClient();
-
-            // Die URL für den Supabase API-Endpunkt
-            String url = SUPABASE_URL + "/rest/v1/" + TABLE_NAME;
-
-            // GET-Anfrage zum Abrufen von Daten
+            String url = SUPABASE_URL + "/rest/v1/" + tableName;
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(url))
                     .header("apikey", API_KEY)
-                    .header("Authorization", "Bearer " + API_KEY) // Authentifizierung
+                    .header("Authorization", "Bearer " + API_KEY)
                     .build();
 
-            // Anfrage senden und Antwort erhalten
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            // Antwort verarbeiten
             if (response.statusCode() == 200) {
-                String responseBody = response.body();
-                //System.out.println("Daten empfangen: ");
-                //System.out.println();
-               // System.out.println(responseBody);
-
-                // Beispiel: JSON-Verarbeitung mit Gson
-                Gson gson = new Gson();
-                Map[] data = gson.fromJson(responseBody, Map[].class);
-
-                // Weiterverarbeitung der Daten
-                for (Map record : data) {
-                    System.out.println(record);
-                }
+                return response.body();
             } else {
-                System.out.println("Fehler beim Abrufen der Daten. Status: " + response.statusCode());
+                System.out.println("❌ Fehler beim Abrufen der Daten. Status: " + response.statusCode());
+                return null;
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
     }
 
-    // Methode zum Erstellen von Daten (POST)
-    public static void createData() {
+    // Allgemeine Methode für API-Anfragen (POST)
+    public boolean sendPostRequest(String tableName, String jsonData) {
         try {
-            // Die URL für den Supabase API-Endpunkt
-            String url = SUPABASE_URL + "/rest/v1/" + TABLE_NAME;
-
-            // Die JSON-Daten für das Erstellen eines neuen Datensatzes
-            String jsonBody = "{\"name\": \"Max Mustermann\", \"email\": \"max@example.com\"}";
-
-            // POST-Anfrage zum Erstellen von Daten
+            String url = SUPABASE_URL + "/rest/v1/" + tableName;
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(url))
                     .header("apikey", API_KEY)
                     .header("Authorization", "Bearer " + API_KEY)
                     .header("Content-Type", "application/json")
-                    .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
+                    .POST(HttpRequest.BodyPublishers.ofString(jsonData))
                     .build();
 
-            // Anfrage senden und Antwort erhalten
-            HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            // Antwort verarbeiten
-            if (response.statusCode() == 201) {
-                System.out.println("Daten erfolgreich erstellt: " + response.body());
-            } else {
-                System.out.println("Fehler beim Erstellen der Daten. Status: " + response.statusCode());
-            }
+            return response.statusCode() == 201;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
     }
 
-    public static void main(String[] args) {
-        // Daten abrufen
-        connectAndFetchData();
+    // Methode für PUT-Anfragen (Update eines Datensatzes)
+    public boolean sendPutRequest(String tableName, String jsonData) {
+        try {
+            String url = SUPABASE_URL + "/rest/v1/" + tableName;
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .header("apikey", API_KEY)
+                    .header("Authorization", "Bearer " + API_KEY)
+                    .header("Content-Type", "application/json")
+                    .PUT(HttpRequest.BodyPublishers.ofString(jsonData))  // PUT für Updates
+                    .build();
 
-        // Daten erstellen (Beispiel: Max Mustermann)
-        createData();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            return response.statusCode() == 200;  // Erfolgreich bei Status 200
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // Methode für DELETE-Anfragen (Löschen eines Datensatzes)
+    public boolean sendDeleteRequest(String tableName, int recordId) {
+        try {
+            String url = SUPABASE_URL + "/rest/v1/" + tableName + "?id=eq." + recordId; // Beispiel für die URL mit ID
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .header("apikey", API_KEY)
+                    .header("Authorization", "Bearer " + API_KEY)
+                    .DELETE()  // DELETE für Löschvorgang
+                    .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            return response.statusCode() == 204;  // Erfolgreich bei Status 204 (No Content)
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

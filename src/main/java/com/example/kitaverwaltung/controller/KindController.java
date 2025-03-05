@@ -8,45 +8,59 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import java.sql.Date;
+
+import java.util.List;
 
 public class KindController {
 
     @FXML private TableView<Kind> kindTable;
-    @FXML private TableColumn<Kind, Integer> fk_gruppe_idColumn;
+    @FXML private TableColumn<Kind, Integer> kind_idColumn;
     @FXML private TableColumn<Kind, String> vornameColumn;
     @FXML private TableColumn<Kind, String> nachnameColumn;
-    @FXML private TableColumn<Kind, Date> geburtsdatumColumn;
+    @FXML private TableColumn<Kind, String> geburtsdatumColumn;
+    @FXML private TableColumn<Kind, String> fk_gruppe_idColumn;
     @FXML private TableColumn<Kind, String> bemerkungColumn;
 
-    private ObservableList<Kind> kinderListe = FXCollections.observableArrayList();
+    private ObservableList<Kind> kindList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
-        // Initialisiere die TableColumns
-        initializeTableColumns();
+        kind_idColumn.setCellValueFactory(new PropertyValueFactory<>("kind_id"));
+        vornameColumn.setCellValueFactory(new PropertyValueFactory<>("vorname"));
+        nachnameColumn.setCellValueFactory(new PropertyValueFactory<>("nachname"));
+        geburtsdatumColumn.setCellValueFactory(new PropertyValueFactory<>("geburtsdatum"));
+        fk_gruppe_idColumn.setCellValueFactory(new PropertyValueFactory<>("fk_gruppe_id"));
+        bemerkungColumn.setCellValueFactory(new PropertyValueFactory<>("bemerkung"));
 
         // Lade die Kind-Daten
         loadKindData();
     }
 
-    private void initializeTableColumns() {
-        fk_gruppe_idColumn.setCellValueFactory(new PropertyValueFactory<>("fk_gruppe_id"));
-        vornameColumn.setCellValueFactory(new PropertyValueFactory<>("vorname"));
-        nachnameColumn.setCellValueFactory(new PropertyValueFactory<>("nachname"));
-        geburtsdatumColumn.setCellValueFactory(new PropertyValueFactory<>("geburtsdatum"));
-        bemerkungColumn.setCellValueFactory(new PropertyValueFactory<>("bemerkung"));
-    }
-
     private void loadKindData() {
-        ObservableList<Kind> kinderListe = FXCollections.observableArrayList(KindDAO.getKinder());
+        List<Kind> kinder = KindDAO.getKinder();
 
-        if (kinderListe.isEmpty()) {
-            System.out.println("❌ Keine Kinder-Daten gefunden.");
+        if (kinder.isEmpty()) {
+            System.out.println("❌ Keine Kind-Daten gefunden.");
         } else {
-            System.out.println("✅ Kinder-Daten erfolgreich geladen.");
+            System.out.println("✅ Kind-Daten erfolgreich geladen.");
+            kindList.setAll(FXCollections.observableArrayList(kinder));
         }
 
-        kindTable.setItems(kinderListe);
+        kindTable.setItems(kindList);
+    }
+
+    @FXML
+    private void addKind() {
+        // Logik zum Hinzufügen eines neuen Kindes
+    }
+
+    @FXML
+    private void editKind() {
+        // Logik zum Bearbeiten eines Kindes
+    }
+
+    @FXML
+    private void deleteKind() {
+        // Logik zum Löschen eines Kindes
     }
 }

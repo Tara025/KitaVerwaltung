@@ -13,10 +13,11 @@
 
     <TableView fx:id="gruppeTable" style="-fx-padding: 20;">
         <columns>
-            <TableColumn fx:id="gruppeIdColumn" text="ID" />
             <TableColumn fx:id="nameColumn" text="Name" />
-            <TableColumn fx:id="erzieherColumn" text="Erzieher" />
-        </columns>
+            <TableColumn fx:id="gruppeIdColumn" text="Gruppen-ID" />
+            <TableColumn fx:id="fk_erzieher_idColumn" text="Erzieher-ID" />
+            <TableColumn fx:id="fk_standort_idColumn" text="Standort-ID" />
+           </columns>
     </TableView>
     <HBox spacing="10">
         <Button text="➕ Hinzufügen" fx:id="btnAdd"/>

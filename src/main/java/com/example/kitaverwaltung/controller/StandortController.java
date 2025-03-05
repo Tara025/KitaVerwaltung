@@ -1,16 +1,15 @@
 package com.example.kitaverwaltung.controller;
 
 import com.example.kitaverwaltung.dao.StandortDAO;
-import com.example.kitaverwaltung.dao.VerwalterDAO;
 import com.example.kitaverwaltung.model.Standort;
-import com.example.kitaverwaltung.model.Verwalter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.util.List;
 
 public class StandortController {
 
@@ -22,11 +21,12 @@ public class StandortController {
     @FXML private TableColumn<Standort, String> plzColumn;
     @FXML private TableColumn<Standort, String> stadtColumn;
 
-    private ObservableList<Standort> standortListe = FXCollections.observableArrayList();
+    private ObservableList<Standort> standortList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
 
+        // Spalten mit den richtigen Attributen verknüpfen
         standort_idColumn.setCellValueFactory(new PropertyValueFactory<>("standort_id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         standortartColumn.setCellValueFactory(new PropertyValueFactory<>("standortart"));
@@ -36,21 +36,22 @@ public class StandortController {
 
         // Lade die Standort-Daten
         loadStandortData();
-
-
     }
 
     private void loadStandortData() {
-        ObservableList<Standort> standortListe = FXCollections.observableArrayList(StandortDAO.getStandorte());
+        // Abrufen der Standort-Daten aus der DAO
+        List<Standort> standorte = StandortDAO.getStandorte(); // Normale Liste abrufen
 
-
-        if (standortListe.isEmpty()) {
+        if (standorte.isEmpty()) {
             System.out.println("❌ Keine Standort-Daten gefunden.");
         } else {
-            System.out.println("✅ Standort-Daten erfolgreich geladen.");
+            System.out.println("✅ Standort-Daten erfolgreich geladen");
+            // Konvertiere List in ObservableList und setze sie in die TableView
+            standortList.setAll(FXCollections.observableArrayList(standorte));  // Setze die ObservableList direkt
         }
 
-        standortTable.setItems(standortListe);
+        // Aktualisiere die TableView mit der ObservableList
+        standortTable.setItems(standortList); // TableView mit ObservableList verknüpfen
     }
 
     @FXML
