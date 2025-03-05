@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.kitaverwaltung.controller.KindController" spacing="10" style="-fx-padding: 20;">
+
+    <TableView fx:id="kindTable" style="-fx-padding: 20;">
+        <columns>
+            <TableColumn fx:id="bemerkungColumn" text="ID" />
+            <TableColumn fx:id="fk_gruppe_idColumn" text="GruppenID" />
+            <TableColumn fx:id="vornameColumn" text="Vorname" />
+            <TableColumn fx:id="nachnameColumn" text="Nachname" />
+            <TableColumn fx:id="geburtsdatumColumn" text="Geburtsdatum" />
+
+        </columns>
+    </TableView>
+    <HBox spacing="10">
+        <Button text="➕ Hinzufügen" fx:id="btnAdd"/>
+        <Button text="🖊️ Bearbeiten" fx:id="btnEdit"/>
+        <Button text="❌ Löschen" fx:id="btnDelete"/>
+    </HBox>
+</VBox>

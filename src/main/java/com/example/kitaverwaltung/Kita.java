@@ -1,6 +1,5 @@
 package com.example.kitaverwaltung;
 
-import com.example.kitaverwaltung.dao.VerwalterDAO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -12,38 +11,41 @@ import java.io.IOException;
 
 public class Kita extends Application {
     @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Kita.class.getResource("kita.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-        stage.setTitle("Kita!");
-        stage.setScene(scene);
+    public void start(Stage stage) {
+        try {
+            // FXML-Datei laden
+            FXMLLoader fxmlLoader = new FXMLLoader(Kita.class.getResource("dashboard.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 800, 600);
 
-        // Berechnung der Bildschirmgröße
-        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-        double screenWidth = screenBounds.getWidth();
-        double screenHeight = screenBounds.getHeight();
+            // Fenster-Titel setzen
+            stage.setTitle("Kita Verwaltung");
 
-        // Berechnung der Fenstergröße
-        double windowWidth = 800;  // Die Breite des Fensters
-        double windowHeight = 600; // Die Höhe des Fensters
+            // Fenstergröße berechnen und zentrieren
+            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+            double screenWidth = screenBounds.getWidth();
+            double screenHeight = screenBounds.getHeight();
+            double windowWidth = 800;
+            double windowHeight = 600;
+            double xPosition = (screenWidth - windowWidth) / 2;
+            double yPosition = (screenHeight - windowHeight) / 2;
 
-        // Berechnung der Position, um das Fenster zu zentrieren
-        double xPosition = (screenWidth - windowWidth) / 2;
-        double yPosition = (screenHeight - windowHeight) / 2;
+            // Szene setzen und Fenster positionieren
+            stage.setScene(scene);
+            stage.setX(xPosition);
+            stage.setY(yPosition);
 
-        // Optional: Fenster maximieren und Größenbegrenzung setzen
-        // stage.setMaximized(true);  // Maximiert das Fenster
-        stage.setScene(scene);
-        stage.setX(xPosition);
-        stage.setY(yPosition);
+            // Optional: Fenster maximieren
+            // stage.setMaximized(true);
 
-        stage.show();
+            // Fenster anzeigen
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Fehler beim Laden von dashboard.fxml. Stelle sicher, dass die Datei im richtigen Ordner liegt!");
+        }
     }
 
     public static void main(String[] args) {
-
         launch(args);
-
-        VerwalterDAO.getVerwalter();
     }
 }

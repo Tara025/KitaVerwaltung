@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.StackPane?>
+<BorderPane xmlns="http://javafx.com/javafx/8.0" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.kitaverwaltung.controller.DashboardController">
+
+    <!-- Sidebar für Navigation -->
+    <left>
+        <VBox spacing="10" style="-fx-background-color: #2C3E50; -fx-padding: 20;">
+            <Button text="🏠 Dashboard" fx:id="btnDashboard" style="-fx-text-fill: white; -fx-background-color: #34495E;" onAction="#handleDashboardClick"/>
+            <Button text="👤 Verwalter" fx:id="btnVerwalter" style="-fx-text-fill: white; -fx-background-color: #34495E;" onAction="#loadVerwalterTable"/>
+            <Button text="👤 Gruppe" fx:id="btnGruppe" style="-fx-text-fill: white; -fx-background-color: #34495E;" onAction="#loadGruppeTable"/>
+            <Button text="🧑‍🏫 Erzieher" fx:id="btnErzieher" style="-fx-text-fill: white; -fx-background-color: #34495E;" onAction="#loadErzieherTable"/>
+            <Button text="👶 Kinder" fx:id="btnKinder" style="-fx-text-fill: white; -fx-background-color: #34495E;" onAction="#loadKinderTable"/>
+            <Button text="🏡 Standorte" fx:id="btnStandorte" style="-fx-text-fill: white; -fx-background-color: #34495E;" onAction="#loadStandorteTable"/>
+        </VBox>
+    </left>
+
+    <!-- Hauptinhalt -->
+    <center>
+        <StackPane fx:id="mainContent" />
+    </center>
+
+</BorderPane>

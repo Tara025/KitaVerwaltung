@@ -1,0 +1,27 @@
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.kitaverwaltung.controller.VerwalterController" spacing="10" style="-fx-padding: 20;">
+
+    <TableView fx:id="verwalterTable" style="-fx-padding: 20;">
+        <columns>
+            <TableColumn fx:id="verwalter_idColumn" text="ID"/>
+            <TableColumn fx:id="fk_standort_idColumn" text="Standort ID"/>
+            <TableColumn fx:id="vornameColumn" text="Vorname"/>
+            <TableColumn fx:id="nachnameColumn" text="Nachname"/>
+            <TableColumn fx:id="emailColumn" text="Email"/>
+            <TableColumn fx:id="gehaltColumn" text="Gehalt"/>
+            <TableColumn fx:id="adresseColumn" text="Adresse"/>
+        </columns>
+    </TableView>
+    <HBox spacing="10">
+        <Button text="➕ Hinzufügen" fx:id="btnAdd"/>
+        <Button text="🖊️ Bearbeiten" fx:id="btnEdit"/>
+        <Button text="❌ Löschen" fx:id="btnDelete"/>
+    </HBox>
+
+</VBox>
