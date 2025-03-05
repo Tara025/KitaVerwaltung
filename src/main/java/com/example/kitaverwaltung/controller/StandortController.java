@@ -41,7 +41,7 @@ public class StandortController {
     }
 
     private void loadStandortData() {
-        ObservableList<Standort> standortList = FXCollections.observableArrayList(StandortDAO.getStandorte());
+        ObservableList<Standort> standortListe = FXCollections.observableArrayList(StandortDAO.getStandorte());
 
 
         if (standortListe.isEmpty()) {

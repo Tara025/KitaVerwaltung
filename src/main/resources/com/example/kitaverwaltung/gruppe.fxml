@@ -14,8 +14,8 @@
     <TableView fx:id="gruppeTable" style="-fx-padding: 20;">
         <columns>
             <TableColumn fx:id="gruppeIdColumn" text="ID" />
-            <TableColumn fx:id="gruppeNameColumn" text="Name" />
-            <TableColumn fx:id="gruppeErzieherColumn" text="Erzieher" />
+            <TableColumn fx:id="nameColumn" text="Name" />
+            <TableColumn fx:id="erzieherColumn" text="Erzieher" />
         </columns>
     </TableView>
     <HBox spacing="10">

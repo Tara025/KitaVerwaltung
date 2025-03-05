@@ -13,10 +13,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class GruppeController {
 
     @FXML private TableView<Gruppe> gruppeTable;
-    @FXML private TableColumn<Gruppe, Integer> gruppe_idColumn;
-    @FXML private TableColumn<Gruppe, Integer> fk_standort_idColumn;
+    @FXML private TableColumn<Gruppe, Integer> gruppeIdColumn;
     @FXML private TableColumn<Gruppe, String> nameColumn;
-    @FXML private TableColumn<Gruppe, Integer> fk_erzieher_idColumn;
+    @FXML private TableColumn<Gruppe, Integer> erzieherColumn;
 
     private ObservableList<Gruppe> gruppeListe = FXCollections.observableArrayList();
 
@@ -30,10 +29,9 @@ public class GruppeController {
     }
 
     private void initializeTableColumns() {
-        gruppe_idColumn.setCellValueFactory(new PropertyValueFactory<>("gruppe_id"));
-        fk_standort_idColumn.setCellValueFactory(new PropertyValueFactory<>("fk_standort_id"));
+        gruppeIdColumn.setCellValueFactory(new PropertyValueFactory<>("gruppe_id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        fk_erzieher_idColumn.setCellValueFactory(new PropertyValueFactory<>("fk_erzieher_id"));
+        erzieherColumn.setCellValueFactory(new PropertyValueFactory<>("fk_erzieher_id"));
     }
 
     private void loadGruppeData() {
