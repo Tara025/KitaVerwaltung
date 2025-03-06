@@ -1,9 +1,11 @@
 package com.example.kitaverwaltung.controller;
 
+import com.example.kitaverwaltung.Kita;
 import com.example.kitaverwaltung.model.Erzieher;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
+import javafx.geometry.Rectangle2D;
+import javafx.stage.Screen;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
@@ -18,8 +20,6 @@ public class DashboardController {
     @FXML private Button btnStandorte;
     @FXML private Button btnGruppe;
     @FXML private Button btnLogout;
-
-
     @FXML private Pane mainContent;
 
     private static Object currentUser;
@@ -53,19 +53,35 @@ public class DashboardController {
         //loadFXML("/com/example/kitaverwaltung/dashboard.fxml");
     }
 
+    //Logout
     @FXML
     private void handleLogout() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/kitaverwaltung/login.fxml"));
             Pane pane = loader.load();
             Stage stage = (Stage) mainContent.getScene().getWindow();
+
+            // Set the scene to the login pane
             stage.getScene().setRoot(pane);
             stage.setTitle("Login");
+
+            // Set the window size and position
+            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+            double screenWidth = screenBounds.getWidth();
+            double screenHeight = screenBounds.getHeight();
+            double windowWidth = 800;
+            double windowHeight = 600;
+            double xPosition = (screenWidth - windowWidth) / 2;
+            double yPosition = (screenHeight - windowHeight) / 2;
+
+            stage.setX(xPosition);
+            stage.setY(yPosition);
+            stage.setMinWidth(800);
+            stage.setMinHeight(600);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
     private void clearMainContent() {
         mainContent.getChildren().clear();

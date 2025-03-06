@@ -8,14 +8,15 @@
 <?import javafx.scene.layout.HBox?>
 
 <VBox xmlns="http://javafx.com/javafx/8.0" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.kitaverwaltung.controller.LoginController" spacing="10" alignment="CENTER" style="-fx-padding: 20;"
+      fx:controller="com.example.kitaverwaltung.controller.LoginController" spacing="20" alignment="CENTER" style="-fx-padding: 40;"
       prefWidth="400" prefHeight="300">
-    <Label text="Email" style="-fx-text-fill: black;"/>
-    <TextField fx:id="emailField" style="-fx-background-color: #34495E; -fx-text-fill: white;"/>
-    <Label text="Password" style="-fx-text-fill: black;"/>
-    <PasswordField fx:id="passwordField" style="-fx-background-color: #34495E; -fx-text-fill: white;"/>
-    <HBox spacing="10">
-        <Button text="Login" onAction="#handleLogin" style="-fx-text-fill: white; -fx-background-color: #34495E;"/>
-        <Button text="Cancel" onAction="#handleCancel" style="-fx-text-fill: white; -fx-background-color: #34495E;"/>
+    <Label text="Email" style="-fx-text-fill: black; -fx-font-size: 16px;"/>
+    <TextField fx:id="emailField" style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-font-size: 16px;"/>
+    <Label text="Password" style="-fx-text-fill: black; -fx-font-size: 16px;"/>
+    <PasswordField fx:id="passwordField" style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-font-size: 16px;"/>
+    <HBox spacing="20">
+        <Button text="Login" onAction="#handleLogin" style="-fx-text-fill: white; -fx-background-color: #34495E; -fx-font-size: 16px;"/>
+        <Button text="Cancel" onAction="#handleCancel" style="-fx-text-fill: white; -fx-background-color: #34495E; -fx-font-size: 16px;"/>
     </HBox>
 </VBox>
+
