@@ -66,9 +66,4 @@ public class VerwalterDAO {
     public static boolean deleteVerwalter(int verwalterId) {
         return dbConnection.sendDeleteRequest(TABLE_NAME, verwalterId);
     }
-
-    // Lösche einen Verwalter
-    public static boolean deleteVerwalter(int verwalterId) {
-        return dbConnection.sendDeleteRequest(TABLE_NAME, verwalterId);
-    }
 }
