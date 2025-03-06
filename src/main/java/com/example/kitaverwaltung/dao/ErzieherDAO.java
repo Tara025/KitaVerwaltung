@@ -4,6 +4,8 @@ import com.example.kitaverwaltung.db.DatabaseConnection;
 import com.example.kitaverwaltung.model.Erzieher;
 import com.google.gson.Gson;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +30,27 @@ public class ErzieherDAO {
             }
         }
         return erzieherListe; // Rückgabe der Liste mit Erziehern
+    }
+
+    public static Erzieher getErzieherByEmailAndPassword(String email, String password) {
+        try {
+            String encodedEmail = URLEncoder.encode(email, "UTF-8");
+            String encodedPassword = URLEncoder.encode(password, "UTF-8");
+            String requestUrl = TABLE_NAME + "?email=eq." + encodedEmail + "&passwort=eq." + encodedPassword;
+            System.out.println("Request URL: " + requestUrl); // Log the request URL
+
+            String jsonResponse = dbConnection.sendGetRequest(requestUrl);
+
+            if (jsonResponse != null && !jsonResponse.isEmpty()) {
+                Erzieher[] erzieherArray = gson.fromJson(jsonResponse, Erzieher[].class);
+                if (erzieherArray.length > 0) {
+                    return erzieherArray[0];
+                }
+            }
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     // Füge einen Erzieher hinzu

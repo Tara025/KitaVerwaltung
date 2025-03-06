@@ -13,14 +13,10 @@ public class Kita extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            // FXML-Datei laden
-            FXMLLoader fxmlLoader = new FXMLLoader(Kita.class.getResource("dashboard.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/kitaverwaltung/login.fxml"));
+            Scene scene = new Scene(loader.load());
+            stage.setTitle("Login");
 
-            // Fenster-Titel setzen
-            stage.setTitle("Kita Verwaltung");
-
-            // Fenstergröße berechnen und zentrieren
             Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
             double screenWidth = screenBounds.getWidth();
             double screenHeight = screenBounds.getHeight();
@@ -29,19 +25,15 @@ public class Kita extends Application {
             double xPosition = (screenWidth - windowWidth) / 2;
             double yPosition = (screenHeight - windowHeight) / 2;
 
-            // Szene setzen und Fenster positionieren
             stage.setScene(scene);
             stage.setX(xPosition);
             stage.setY(yPosition);
-
-            // Optional: Fenster maximieren
-            // stage.setMaximized(true);
-
-            // Fenster anzeigen
+            stage.setMinWidth(800);
+            stage.setMinHeight(600);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            System.err.println("Fehler beim Laden von dashboard.fxml. Stelle sicher, dass die Datei im richtigen Ordner liegt!");
+            System.err.println("Error loading login.fxml. Ensure the file is in the correct folder!");
         }
     }
 

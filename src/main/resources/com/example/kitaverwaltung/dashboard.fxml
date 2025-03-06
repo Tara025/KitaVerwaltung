@@ -4,10 +4,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.StackPane?>
+
 <BorderPane xmlns="http://javafx.com/javafx/8.0" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.example.kitaverwaltung.controller.DashboardController">
 
-    <!-- Sidebar für Navigation -->
+    <!-- Sidebar for Navigation -->
     <left>
         <VBox spacing="10" style="-fx-background-color: #2C3E50; -fx-padding: 20;">
             <Button text="🏠 Dashboard" fx:id="btnDashboard" style="-fx-text-fill: white; -fx-background-color: #34495E;" onAction="#handleDashboardClick"/>
@@ -16,12 +17,13 @@
             <Button text="🧑‍🏫 Erzieher" fx:id="btnErzieher" style="-fx-text-fill: white; -fx-background-color: #34495E;" onAction="#loadErzieherTable"/>
             <Button text="👶 Kinder" fx:id="btnKinder" style="-fx-text-fill: white; -fx-background-color: #34495E;" onAction="#loadKinderTable"/>
             <Button text="🏡 Standorte" fx:id="btnStandorte" style="-fx-text-fill: white; -fx-background-color: #34495E;" onAction="#loadStandorteTable"/>
+            <Button text="🔑 Login" fx:id="btnLogin" style="-fx-text-fill: white; -fx-background-color: #34495E;" onAction="#showLogin"/>
         </VBox>
     </left>
 
-    <!-- Hauptinhalt -->
+    <!-- Main Content -->
     <center>
-        <StackPane fx:id="mainContent" />
+        <StackPane fx:id="mainContent"/>
     </center>
 
 </BorderPane>
