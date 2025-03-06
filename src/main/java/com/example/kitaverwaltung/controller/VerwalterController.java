@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -57,12 +58,20 @@ public class VerwalterController {
     private void deleteSelectedVerwalter() {
         Verwalter selectedVerwalter = verwalterTable.getSelectionModel().getSelectedItem();
         if (selectedVerwalter != null) {
-            boolean success = VerwalterDAO.deleteVerwalter(selectedVerwalter.getVerwalter_id());
-            if (success) {
-                verwalterListe.remove(selectedVerwalter);
-                showAlert(Alert.AlertType.INFORMATION, "Erfolg", "Verwalter wurde erfolgreich gelöscht.");
-            } else {
-                showAlert(Alert.AlertType.ERROR, "Fehler", "Fehler beim Löschen des Verwalters.");
+            // Confirmation alert
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Löschen bestätigen");
+            alert.setHeaderText("Sind Sie sicher, dass Sie diesen Verwalter löschen möchten?");
+            alert.setContentText(selectedVerwalter.getVorname() + " " + selectedVerwalter.getNachname());
+
+            if (alert.showAndWait().get() == ButtonType.OK) {
+                boolean success = VerwalterDAO.deleteVerwalter(selectedVerwalter.getVerwalter_id());
+                if (success) {
+                    verwalterListe.remove(selectedVerwalter);
+                    //showAlert(Alert.AlertType.INFORMATION, "Erfolg", "Verwalter wurde erfolgreich gelöscht.");
+                } else {
+                    showAlert(Alert.AlertType.ERROR, "Fehler", "Fehler beim Löschen des Verwalters.");
+                }
             }
         } else {
             showAlert(Alert.AlertType.WARNING, "Warnung", "Bitte wählen Sie einen Verwalter aus.");
@@ -76,4 +85,5 @@ public class VerwalterController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
 }
