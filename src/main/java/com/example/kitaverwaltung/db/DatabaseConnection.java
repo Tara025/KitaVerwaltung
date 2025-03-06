@@ -98,15 +98,21 @@ public class DatabaseConnection {
     // Methode für DELETE-Anfragen (Löschen eines Datensatzes)
     public boolean sendDeleteRequest(String tableName, int recordId) {
         try {
-            String url = SUPABASE_URL + "/rest/v1/" + tableName + "?id=eq." + recordId; // Beispiel für die URL mit ID
+            // System.out.println("Deleting record with ID: " + recordId);
+            String url = SUPABASE_URL + "/rest/v1/" + tableName + "?" + tableName.substring(2) + "_id=eq." + recordId; // Beispiel für die URL mit ID
+            System.out.println("DELETE URL: " + url);  // Log the URL
+
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(url))
                     .header("apikey", API_KEY)
                     .header("Authorization", "Bearer " + API_KEY)
-                    .DELETE()  // DELETE für Löschvorgang
+                    .header("Content-Type", "application/json")
+                    .method("PATCH", HttpRequest.BodyPublishers.ofString("{\"deleted\": true}"))
                     .build();
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            System.out.println("Response Code: " + response.statusCode());  // Log the response code
+            System.out.println("Response Body: " + response.body());  // Log the response body
 
             return response.statusCode() == 204;  // Erfolgreich bei Status 204 (No Content)
         } catch (Exception e) {
