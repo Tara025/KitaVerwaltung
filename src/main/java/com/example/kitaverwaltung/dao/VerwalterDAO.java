@@ -19,7 +19,7 @@ public class VerwalterDAO {
     public static List<Verwalter> getVerwalter() {
         List<Verwalter> verwalterListe = new ArrayList<>();
 
-        String jsonResponse = dbConnection.sendGetRequest(TABLE_NAME);
+        String jsonResponse = dbConnection.sendGetRequest(TABLE_NAME + "?deleted=eq.false");
         if (jsonResponse != null) {
             Verwalter[] verwalterArray = gson.fromJson(jsonResponse, Verwalter[].class);
             for (Verwalter verwalter : verwalterArray) {
