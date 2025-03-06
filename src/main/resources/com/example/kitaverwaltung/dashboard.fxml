@@ -17,7 +17,7 @@
             <Button text="🧑‍🏫 Erzieher" fx:id="btnErzieher" style="-fx-text-fill: white; -fx-background-color: #34495E;" onAction="#loadErzieherTable"/>
             <Button text="👶 Kinder" fx:id="btnKinder" style="-fx-text-fill: white; -fx-background-color: #34495E;" onAction="#loadKinderTable"/>
             <Button text="🏡 Standorte" fx:id="btnStandorte" style="-fx-text-fill: white; -fx-background-color: #34495E;" onAction="#loadStandorteTable"/>
-            <Button text="🔑 Login" fx:id="btnLogin" style="-fx-text-fill: white; -fx-background-color: #34495E;" onAction="#showLogin"/>
+            <Button text="🔓 Logout" fx:id="btnLogout" style="-fx-text-fill: white; -fx-background-color: #34495E;" onAction="#handleLogout"/>
         </VBox>
     </left>
 

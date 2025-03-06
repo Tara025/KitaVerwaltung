@@ -3,6 +3,7 @@ package com.example.kitaverwaltung.controller;
 import com.example.kitaverwaltung.model.Erzieher;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
@@ -16,6 +17,8 @@ public class DashboardController {
     @FXML private Button btnKinder;
     @FXML private Button btnStandorte;
     @FXML private Button btnGruppe;
+    @FXML private Button btnLogout;
+
 
     @FXML private Pane mainContent;
 
@@ -42,6 +45,7 @@ public class DashboardController {
         btnKinder.setOnAction(e -> loadKinderTable());
         btnStandorte.setOnAction(e -> loadStandorteTable());
         btnGruppe.setOnAction(e -> loadGruppeTable());
+        btnLogout.setOnAction(e -> handleLogout());
     }
 
     @FXML
@@ -50,9 +54,18 @@ public class DashboardController {
     }
 
     @FXML
-    private void showLogin() {
-        loadFXML("/com/example/kitaverwaltung/login.fxml");
+    private void handleLogout() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/kitaverwaltung/login.fxml"));
+            Pane pane = loader.load();
+            Stage stage = (Stage) mainContent.getScene().getWindow();
+            stage.getScene().setRoot(pane);
+            stage.setTitle("Login");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
     private void clearMainContent() {
         mainContent.getChildren().clear();
