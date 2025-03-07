@@ -9,6 +9,7 @@
 <?import javafx.scene.control.Hyperlink?>
 
 
+
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.example.kitaverwaltung.controller.LoginController"
       styleClass="login-container" spacing="20" alignment="CENTER">

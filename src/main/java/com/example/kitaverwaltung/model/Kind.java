@@ -1,5 +1,6 @@
 package com.example.kitaverwaltung.model;
 
+
 import java.util.Date;
 
 public class Kind {

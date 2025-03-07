@@ -11,6 +11,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
 
@@ -32,12 +34,18 @@ public class LoginController {
             DashboardController.setCurrentUser(erzieher);
             loadDashboard();
         } else if (verwalter != null) {
-            DashboardController.setCurrentUser(verwalter);
-            loadDashboard();
+            // 🔹 Prüfe, ob der Verwalter als gelöscht markiert ist
+            if (verwalter.isDeleted()) {
+                showErrorDialog("Fehlende Berechtigung", "Fehlende Berechtigung für Login.");
+            } else {
+                DashboardController.setCurrentUser(verwalter);
+                loadDashboard();
+            }
         } else {
-            showErrorDialog("Login Failed", "Invalid email or password.");
+            showErrorDialog("Login Fehlgeschlagen", "Ungültige E-Mail oder Passwort.");
         }
     }
+
 
     @FXML
     private void handleCancel() {
@@ -45,6 +53,12 @@ public class LoginController {
         passwordField.clear();
     }
 
+    @FXML
+    private void handleEnterKey(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            handleLogin();
+        }
+    }
     private void loadDashboard() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/kitaverwaltung/dashboard.fxml"));
