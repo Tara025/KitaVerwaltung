@@ -8,6 +8,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 

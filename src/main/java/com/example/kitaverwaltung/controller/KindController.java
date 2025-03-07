@@ -2,14 +2,21 @@ package com.example.kitaverwaltung.controller;
 
 import com.example.kitaverwaltung.dao.KindDAO;
 import com.example.kitaverwaltung.model.Kind;
+import com.example.kitaverwaltung.util.TableColumnUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
 
 public class KindController {
 
@@ -17,7 +24,7 @@ public class KindController {
     @FXML private TableColumn<Kind, Integer> kind_idColumn;
     @FXML private TableColumn<Kind, String> vornameColumn;
     @FXML private TableColumn<Kind, String> nachnameColumn;
-    @FXML private TableColumn<Kind, String> geburtsdatumColumn;
+    @FXML private TableColumn<Kind, Date> geburtsdatumColumn;
     @FXML private TableColumn<Kind, String> fk_gruppe_idColumn;
     @FXML private TableColumn<Kind, String> bemerkungColumn;
 
@@ -25,12 +32,17 @@ public class KindController {
 
     @FXML
     public void initialize() {
+        //TableColumnUtil.setDateCellFactory(geburtsdatumColumn, "dd.MM.yyyy");
+
         kind_idColumn.setCellValueFactory(new PropertyValueFactory<>("kind_id"));
         vornameColumn.setCellValueFactory(new PropertyValueFactory<>("vorname"));
         nachnameColumn.setCellValueFactory(new PropertyValueFactory<>("nachname"));
         geburtsdatumColumn.setCellValueFactory(new PropertyValueFactory<>("geburtsdatum"));
         fk_gruppe_idColumn.setCellValueFactory(new PropertyValueFactory<>("fk_gruppe_id"));
         bemerkungColumn.setCellValueFactory(new PropertyValueFactory<>("bemerkung"));
+
+        //Utility methode zum formatieren des datums
+        TableColumnUtil.setDateCellFactory(geburtsdatumColumn, "dd.MM.yyyy");
 
         // Lade die Kind-Daten
         loadKindData();

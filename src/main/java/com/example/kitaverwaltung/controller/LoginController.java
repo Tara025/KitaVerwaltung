@@ -11,6 +11,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
 
@@ -44,6 +46,12 @@ public class LoginController {
         passwordField.clear();
     }
 
+    @FXML
+    private void handleEnterKey(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            handleLogin();
+        }
+    }
     private void loadDashboard() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/kitaverwaltung/dashboard.fxml"));
