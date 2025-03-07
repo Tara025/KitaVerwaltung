@@ -41,13 +41,26 @@ public class VerwalterDAO {
             if (jsonResponse != null && !jsonResponse.isEmpty()) {
                 Verwalter[] verwalterArray = gson.fromJson(jsonResponse, Verwalter[].class);
                 if (verwalterArray.length > 0) {
-                    return verwalterArray[0];
+                    Verwalter verwalter = verwalterArray[0];
+
+                    // 🔹 Prüfe, ob `deleted` gesetzt ist
+                    if (verwalter.isDeleted()) {
+                        System.out.println("Verwalter ist gelöscht und kann sich nicht einloggen.");
+                        return null; // Geblockter Login für gelöschte Verwalter
+                    }
+
+                    return verwalter;
                 }
             }
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    // Lösche einen Verwalter
+    public static boolean deleteVerwalter(int verwalterId) {
+        return dbConnection.sendDeleteRequest(TABLE_NAME, verwalterId);
     }
 
     // Füge einen Verwalter hinzu
@@ -62,8 +75,5 @@ public class VerwalterDAO {
         return dbConnection.sendPutRequest(TABLE_NAME, json);
     }
 
-    // Lösche einen Verwalter
-    public static boolean deleteVerwalter(int verwalterId) {
-        return dbConnection.sendDeleteRequest(TABLE_NAME, verwalterId);
-    }
+
 }

@@ -19,6 +19,7 @@ public class LoginController {
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
 
+
     @FXML
     private void handleLogin() {
         String email = emailField.getText();
@@ -31,12 +32,18 @@ public class LoginController {
             DashboardController.setCurrentUser(erzieher);
             loadDashboard();
         } else if (verwalter != null) {
-            DashboardController.setCurrentUser(verwalter);
-            loadDashboard();
+            // 🔹 Prüfe, ob der Verwalter als gelöscht markiert ist
+            if (verwalter.isDeleted()) {
+                showErrorDialog("Fehlende Berechtigung", "Fehlende Berechtigung für Login.");
+            } else {
+                DashboardController.setCurrentUser(verwalter);
+                loadDashboard();
+            }
         } else {
-            showErrorDialog("Login Failed", "Invalid email or password.");
+            showErrorDialog("Login Fehlgeschlagen", "Ungültige E-Mail oder Passwort.");
         }
     }
+
 
     @FXML
     private void handleCancel() {

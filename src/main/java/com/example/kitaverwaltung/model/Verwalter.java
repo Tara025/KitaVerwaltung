@@ -11,11 +11,12 @@ public class Verwalter {
     private String adresse;
     private double gehalt;
     private String email;
+    private boolean deleted; //noch hinzugefügt, für das Login handling
 
 
 
    // Konstruktor
-    public Verwalter(int verwalter_id, int fk_standort_id, String vorname, String nachname, String adresse, double gehalt, String email) {
+    public Verwalter(int verwalter_id, int fk_standort_id, String vorname, String nachname, String adresse, double gehalt, String email, boolean deleted) {
         this.verwalter_id = verwalter_id;
         this.fk_standort_id = fk_standort_id;
         this.vorname = vorname;
@@ -23,6 +24,16 @@ public class Verwalter {
         this.adresse = adresse;
         this.gehalt = gehalt;
         this.email = email;
+        this.deleted = false;
+    }
+
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
     public int getVerwalter_id() {
