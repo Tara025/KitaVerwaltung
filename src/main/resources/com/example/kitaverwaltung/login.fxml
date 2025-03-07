@@ -6,16 +6,34 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Hyperlink?>
 
-<VBox xmlns="http://javafx.com/javafx/8.0" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.kitaverwaltung.controller.LoginController" spacing="10" alignment="CENTER" style="-fx-padding: 20;"
-      prefWidth="400" prefHeight="300">
-    <Label text="Email" style="-fx-text-fill: black;"/>
-    <TextField fx:id="emailField" style="-fx-background-color: #34495E; -fx-text-fill: white;"/>
-    <Label text="Password" style="-fx-text-fill: black;"/>
-    <PasswordField fx:id="passwordField" style="-fx-background-color: #34495E; -fx-text-fill: white;"/>
-    <HBox spacing="10">
-        <Button text="Login" onAction="#handleLogin" style="-fx-text-fill: white; -fx-background-color: #34495E;"/>
-        <Button text="Cancel" onAction="#handleCancel" style="-fx-text-fill: white; -fx-background-color: #34495E;"/>
-    </HBox>
-</VBox>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.kitaverwaltung.controller.LoginController"
+      styleClass="login-container" spacing="20" alignment="CENTER">
+
+        <!-- Header -->
+        <VBox styleClass="top-panel" alignment="CENTER" spacing="10">
+            <Label text="Kita Verwaltungssoftware" styleClass="header-title"/>
+            <Label text="Willkommen zurück" styleClass="subheader"/>
+        </VBox>
+
+        <!-- Anmeldeformular -->
+        <VBox styleClass="form-box" spacing="15">
+            <TextField fx:id="emailField" promptText="E-Mail-Adresse" styleClass="input-field"/>
+            <PasswordField fx:id="passwordField" promptText="Passwort" styleClass="input-field"/>
+
+            <HBox spacing="10" styleClass="hbox-buttons">
+                <Button text="Anmelden" onAction="#handleLogin" styleClass="primary-button"/>
+                <Button text="Abbrechen" onAction="#handleCancel" styleClass="secondary-button"/>
+
+            </HBox>
+
+            <HBox spacing="10" styleClass="hbox-buttons">
+                <Hyperlink text="Passwort vergessen?" styleClass="hyperlink"/>
+            </HBox>
+
+        </VBox>
+
+    </VBox>

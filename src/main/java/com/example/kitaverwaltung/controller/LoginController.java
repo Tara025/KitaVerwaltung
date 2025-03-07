@@ -19,6 +19,7 @@ public class LoginController {
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
 
+
     @FXML
     private void handleLogin() {
         String email = emailField.getText();
