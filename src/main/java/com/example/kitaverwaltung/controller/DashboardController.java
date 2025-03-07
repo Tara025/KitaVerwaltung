@@ -1,6 +1,5 @@
 package com.example.kitaverwaltung.controller;
 
-import com.example.kitaverwaltung.Kita;
 import com.example.kitaverwaltung.model.Erzieher;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
