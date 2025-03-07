@@ -4,9 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
+import javafx.scene.image.Image;
 import java.io.IOException;
 
 public class Kita extends Application {
@@ -14,8 +15,19 @@ public class Kita extends Application {
     public void start(Stage stage) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/kitaverwaltung/login.fxml"));
-            Scene scene = new Scene(loader.load());
-            stage.setTitle("Login");
+            Pane root = loader.load();
+
+
+            Scene scene = new Scene(root);
+            stage.setTitle("Kitaverwaltung");
+
+            // Set the application icon
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/com/example/kitaverwaltung/images/app-icon.png")));
+
+
+            // Link the CSS file
+            scene.getStylesheets().add(getClass().getResource("/com/example/kitaverwaltung/css/style.css").toExternalForm());
+
 
             Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
             double screenWidth = screenBounds.getWidth();
