@@ -89,6 +89,17 @@
                     <Font size="16.0" />
                 </font>
             </Button>
+            <Button fx:id="btnAnwesenheit" alignment="CENTER" onAction="#loadStandorteTable" styleClass="panel_button" stylesheets="@css/style.css" text="📅 Anwesenheit">
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+                <effect>
+                    <DropShadow />
+                </effect>
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </Button>
             <Button fx:id="btnLogout" alignment="CENTER" graphicTextGap="6.0" onAction="#handleLogout" styleClass="panel_button" stylesheets="@css/style.css" text="🔓 Logout">
                 <cursor>
                     <Cursor fx:constant="HAND" />

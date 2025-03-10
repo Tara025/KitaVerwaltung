@@ -20,7 +20,7 @@ import javafx.util.Duration;
 public class DashboardController {
 
     // UI-Elemente
-    @FXML private Button btnEltern, btnVerwalter, btnErzieher, btnKinder, btnStandorte, btnGruppe, btnLogout;
+    @FXML private Button btnEltern, btnVerwalter, btnErzieher, btnKinder, btnStandorte, btnGruppe, btnLogout, btnAnwesenheit;;
     @FXML private StackPane mainContent;
     @FXML private Label welcomeLabel;
 
@@ -101,6 +101,7 @@ public class DashboardController {
         btnKinder.setOnAction(e -> loadKinderTable());
         btnStandorte.setOnAction(e -> loadStandorteTable());
         btnGruppe.setOnAction(e -> loadGruppeTable());
+        btnAnwesenheit.setOnAction(e -> loadAnwesenheitTable());
         btnLogout.setOnAction(e -> handleLogout());
     }
 
@@ -176,4 +177,9 @@ public class DashboardController {
 
     @FXML
     private void loadElternTable() { loadFXML("/com/example/kitaverwaltung/eltern.fxml"); }
+
+    @FXML
+    private void loadAnwesenheitTable() {
+        loadFXML("/com/example/kitaverwaltung/anwesenheit.fxml");
+    }
 }
