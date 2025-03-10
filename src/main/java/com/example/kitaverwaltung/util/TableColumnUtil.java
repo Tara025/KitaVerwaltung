@@ -7,6 +7,7 @@ import javafx.util.Callback;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+// Methode für formatierung von datums Spalten auf dd.MM.yyyy
 public class TableColumnUtil {
 
     public static <T> void setDateCellFactory(TableColumn<T, Date> column, String pattern) {
