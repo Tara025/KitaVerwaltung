@@ -1,7 +1,11 @@
+/* CSS Stylesheet für die Anwendung */
+
+/* Login */
 .top-panel {
-    -fx-background-color: linear-gradient(to bottom, #2c3e50, #4ca1af);
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 5);
-    -fx-padding: 10px;
+    -fx-background-color: linear-gradient(to top, #2c3e50, #4ca1af);
+    -fx-effect: dropshadow(gaussian, rgb(46, 63, 80), 15, 0, 0, 5);
+    -fx-padding: 15px;
+    -fx-max-width: 500px; /* Set a fixed width for the top panel */
     -fx-background-radius: 15px; /* Rounded corners */
 }
 
@@ -25,14 +29,13 @@
     -fx-font-size: 16px;
 }
 
-
+/* Eingabefelder */
 .form-box {
     -fx-min-width: 350px;
     -fx-padding: 20px 0;
     -fx-alignment: center;
 }
 
-/* Eingabefelder */
 .input-field {
     -fx-background-color: white;
     -fx-border-color: #ddd;
@@ -51,7 +54,7 @@
 }
 
 .primary-button {
-    -fx-background-color: linear-gradient(to bottom, #2c3e50, #4ca1af);
+    -fx-background-color: linear-gradient(to top, #2c3e50, #4ca1af);
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 5);
     -fx-text-fill: white;
     -fx-font-weight: bold;
@@ -89,6 +92,21 @@
     -fx-padding: 10px;
 }
 
+/* Willkommensbereich */
+.welcome-container {
+    -fx-padding: 15px;
+    -fx-background-color: #efe7c2;
+    -fx-border-color: #d0d0d0;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.welcome-label {
+    -fx-font-size: 24px;
+    -fx-text-fill: #3a546f;
+    -fx-font-weight: bold;
+    -fx-padding: 15px;
+}
+
 
 /* Dashboard */
 .dash_panel {
@@ -117,3 +135,19 @@
 .panel_button:hover, .panel_button#btnLogout:hover {
     -fx-background-color: #4ca1af;
 }
+
+/* Hauptinhalt */
+.main-content {
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+}
+
+/* Bild skalierung */
+.image-view {
+    -fx-fit-width: 100%;
+    -fx-fit-height: 100%;
+    -fx-alignment: center;
+}
+
+
+

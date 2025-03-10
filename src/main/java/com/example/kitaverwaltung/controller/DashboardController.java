@@ -1,37 +1,91 @@
 package com.example.kitaverwaltung.controller;
 
 import com.example.kitaverwaltung.model.Erzieher;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
-import javafx.stage.Screen;
+import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
+import java.util.Locale;
+import javafx.util.Duration;
 
 public class DashboardController {
 
-    @FXML private Button btnEltern;
-    @FXML private Button btnVerwalter;
-    @FXML private Button btnErzieher;
-    @FXML private Button btnKinder;
-    @FXML private Button btnStandorte;
-    @FXML private Button btnGruppe;
-    @FXML private Button btnLogout;
-    @FXML private Button btnAnwesenheit;
-    @FXML private Pane mainContent;
+    // UI-Elemente
+    @FXML private Button btnEltern, btnVerwalter, btnErzieher, btnKinder, btnStandorte, btnGruppe, btnLogout, btnAnwesenheit;;
+    @FXML private StackPane mainContent;
+    @FXML private Label welcomeLabel;
 
+
+
+    // ----Live-Uhr-----
+    private String currentUserName;
+    private final DateTimeFormatter dateTimeFormatter =
+            DateTimeFormatter.ofPattern("dd MMMM yyyy, HH:mm:ss 'Uhr'", Locale.getDefault());
+    private Timeline liveClock;
+
+    public void setWelcomeMessage(String userName) {
+        this.currentUserName = userName; // Benutzernamen speichern
+        startLiveClock(); // Live-Uhr starten
+    }
+
+    // Live-Uhr initialisieren
+    private void startLiveClock() {
+        // Sofortige erste Aktualisierung
+        updateWelcomeMessage();
+
+        // Timer für sekündliche Updates
+        liveClock = new Timeline(new KeyFrame(Duration.seconds(1), event -> updateWelcomeMessage()));
+        liveClock.setCycleCount(Timeline.INDEFINITE);
+        liveClock.play();
+    }
+
+    // Willkommen Nachricht aktualisieren
+    private void updateWelcomeMessage() {
+        LocalDateTime now = LocalDateTime.now();
+        String dayOfWeek = now.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.getDefault());
+        String formattedDateTime = now.format(dateTimeFormatter);
+
+        String message = String.format(
+                "Hallo %s. Heute ist %s, der %s",
+                currentUserName,
+                dayOfWeek,
+                formattedDateTime
+        );
+
+        if (welcomeLabel != null) {
+            welcomeLabel.setText(message);
+        } else {
+            System.out.println("Fehler: welcomeLabel ist null!");
+        }
+    }
+
+
+
+    // Benutzerverwaltung
     private static Object currentUser;
 
     public static void setCurrentUser(Object user) {
         currentUser = user;
     }
 
+    // -- Initialisierung --
+
     @FXML
     public void initialize() {
-        clearMainContent();
+        /*clearMainContent();*/
+
+        // Container an Fenstergröße anpassen
+        mainContent.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+
 
         if (currentUser != null) {
             if (currentUser instanceof Erzieher) {
@@ -51,36 +105,30 @@ public class DashboardController {
         btnLogout.setOnAction(e -> handleLogout());
     }
 
-    @FXML
-    private void handleDashboardClick() {
-        //loadFXML("/com/example/kitaverwaltung/dashboard.fxml");
-    }
 
-    //Logout
+    //-- Logout --
     @FXML
     private void handleLogout() {
+        // Timer stoppen
+        if (liveClock != null) {
+            liveClock.stop();
+        }
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/kitaverwaltung/login.fxml"));
             Pane pane = loader.load();
             Stage stage = (Stage) mainContent.getScene().getWindow();
 
+            // Fenstergröße zurücksetzen (wie beim Login)
+            stage.setWidth(800);
+            stage.setHeight(600);
+            stage.centerOnScreen(); // Neu zentrieren
+
             // Set the scene to the login pane
             stage.getScene().setRoot(pane);
-            stage.setTitle("Login");
+            stage.setTitle("Kitaverwaltung");
 
-            // Set the window size and position
-            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-            double screenWidth = screenBounds.getWidth();
-            double screenHeight = screenBounds.getHeight();
-            double windowWidth = 800;
-            double windowHeight = 600;
-            double xPosition = (screenWidth - windowWidth) / 2;
-            double yPosition = (screenHeight - windowHeight) / 2;
 
-            stage.setX(xPosition);
-            stage.setY(yPosition);
-            stage.setMinWidth(800);
-            stage.setMinHeight(600);
         } catch (IOException e) {
             e.printStackTrace();
         }
