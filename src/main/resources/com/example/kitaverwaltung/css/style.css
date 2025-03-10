@@ -6,6 +6,7 @@
 }
 
 .login-container {
+
     -fx-background-color: linear-gradient(to bottom, #2c3e50, #4ca1af);
     -fx-background-radius: 10;
     -fx-padding: 40px;
@@ -13,22 +14,22 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 5);
 }
 
-/* Header-Stile */
 .header-title {
-    -fx-text-fill: rgb(237, 241, 243); /* Lighter blue */
+    -fx-text-fill: rgb(237, 241, 243);
     -fx-font-size: 28px;
     -fx-font-weight: bold;
 }
 
 .subheader {
-    -fx-text-fill: #CCCCCC; /* Lighter gray */
+    -fx-text-fill: #CCCCCC;
     -fx-font-size: 16px;
 }
 
-/* Formular-Box */
+
 .form-box {
     -fx-min-width: 350px;
     -fx-padding: 20px 0;
+    -fx-alignment: center;
 }
 
 /* Eingabefelder */
@@ -39,11 +40,12 @@
     -fx-padding: 12px;
     -fx-font-size: 14px;
     -fx-text-fill: #333333; /* Darker text for better readability */
+    -fx-max-width: 350px;  /* Verhindert zu breite Felder */
 }
 
-/* Hyperlink-Stil */
+
 .hyperlink {
-    -fx-text-fill: #1d2f3e; /* Lighter blue */
+    -fx-text-fill: #1d2f3e;
     -fx-font-size: 14px;
     -fx-alignment: center;
 }
@@ -57,7 +59,7 @@
     -fx-padding: 12px 30px;
     -fx-border-radius: 6px;
     -fx-cursor: hand;
-    -fx-background-radius: 15px; /* Rounded corners */
+    -fx-background-radius: 15px;
 }
 
 .primary-button:hover {
@@ -72,7 +74,7 @@
     -fx-font-size: 16px;
     -fx-padding: 12px 30px;
     -fx-cursor: hand;
-    -fx-background-radius: 15px; /* Rounded corners */
+    -fx-background-radius: 15px;
 }
 
 .secondary-button:hover {
