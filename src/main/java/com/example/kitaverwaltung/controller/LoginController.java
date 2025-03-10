@@ -32,17 +32,43 @@ public class LoginController {
 
         if (erzieher != null) {
             DashboardController.setCurrentUser(erzieher);
-            loadDashboard();
+            loadDashboard(erzieher.getVorname());
         } else if (verwalter != null) {
             // 🔹 Prüfe, ob der Verwalter als gelöscht markiert ist
             if (verwalter.isDeleted()) {
                 showErrorDialog("Fehlende Berechtigung", "Fehlende Berechtigung für Login.");
             } else {
                 DashboardController.setCurrentUser(verwalter);
-                loadDashboard();
+                loadDashboard(verwalter.getVorname());
             }
         } else {
             showErrorDialog("Login Fehlgeschlagen", "Ungültige E-Mail oder Passwort.");
+        }
+    }
+
+    private void loadDashboard(String userName) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/kitaverwaltung/dashboard.fxml"));
+            Pane pane = loader.load();
+            DashboardController dashboardController = loader.getController();
+            dashboardController.setWelcomeMessage(userName);
+
+            // Holen der aktuellen Stage
+            Stage stage = (Stage) emailField.getScene().getWindow();
+
+            // Setzen der Startgröße für das Dashboard-Fenster
+            stage.setWidth(1200);
+            stage.setHeight(800);
+            stage.centerOnScreen(); // Fenster zentrieren
+
+
+            // Setzen der Szene
+            stage.getScene().setRoot(pane);
+            stage.setTitle("Kitaverwaltung Software");
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -57,17 +83,6 @@ public class LoginController {
     private void handleEnterKey(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
             handleLogin();
-        }
-    }
-    private void loadDashboard() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/kitaverwaltung/dashboard.fxml"));
-            Pane pane = loader.load();
-            Stage stage = (Stage) emailField.getScene().getWindow();
-            stage.getScene().setRoot(pane);
-            stage.setTitle("Dashboard");
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 

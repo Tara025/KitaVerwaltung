@@ -18,34 +18,31 @@ public class Kita extends Application {
             Pane root = loader.load();
 
 
-            Scene scene = new Scene(root);
+            Scene scene = new Scene(root, 800, 600); // Feste Startgröße für Login
             stage.setTitle("Kitaverwaltung");
 
-            // Set the application icon
+            // Anwendungssymbol
             stage.getIcons().add(new Image(getClass().getResourceAsStream("/com/example/kitaverwaltung/images/app-icon.png")));
 
 
             // Link the CSS file
             scene.getStylesheets().add(getClass().getResource("/com/example/kitaverwaltung/css/style.css").toExternalForm());
 
-
+            // Fenster zentrieren
             Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-            double screenWidth = screenBounds.getWidth();
-            double screenHeight = screenBounds.getHeight();
-            double windowWidth = 800;
-            double windowHeight = 600;
-            double xPosition = (screenWidth - windowWidth) / 2;
-            double yPosition = (screenHeight - windowHeight) / 2;
+            stage.setX((screenBounds.getWidth() - 800) / 2);
+            stage.setY((screenBounds.getHeight() - 600) / 2);
 
-            stage.setScene(scene);
-            stage.setX(xPosition);
-            stage.setY(yPosition);
+            // Minimale Fenstergröße
             stage.setMinWidth(800);
             stage.setMinHeight(600);
+
+            stage.setScene(scene);
             stage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
-            System.err.println("Error loading login.fxml. Ensure the file is in the correct folder!");
+            System.err.println("Fehler beim Laden von login.fxml. Überprüfe den Dateipfad!");
         }
     }
 
