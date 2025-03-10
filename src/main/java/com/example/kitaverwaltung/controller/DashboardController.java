@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class DashboardController {
 
-    @FXML private Button btnDashboard;
+    @FXML private Button btnEltern;
     @FXML private Button btnVerwalter;
     @FXML private Button btnErzieher;
     @FXML private Button btnKinder;
@@ -40,6 +40,7 @@ public class DashboardController {
             }
         }
 
+        btnEltern.setOnAction(e ->loadElternTable());
         btnVerwalter.setOnAction(e -> loadVerwalterTable());
         btnErzieher.setOnAction(e -> loadErzieherTable());
         btnKinder.setOnAction(e -> loadKinderTable());
@@ -98,6 +99,7 @@ public class DashboardController {
         }
     }
 
+
     @FXML
     private void loadVerwalterTable() {
         loadFXML("/com/example/kitaverwaltung/verwalter.fxml");
@@ -122,4 +124,7 @@ public class DashboardController {
     private void loadGruppeTable() {
         loadFXML("/com/example/kitaverwaltung/gruppe.fxml");
     }
+
+    @FXML
+    private void loadElternTable() { loadFXML("/com/example/kitaverwaltung/eltern.fxml"); }
 }
