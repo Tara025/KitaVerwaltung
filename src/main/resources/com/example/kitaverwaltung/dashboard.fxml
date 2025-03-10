@@ -11,7 +11,7 @@
     <!-- Sidebar for Navigation -->
     <left>
         <VBox alignment="TOP_RIGHT" spacing="10" styleClass="dash_panel" stylesheets="@css/style.css">
-            <Button fx:id="btnEltern" alignment="CENTER" onAction="#loadElternTable" styleClass="panel_button" stylesheets="@css/style.css" text="🏠 Eltern">
+            <Button fx:id="btnEltern" alignment="CENTER" onAction="#loadElternTable" styleClass="panel_button" stylesheets="@css/style.css" text="👨‍👩‍👧‍👦 Eltern">
                 <effect>
                     <DropShadow />
                 </effect>
