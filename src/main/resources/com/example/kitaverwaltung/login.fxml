@@ -22,8 +22,8 @@
 
         <!-- Anmeldeformular -->
         <VBox styleClass="form-box" spacing="15">
-            <TextField fx:id="emailField" promptText="E-Mail-Adresse" styleClass="input-field"/>
-            <PasswordField fx:id="passwordField" promptText="Passwort" styleClass="input-field"/>
+            <TextField fx:id="emailField" promptText="E-Mail-Adresse" styleClass="input-field" onKeyPressed="#handleEnterKey"/>
+            <PasswordField fx:id="passwordField" promptText="Passwort" styleClass="input-field" onKeyPressed="#handleEnterKey"/>
 
             <HBox spacing="10" styleClass="hbox-buttons">
                 <Button text="Anmelden" onAction="#handleLogin" styleClass="primary-button"/>
