@@ -3,13 +3,12 @@ package com.example.kitaverwaltung.dao;
 import com.example.kitaverwaltung.db.DatabaseConnection;
 import com.example.kitaverwaltung.model.Gruppe;
 import com.google.gson.Gson;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class GruppeDAO {
 
-    private static final String TABLE_NAME = "t_gruppe";
+    private static final String TABLE_NAME = "v_gruppen";
     private static final DatabaseConnection dbConnection = DatabaseConnection.getInstance();
     private static final Gson gson = new Gson();
 
@@ -17,9 +16,9 @@ public class GruppeDAO {
     public static List<Gruppe> getGruppen() {
         List<Gruppe> gruppeListe = new ArrayList<>();
 
-        // Anfrage an die Datenbank senden und Antwort erhalten
         String jsonResponse = dbConnection.sendGetRequest(TABLE_NAME);
-        if (jsonResponse != null) {
+
+        if (jsonResponse != null && !jsonResponse.isEmpty()) {
             // JSON-Antwort in ein Gruppe-Array umwandeln
             Gruppe[] gruppeArray = gson.fromJson(jsonResponse, Gruppe[].class);
             for (Gruppe gruppe : gruppeArray) {
@@ -28,6 +27,7 @@ public class GruppeDAO {
         }
         return gruppeListe;
     }
+
 
     // Füge eine Gruppe hinzu
     public static boolean addGruppe(Gruppe gruppe) {

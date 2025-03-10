@@ -2,6 +2,7 @@ package com.example.kitaverwaltung.controller;
 
 import com.example.kitaverwaltung.dao.GruppeDAO;
 import com.example.kitaverwaltung.model.Gruppe;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,19 +15,17 @@ import java.util.List;
 public class GruppeController {
 
     @FXML private TableView<Gruppe> gruppeTable;
-    @FXML private TableColumn<Gruppe, Integer> gruppeIdColumn;
-    @FXML private TableColumn<Gruppe, String> nameColumn;
-    @FXML private TableColumn<Gruppe, String> fk_erzieher_idColumn;
-    @FXML private TableColumn<Gruppe, Integer> fk_standort_idColumn;
+    @FXML private TableColumn<Gruppe, String> erzieher;
+    @FXML private TableColumn<Gruppe, String> gruppenname;
+    @FXML private TableColumn<Gruppe, String> standort_name;
 
     private ObservableList<Gruppe> gruppeList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
-        gruppeIdColumn.setCellValueFactory(new PropertyValueFactory<>("gruppe_id"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        fk_erzieher_idColumn.setCellValueFactory(new PropertyValueFactory<>("fk_erzieher_id"));
-        fk_standort_idColumn.setCellValueFactory(new PropertyValueFactory<>("fk_standort_id"));
+        gruppenname.setCellValueFactory(new PropertyValueFactory<>("gruppenname"));
+        erzieher.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getErzieherFullName()));
+        standort_name.setCellValueFactory(new PropertyValueFactory<>("standortName"));
 
         // Lade die Gruppe-Daten
         loadGruppeData();
