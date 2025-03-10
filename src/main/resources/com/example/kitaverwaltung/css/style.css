@@ -92,20 +92,28 @@
 
 /* Dashboard */
 .dash_panel {
-    -fx-background-color: #2c3e50;
+    -fx-background-color: linear-gradient(to top, #2c3e50, #367079);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 5);
     -fx-padding: 20;
 }
 
 .panel_button {
     -fx-text-fill: white;
-    -fx-background-color: #4ca1af;
+    -fx-background-color: linear-gradient(to top, #2c3e50, #367079);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 5);
+    /*-fx-font-weight: bold;*/
+    -fx-background-radius: 10px;
     -fx-cursor: hand;
+    -fx-pref-width: 200px; /* Set a fixed width for all buttons */
+    -fx-alignment: center; /* Center the text within the button */
+    -fx-padding: 10px 20px; /* Add padding to the buttons */
 }
 
-.panel_button#btnDashboard, .panel_button#btnLogout {
-    -fx-background-color: #34495E;
+.panel_button#btnLogout {
+    -fx-background-color: linear-gradient(to top, #1d2f3e, #2c5474);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 5);
 }
 
-.panel_button:hover {
-    -fx-background-color: #1E4563;
+.panel_button:hover, .panel_button#btnLogout:hover {
+    -fx-background-color: #4ca1af;
 }
