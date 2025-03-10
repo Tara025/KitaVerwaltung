@@ -8,95 +8,95 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kitaverwaltung.controller.DashboardController">
 
-             <!-- Sidebar for Navigation -->
-             <left>
-                 <VBox alignment="TOP_RIGHT" spacing="10" styleClass="dash_panel" stylesheets="@css/style.css">
-                     <Button fx:id="btnDashboard" alignment="CENTER" onAction="#handleDashboardClick" styleClass="panel_button" stylesheets="@css/style.css" text="🏠 Dashboard">
-                         <effect>
-                             <DropShadow />
-                         </effect>
-                         <cursor>
-                             <Cursor fx:constant="HAND" />
-                         </cursor>
-                         <font>
-                             <Font size="18.0" />
-                         </font>
-                     </Button>
-                     <Button fx:id="btnVerwalter" graphicTextGap="6.0" onAction="#loadVerwalterTable" styleClass="panel_button" stylesheets="@css/style.css" text="👤 Verwalter">
-                         <effect>
-                             <DropShadow blurType="GAUSSIAN" />
-                         </effect>
-                         <cursor>
-                             <Cursor fx:constant="HAND" />
-                         </cursor>
-                         <font>
-                             <Font size="16.0" />
-                         </font>
-                     </Button>
-                     <Button fx:id="btnGruppe" graphicTextGap="6.0" onAction="#loadGruppeTable" styleClass="panel_button" stylesheets="@css/style.css" text="👤 Gruppe">
-                         <effect>
-                             <DropShadow />
-                         </effect>
-                         <cursor>
-                             <Cursor fx:constant="HAND" />
-                         </cursor>
-                         <font>
-                             <Font size="16.0" />
-                         </font>
-                     </Button>
-                     <Button fx:id="btnErzieher" alignment="CENTER" graphicTextGap="6.0" onAction="#loadErzieherTable" styleClass="panel_button" stylesheets="@css/style.css" text="🧑‍🏫 Erzieher">
-                         <cursor>
-                             <Cursor fx:constant="HAND" />
-                         </cursor>
-                         <effect>
-                             <DropShadow />
-                         </effect>
-                         <font>
-                             <Font size="16.0" />
-                         </font>
-                     </Button>
-                     <Button fx:id="btnKinder" alignment="CENTER" graphicTextGap="6.0" onAction="#loadKinderTable" styleClass="panel_button" stylesheets="@css/style.css" text="👶 Kinder">
-                         <cursor>
-                             <Cursor fx:constant="HAND" />
-                         </cursor>
-                         <effect>
-                             <DropShadow />
-                         </effect>
-                         <font>
-                             <Font size="16.0" />
-                         </font>
-                     </Button>
-                     <Button fx:id="btnStandorte" alignment="CENTER" onAction="#loadStandorteTable" styleClass="panel_button" stylesheets="@css/style.css" text="🏡 Standorte">
-                         <cursor>
-                             <Cursor fx:constant="HAND" />
-                         </cursor>
-                         <effect>
-                             <DropShadow />
-                         </effect>
-                         <font>
-                             <Font size="16.0" />
-                         </font>
-                     </Button>
-                     <Button fx:id="btnLogout" alignment="CENTER" graphicTextGap="6.0" onAction="#handleLogout" styleClass="panel_button" stylesheets="@css/style.css" text="🔓 Logout">
-                         <cursor>
-                             <Cursor fx:constant="HAND" />
-                         </cursor>
-                         <effect>
-                             <DropShadow />
-                         </effect>
-                         <font>
-                             <Font size="14.0" />
-                         </font>
-                     </Button>
-                     <effect>
-                         <Bloom threshold="0.92" />
-                     </effect>
-                 </VBox>
-             </left>
+    <!-- Sidebar for Navigation -->
+    <left>
+        <VBox alignment="TOP_RIGHT" spacing="10" styleClass="dash_panel" stylesheets="@css/style.css">
+            <Button fx:id="btnEltern" alignment="CENTER" onAction="#loadElternTable" styleClass="panel_button" stylesheets="@css/style.css" text="🏠 Eltern">
+                <effect>
+                    <DropShadow />
+                </effect>
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </Button>
+            <Button fx:id="btnVerwalter" graphicTextGap="6.0" onAction="#loadVerwalterTable" styleClass="panel_button" stylesheets="@css/style.css" text="👤 Verwalter">
+                <effect>
+                    <DropShadow blurType="GAUSSIAN" />
+                </effect>
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </Button>
+            <Button fx:id="btnGruppe" graphicTextGap="6.0" onAction="#loadGruppeTable" styleClass="panel_button" stylesheets="@css/style.css" text="👤 Gruppe">
+                <effect>
+                    <DropShadow />
+                </effect>
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </Button>
+            <Button fx:id="btnErzieher" alignment="CENTER" graphicTextGap="6.0" onAction="#loadErzieherTable" styleClass="panel_button" stylesheets="@css/style.css" text="🧑‍🏫 Erzieher">
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+                <effect>
+                    <DropShadow />
+                </effect>
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </Button>
+            <Button fx:id="btnKinder" alignment="CENTER" graphicTextGap="6.0" onAction="#loadKinderTable" styleClass="panel_button" stylesheets="@css/style.css" text="👶 Kinder">
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+                <effect>
+                    <DropShadow />
+                </effect>
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </Button>
+            <Button fx:id="btnStandorte" alignment="CENTER" onAction="#loadStandorteTable" styleClass="panel_button" stylesheets="@css/style.css" text="🏡 Standorte">
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+                <effect>
+                    <DropShadow />
+                </effect>
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </Button>
+            <Button fx:id="btnLogout" alignment="CENTER" graphicTextGap="6.0" onAction="#handleLogout" styleClass="panel_button" stylesheets="@css/style.css" text="🔓 Logout">
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+                <effect>
+                    <DropShadow />
+                </effect>
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Button>
+            <effect>
+                <Bloom threshold="0.92" />
+            </effect>
+        </VBox>
+    </left>
 
-             <!-- Main Content -->
-             <center>
-                 <StackPane fx:id="mainContent" stylesheets="@css/style.css" />
-             </center>
+    <!-- Main Content -->
+    <center>
+        <StackPane fx:id="mainContent" stylesheets="@css/style.css" />
+    </center>
 
-         </BorderPane>
+</BorderPane>
