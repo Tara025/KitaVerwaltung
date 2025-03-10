@@ -4,11 +4,8 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
+
 
 import com.example.kitaverwaltung.config.Config;
 
@@ -18,7 +15,7 @@ public class DatabaseConnection {
     private static final String API_KEY = Config.API_KEY;  // Ersetze mit deinem echten API-Key
     private static DatabaseConnection instance;
     private final HttpClient client;
-    private Connection connection;
+
 
     private DatabaseConnection() {
         this.client = HttpClient.newHttpClient();
@@ -32,12 +29,7 @@ public class DatabaseConnection {
         return instance;
     }
 
-    // Method to execute SQL queries
-    public ResultSet executeQuery(String query) throws SQLException {
-        Statement stmt = connection.createStatement();
-        return stmt.executeQuery(query);
 
-    }
     // Allgemeine Methode für API-Anfragen (GET)
     public String sendGetRequest(String tableName) {
         try {
