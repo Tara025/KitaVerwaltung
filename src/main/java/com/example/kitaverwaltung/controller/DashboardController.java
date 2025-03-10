@@ -20,6 +20,7 @@ public class DashboardController {
     @FXML private Button btnStandorte;
     @FXML private Button btnGruppe;
     @FXML private Button btnLogout;
+    @FXML private Button btnAnwesenheit;
     @FXML private Pane mainContent;
 
     private static Object currentUser;
@@ -46,6 +47,7 @@ public class DashboardController {
         btnKinder.setOnAction(e -> loadKinderTable());
         btnStandorte.setOnAction(e -> loadStandorteTable());
         btnGruppe.setOnAction(e -> loadGruppeTable());
+        btnAnwesenheit.setOnAction(e -> loadAnwesenheitTable());
         btnLogout.setOnAction(e -> handleLogout());
     }
 
@@ -127,4 +129,9 @@ public class DashboardController {
 
     @FXML
     private void loadElternTable() { loadFXML("/com/example/kitaverwaltung/eltern.fxml"); }
+
+    @FXML
+    private void loadAnwesenheitTable() {
+        loadFXML("/com/example/kitaverwaltung/anwesenheit.fxml");
+    }
 }
