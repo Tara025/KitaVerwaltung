@@ -11,7 +11,7 @@
     <!-- Sidebar for Navigation -->
     <left>
         <VBox spacing="10" style="-fx-background-color: #2C3E50; -fx-padding: 20;">
-            <Button text="🏠 Dashboard" fx:id="btnDashboard" style="-fx-text-fill: white; -fx-background-color: #34495E;" onAction="#handleDashboardClick"/>
+            <Button text="🏠 Eltern" fx:id="btnEltern" style="-fx-text-fill: white; -fx-background-color: #34495E;" onAction="#loadElternTable"/>
             <Button text="👤 Verwalter" fx:id="btnVerwalter" style="-fx-text-fill: white; -fx-background-color: #34495E;" onAction="#loadVerwalterTable"/>
             <Button text="👤 Gruppe" fx:id="btnGruppe" style="-fx-text-fill: white; -fx-background-color: #34495E;" onAction="#loadGruppeTable"/>
             <Button text="🧑‍🏫 Erzieher" fx:id="btnErzieher" style="-fx-text-fill: white; -fx-background-color: #34495E;" onAction="#loadErzieherTable"/>
