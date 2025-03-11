@@ -1,33 +1,39 @@
 package com.example.kitaverwaltung.model;
 
-import com.google.gson.annotations.Expose;
 
 public class Erzieher {
 
-    private int erzieher_id;
+    private transient int erzieher_id;
     private String vorname;
     private String nachname;
     private String adresse;
     private double gehalt;
     private String email;
+    private String gruppe_name;
 
     // Konstruktor
-    public Erzieher(int erzieher_id, String vorname, String nachname, String adresse, double gehalt, String email) {
+    public Erzieher(int erzieher_id, String vorname, String nachname, String adresse, double gehalt, String email, String gruppe_name) {
         this.erzieher_id = erzieher_id;
         this.vorname = vorname;
         this.nachname = nachname;
         this.adresse = adresse;
         this.gehalt = gehalt;
         this.email = email;
+        this.gruppe_name = gruppe_name;
+    }
+
+    public Erzieher( String vorname, String nachname, String adresse, double gehalt, String email) {
+        this.vorname = vorname;
+        this.nachname = nachname;
+        this.adresse = adresse;
+        this.gehalt = gehalt;
+        this.email = email;
+        this.gruppe_name = null;
     }
 
     // Getter und Setter
     public int getErzieher_id() {
         return erzieher_id;
-    }
-
-    public void setErzieher_id(int erzieher_id) {
-        this.erzieher_id = erzieher_id;
     }
 
     public String getVorname() {
@@ -69,4 +75,9 @@ public class Erzieher {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getGruppe_name() { return gruppe_name; }
+
+    public void setGruppe_name(String gruppe_name) { this.gruppe_name = gruppe_name; }
+
 }

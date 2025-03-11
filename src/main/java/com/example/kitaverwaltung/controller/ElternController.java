@@ -14,6 +14,7 @@ public class ElternController {
 
     @FXML
     private TableView<Eltern> elternTable;
+    @FXML private TableColumn<Eltern, Integer> eltern_idColumn;
     @FXML private TableColumn<Eltern, String> vornameColumn;
     @FXML private TableColumn<Eltern, String> nachnameColumn;
     @FXML private TableColumn<Eltern, String> emailColumn;
@@ -33,6 +34,7 @@ public class ElternController {
 public void initialize() {
     // Spalten mit den richtigen Attributen verknüpfen
 
+    eltern_idColumn.setCellValueFactory(new PropertyValueFactory<>("eltern_id"));
     vornameColumn.setCellValueFactory(new PropertyValueFactory<>("vorname"));
     nachnameColumn.setCellValueFactory(new PropertyValueFactory<>("nachname"));
     emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));

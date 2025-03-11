@@ -1,7 +1,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.HBox?>
@@ -11,6 +10,9 @@
 <VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.example.kitaverwaltung.controller.ElternController"
       spacing="10" style="-fx-padding: 20;">
+
+    <!-- Label für den Titel -->
+    <Label text="Eltern" style="-fx-font-size: 24px;" />
 
     <!-- Eingabefelder für Eltern -->
     <GridPane hgap="10" vgap="10">
@@ -33,6 +35,7 @@
     <!-- Tabelle für die Eltern-Daten -->
     <TableView fx:id="elternTable" style="-fx-padding: 20;">
         <columns>
+            <TableColumn fx:id="eltern_idColumn" text="ID"/>
             <TableColumn fx:id="vornameColumn" text="Vorname"/>
             <TableColumn fx:id="nachnameColumn" text="Nachname"/>
             <TableColumn fx:id="emailColumn" text="E-Mail"/>
