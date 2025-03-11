@@ -12,6 +12,7 @@ import java.util.List;
 public class ErzieherDAO {
 
     private static final String TABLE_NAME = "t_erzieher";
+    private static final String VIEW_NAME = "v_erzieher";
     private static final DatabaseConnection dbConnection = DatabaseConnection.getInstance();
     private static final Gson gson = new Gson();
 
@@ -20,7 +21,7 @@ public class ErzieherDAO {
         List<Erzieher> erzieherListe = new ArrayList<>();
 
         // Anfrage an die API senden und Antwort empfangen
-        String jsonResponse = dbConnection.sendGetRequest(TABLE_NAME);
+        String jsonResponse = dbConnection.sendGetRequest(VIEW_NAME);
 
         if (jsonResponse != null && !jsonResponse.isEmpty()) {
             // JSON-Antwort in ein Erzieher-Array umwandeln

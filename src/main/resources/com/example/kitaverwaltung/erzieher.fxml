@@ -6,27 +6,49 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.TextField?>
+
 <VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.example.kitaverwaltung.controller.ErzieherController" spacing="10" style="-fx-padding: 10;">
 
     <!-- Label für den Titel -->
     <Label text="Erzieher" style="-fx-font-size: 24px;" />
 
+    <!-- Eingabefelder für Erzieher -->
+    <GridPane hgap="10" vgap="10">
+        <Label text="Vorname:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="vornameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Nachname:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="nachnameField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Adresse:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="adresseField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Label text="E-Mail:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextField fx:id="emailField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+        <Label text="Gehalt:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <TextField fx:id="gehaltField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+    </GridPane>
+
     <!-- Tabelle für die Erzieher -->
     <TableView fx:id="erzieherTable" style="-fx-padding: 20;">
         <!-- Table Columns for Erzieher -->
         <columns>
-        <TableColumn fx:id="erzieher_idColumn" text="Erzieher-ID"/>
-        <TableColumn fx:id="vornameColumn" text="Vorname"/>
-        <TableColumn fx:id="nachnameColumn" text="Nachname"/>
-        <TableColumn fx:id="emailColumn" text="Email"/>
-        <TableColumn fx:id="adresseColumn" text="Adresse"/>
-        <TableColumn fx:id="gehaltColumn" text="Gehalt"/>
+            <TableColumn fx:id="vornameColumn" text="Vorname"/>
+            <TableColumn fx:id="nachnameColumn" text="Nachname"/>
+            <TableColumn fx:id="emailColumn" text="Email"/>
+            <TableColumn fx:id="adresseColumn" text="Adresse"/>
+            <TableColumn fx:id="gehaltColumn" text="Gehalt"/>
+            <TableColumn fx:id="gruppeNameColumn" text="Gruppe Name"/>
         </columns>
 
     </TableView>
+
     <HBox spacing="10" stylesheets="@css/style.css">
-        <Button fx:id="btnAdd"  styleClass="action-button, add-button" stylesheets="@css/style.css" text="➕ Hinzufügen" />
+        <Button fx:id="btnAdd"  styleClass="action-button, add-button" stylesheets="@css/style.css" text="➕ Hinzufügen" onAction="#addErzieher" />
         <Button fx:id="btnEdit" styleClass="action-button, edit-button" stylesheets="@css/style.css" text="🖊 Bearbeiten" />
         <Button fx:id="btnDelete"  styleClass="action-button, delete-button" stylesheets="@css/style.css" text="❌ Löschen" />
     </HBox>

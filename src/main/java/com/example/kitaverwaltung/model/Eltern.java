@@ -3,7 +3,7 @@ package com.example.kitaverwaltung.model;
 
 
 public class Eltern {
-    private transient int eltern_id; // Marked as transient to exclude from serialization
+    private int eltern_id;
     private String vorname;
     private String nachname;
     private String adresse;
@@ -11,7 +11,11 @@ public class Eltern {
     private String rolle;
     private String kinder;
 
-    public Eltern( String vorname, String nachname, String adresse, String email, String rolle, String kinder) {
+    public Eltern() {}
+
+    // Default constructor für Get (View)
+    public Eltern(int eltern_id, String vorname, String nachname, String adresse, String email, String rolle, String kinder) {
+        this.eltern_id = eltern_id;
         this.vorname = vorname;
         this.nachname = nachname;
         this.adresse = adresse;
@@ -20,6 +24,7 @@ public class Eltern {
         this.kinder = kinder;
     }
 
+    // Default constructor für Post (Hinzufügen)
     public Eltern( String vorname, String nachname, String adresse, String email, String rolle) {
         this.vorname = vorname;
         this.nachname = nachname;
@@ -30,6 +35,7 @@ public class Eltern {
     }
 
     public int getEltern_id() { return eltern_id; }
+    public void setEltern_id(int eltern_id) { this.eltern_id = eltern_id; }
 
     public String getVorname() {
         return vorname;
@@ -74,5 +80,6 @@ public class Eltern {
     public String getKinder() { return kinder; }
 
     public void setKinder(String kinder) { this.kinder = kinder; }
+
 }
 
