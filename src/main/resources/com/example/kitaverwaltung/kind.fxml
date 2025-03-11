@@ -22,9 +22,9 @@
 
         </columns>
     </TableView>
-    <HBox spacing="10">
-        <Button text="➕ Hinzufügen" fx:id="btnAdd"/>
-        <Button text="🖊️ Bearbeiten" fx:id="btnEdit"/>
-        <Button text="❌ Löschen" fx:id="btnDelete"/>
+    <HBox spacing="10" stylesheets="@css/style.css">
+        <Button fx:id="btnAdd"  styleClass="action-button, add-button" stylesheets="@css/style.css" text="➕ Hinzufügen" />
+        <Button fx:id="btnEdit" styleClass="action-button, edit-button" stylesheets="@css/style.css" text="🖊 Bearbeiten" />
+        <Button fx:id="btnDelete"  styleClass="action-button, delete-button" stylesheets="@css/style.css" text="❌ Löschen" />
     </HBox>
 </VBox>

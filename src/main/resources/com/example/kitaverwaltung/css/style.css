@@ -98,14 +98,14 @@
 /* Willkommensbereich */
 .welcome-container {
     -fx-padding: 15px;
-    -fx-background-color: #efe7c2;
-    -fx-border-color: #d0d0d0;
-    -fx-border-width: 0 0 1px 0;
+    -fx-background-color: #367079; /*linear-gradient(to left, #2c3e50, #367079);*/
+   /* -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 5);*/
+    /*-fx-border-width: 0 0 1px 0;*/
 }
 
 .welcome-label {
     -fx-font-size: 24px;
-    -fx-text-fill: #3a546f;
+    -fx-text-fill: #aae1e6;
     -fx-font-weight: bold;
     -fx-padding: 15px;
 }
@@ -114,15 +114,16 @@
 /* Dashboard */
 .dash_panel {
     -fx-background-color: linear-gradient(to top, #2c3e50, #367079);
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 5);
+    /*-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 5);*/
     -fx-padding: 20;
 }
 
 .panel_button {
     -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
     -fx-background-color: linear-gradient(to top, #2c3e50, #367079);
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 5);
-    /*-fx-font-weight: bold;*/
     -fx-background-radius: 10px;
     -fx-cursor: hand;
     -fx-pref-width: 200px; /* Set a fixed width for all buttons */
@@ -157,5 +158,45 @@
     -fx-font-size: 16px;
     -fx-text-fill: #eef0f3;
     -fx-font-weight: bold;
-
 }
+
+
+/* Hauptinhalt Buttons */
+
+.action-button {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 15px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 15px;
+    -fx-cursor: hand;
+}
+.add-button {
+    -fx-background-color: linear-gradient(to top, #7FB069, #95B67F);
+    -fx-text-fill: white;
+}
+
+.add-button:hover {
+    -fx-background-color: #88A875;
+}
+
+
+.edit-button {
+    -fx-background-color: linear-gradient(to top, #6E8CA6, #89A2B8);
+    -fx-text-fill: white;
+}
+
+.edit-button:hover {
+    -fx-background-color: #7C95AB;
+}
+
+
+.delete-button {
+    -fx-background-color: linear-gradient(to top, #BA8B89, #C7A19F);
+    -fx-text-fill: white;
+}
+
+.delete-button:hover {
+    -fx-background-color: #B69593;
+}
+

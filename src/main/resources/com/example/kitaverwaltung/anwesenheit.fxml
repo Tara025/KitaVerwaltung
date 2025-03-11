@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Button?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kitaverwaltung.controller.AnwesenheitController" spacing="10" style="-fx-padding: 20;">
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@css/style.css" fx:controller="com.example.kitaverwaltung.controller.AnwesenheitController" spacing="10" style="-fx-padding: 20;">
     <ComboBox fx:id="personTypeComboBox" promptText="Select Person Type"/>
     <ComboBox fx:id="personNameComboBox" promptText="Select Person Name"/>
     <TableView fx:id="anwesenheitTable" style="-fx-padding: 20;">
@@ -16,9 +16,11 @@
             <TableColumn fx:id="statusColumn" text="Status"/>
         </columns>
     </TableView>
-    <HBox spacing="10">
-        <Button text="➕ Hinzufügen" fx:id="btnAdd"/>
-        <Button text="🖊️ Bearbeiten" fx:id="btnEdit"/>
-        <Button text="❌ Löschen" fx:id="btnDelete"/>
+
+    <HBox spacing="10" stylesheets="@css/style.css">
+        <Button fx:id="btnAdd"  styleClass="action-button, add-button" stylesheets="@css/style.css" text="➕ Hinzufügen" />
+        <Button fx:id="btnEdit" styleClass="action-button, edit-button" stylesheets="@css/style.css" text="🖊 Bearbeiten" />
+        <Button fx:id="btnDelete"  styleClass="action-button, delete-button" stylesheets="@css/style.css" text="❌ Löschen" />
     </HBox>
+
 </VBox>

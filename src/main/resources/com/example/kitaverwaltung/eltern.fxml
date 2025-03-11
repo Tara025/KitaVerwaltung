@@ -1,3 +1,4 @@
+
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.control.TextField?>
@@ -22,14 +23,36 @@
         <Label text="Nachname:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
         <TextField fx:id="nachnameField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-        <Label text="Adresse:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-        <TextField fx:id="adresseField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
-        <Label text="E-Mail:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-        <TextField fx:id="emailField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+<VBox spacing="10" style="-fx-padding: 20;" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kitaverwaltung.controller.ElternController">
 
-        <Label text="Rolle:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-        <TextField fx:id="rolleField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+    <!-- Eingabefelder für Eltern -->
+    <GridPane hgap="10" vgap="10">
+        <Label text="Vorname:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <TextField fx:id="vornameField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+        <Label text="Nachname:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="nachnameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+        <Label text="Adresse:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextField fx:id="adresseField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+        <Label text="E-Mail:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+        <Label text="Rolle:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <TextField fx:id="rolleField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <columnConstraints>
+         <ColumnConstraints />
+         <ColumnConstraints />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
     </GridPane>
 
     <!-- Tabelle für die Eltern-Daten -->
@@ -45,10 +68,10 @@
     </TableView>
 
     <!-- Buttons für Aktionen -->
-    <HBox spacing="10">
-        <Button text="➕ Hinzufügen" fx:id="btnAdd" onAction="#addEltern"/>
-        <Button text="🖊️ Bearbeiten" fx:id="btnEdit"/>
-        <Button text="❌ Löschen" fx:id="btnDelete" onAction="#deleteSelectedEltern"/>
+    <HBox spacing="10" stylesheets="@css/style.css">
+        <Button fx:id="btnAdd" onAction="#addEltern" styleClass="action-button, add-button" stylesheets="@css/style.css" text="➕ Hinzufügen" />
+        <Button fx:id="btnEdit" styleClass="action-button, edit-button" stylesheets="@css/style.css" text="🖊 Bearbeiten" />
+        <Button fx:id="btnDelete" onAction="#deleteSelectedEltern" styleClass="action-button, delete-button" stylesheets="@css/style.css" text="❌ Löschen" />
     </HBox>
 
 </VBox>
