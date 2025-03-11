@@ -120,9 +120,10 @@
 
 .panel_button {
     -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
     -fx-background-color: linear-gradient(to top, #2c3e50, #367079);
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 5);
-    /*-fx-font-weight: bold;*/
     -fx-background-radius: 10px;
     -fx-cursor: hand;
     -fx-pref-width: 200px; /* Set a fixed width for all buttons */
