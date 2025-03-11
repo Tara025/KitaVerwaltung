@@ -68,6 +68,9 @@ public class DatabaseConnection {
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
+            System.out.println("Response Code: " + response.statusCode());
+            System.out.println("Response Body: " + response.body());
+
             return response.statusCode() == 201;
         } catch (Exception e) {
             e.printStackTrace();
