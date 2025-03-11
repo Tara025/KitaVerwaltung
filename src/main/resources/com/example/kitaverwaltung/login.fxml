@@ -5,8 +5,8 @@
 <?import javafx.scene.layout.*?>
 
 <VBox alignment="CENTER" spacing="20" styleClass="login-container" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kitaverwaltung.controller.LoginController">
-    <!--prefHeight="518.0" prefWidth="738.0"-->
-        <!-- Header -->
+
+    <!-- Header -->
         <VBox alignment="CENTER" spacing="10" styleClass="top-panel" stylesheets="@css/style.css">
             <Label styleClass="header-title" stylesheets="@css/style.css" text="Kita Verwaltungssoftware" />
             <Label styleClass="subheader" stylesheets="@css/style.css" text="Willkommen zurück 😊">
