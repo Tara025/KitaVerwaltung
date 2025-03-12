@@ -5,31 +5,34 @@ import java.util.Date;
 
 public class Kind {
 
-    private int fk_gruppe_id;
+    //private int fk_gruppe_id;
+    private String gruppe_name;
     private int kind_id;
     private String vorname;
     private String nachname;
     private Date geburtsdatum;
     private String bemerkung;
+    private String eltern;
 
     // Konstruktor
-    public Kind(int fk_gruppe_id, int kind_id, String vorname, String nachname, Date geburtsdatum, String bemerkung) {
-        this.fk_gruppe_id = fk_gruppe_id;
+    public Kind(String gruppe_name, int kind_id, String vorname, String nachname, Date geburtsdatum, String bemerkung, String eltern) {
+        //this.fk_gruppe_id = fk_gruppe_id;
         this.kind_id = kind_id;
         this.vorname = vorname;
         this.nachname = nachname;
         this.geburtsdatum = geburtsdatum;
         this.bemerkung = bemerkung;
+        this.gruppe_name = gruppe_name;
+        this.eltern = eltern;
     }
 
     // Getter und Setter
-    public int getFk_gruppe_id() {
-        return fk_gruppe_id;
-    }
 
-    public void setFk_gruppe_id(int fk_gruppe_id) {
-        this.fk_gruppe_id = fk_gruppe_id;
+    public String getGruppe_name() {
+        return gruppe_name;
     }
+    public void setGruppe_name(String gruppe_name) {}
+
 
     public int getKind_id() {
         return kind_id;
@@ -69,5 +72,13 @@ public class Kind {
 
     public void setBemerkung(String bemerkung) {
         this.bemerkung = bemerkung;
+    }
+
+    public String getEltern() {
+        return eltern;
+    }
+
+    public void setEltern(String eltern) {
+        this.eltern = eltern;
     }
 }

@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.Date;
@@ -17,12 +18,19 @@ import java.util.List;
 public class KindController {
 
     @FXML private TableView<Kind> kindTable;
-    @FXML private TableColumn<Kind, Integer> kind_idColumn;
+    @FXML private TableColumn<Kind, Integer> gruppe_nameColumn;
     @FXML private TableColumn<Kind, String> vornameColumn;
     @FXML private TableColumn<Kind, String> nachnameColumn;
     @FXML private TableColumn<Kind, Date> geburtsdatumColumn;
-    @FXML private TableColumn<Kind, String> fk_gruppe_idColumn;
+    @FXML private TableColumn<Kind, String> elternColumn;
     @FXML private TableColumn<Kind, String> bemerkungColumn;
+
+    @FXML private TextField gruppe_nameField;
+    @FXML private TextField vornameField;
+    @FXML private TextField nachnameField;
+    @FXML private TextField geburtsdatumField;
+    @FXML private TextField elternField;
+    @FXML private TextField bemerkungField;
 
     private ObservableList<Kind> kindList = FXCollections.observableArrayList();
 
@@ -30,11 +38,11 @@ public class KindController {
     public void initialize() {
         //TableColumnUtil.setDateCellFactory(geburtsdatumColumn, "dd.MM.yyyy");
 
-        kind_idColumn.setCellValueFactory(new PropertyValueFactory<>("kind_id"));
+        gruppe_nameColumn.setCellValueFactory(new PropertyValueFactory<>("gruppe_name"));
         vornameColumn.setCellValueFactory(new PropertyValueFactory<>("vorname"));
         nachnameColumn.setCellValueFactory(new PropertyValueFactory<>("nachname"));
         geburtsdatumColumn.setCellValueFactory(new PropertyValueFactory<>("geburtsdatum"));
-        fk_gruppe_idColumn.setCellValueFactory(new PropertyValueFactory<>("fk_gruppe_id"));
+        elternColumn.setCellValueFactory(new PropertyValueFactory<>("eltern"));
         bemerkungColumn.setCellValueFactory(new PropertyValueFactory<>("bemerkung"));
 
         //Utility methode zum formatieren des datums

@@ -1,36 +1,45 @@
 package com.example.kitaverwaltung.controller;
 
 import com.example.kitaverwaltung.dao.VerwalterDAO;
+import com.example.kitaverwaltung.model.Erzieher;
 import com.example.kitaverwaltung.model.Verwalter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.List;
 
 public class VerwalterController {
 
+
+
     @FXML private TableView<Verwalter> verwalterTable;
     @FXML private TableColumn<Verwalter, Integer> verwalter_idColumn;
     @FXML private TableColumn<Verwalter, Integer> fk_standort_idColumn;
+    @FXML private TableColumn<Verwalter, String> standort_nameColumn;
     @FXML private TableColumn<Verwalter, String> vornameColumn;
     @FXML private TableColumn<Verwalter, String> nachnameColumn;
     @FXML private TableColumn<Verwalter, String> emailColumn;
     @FXML private TableColumn<Verwalter, Double> gehaltColumn;
     @FXML private TableColumn<Verwalter, String> adresseColumn;
 
-    private final ObservableList<Verwalter> verwalterListe = FXCollections.observableArrayList();
+    public TextField vornameField;
+    public TextField nachnameField;
+    public TextField emailField;
+    public TextField gehaltField;
+    public TextField adresseField;
+
+    private final ObservableList<Verwalter> verwalterList = FXCollections.observableArrayList();
+
 
     @FXML
     public void initialize() {
         // Spalten mit den richtigen Attributen verknüpfen
         verwalter_idColumn.setCellValueFactory(new PropertyValueFactory<>("verwalter_id"));
         fk_standort_idColumn.setCellValueFactory(new PropertyValueFactory<>("fk_standort_id"));
+        standort_nameColumn.setCellValueFactory(new PropertyValueFactory<>("standort_name"));
         vornameColumn.setCellValueFactory(new PropertyValueFactory<>("vorname"));
         nachnameColumn.setCellValueFactory(new PropertyValueFactory<>("nachname"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -42,16 +51,21 @@ public class VerwalterController {
     }
 
     private void loadVerwalterData() {
-        List<Verwalter> verwalterList = VerwalterDAO.getVerwalter();
+        List<Verwalter> verwalter = VerwalterDAO.getVerwalter();
 
-        if (verwalterList.isEmpty()) {
+        if (verwalter == null || verwalter.isEmpty()) {
             System.out.println("❌ Keine Verwalter-Daten gefunden.");
         } else {
             System.out.println("✅ Verwalter-Daten erfolgreich geladen: " + verwalterList.size() + " Einträge");
-            verwalterListe.setAll(verwalterList);
+
+            // Umwandlung der normalen Liste in eine ObservableList
+            ObservableList<Verwalter> observableVerwalterListe = FXCollections.observableArrayList(verwalter);
+
+            this.verwalterList.setAll(observableVerwalterListe); // Aktualisiere ObservableList
+
+            verwalterTable.setItems(this.verwalterList);
         }
 
-        verwalterTable.setItems(verwalterListe);
     }
 
     @FXML
@@ -67,7 +81,7 @@ public class VerwalterController {
             if (alert.showAndWait().get() == ButtonType.OK) {
                 boolean success = VerwalterDAO.deleteVerwalter(selectedVerwalter.getVerwalter_id());
                 if (success) {
-                    verwalterListe.remove(selectedVerwalter);
+                    verwalterList.remove(selectedVerwalter);
                     //showAlert(Alert.AlertType.INFORMATION, "Erfolg", "Verwalter wurde erfolgreich gelöscht.");
                 } else {
                     showAlert(Alert.AlertType.ERROR, "Fehler", "Fehler beim Löschen des Verwalters.");

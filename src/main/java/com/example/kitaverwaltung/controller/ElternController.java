@@ -12,8 +12,7 @@ import java.util.List;
 
 public class ElternController {
 
-    @FXML
-    private TableView<Eltern> elternTable;
+    @FXML private TableView<Eltern> elternTable;
     @FXML private TableColumn<Eltern, Integer> eltern_idColumn;
     @FXML private TableColumn<Eltern, String> vornameColumn;
     @FXML private TableColumn<Eltern, String> nachnameColumn;
@@ -30,20 +29,20 @@ public class ElternController {
     private final ObservableList<Eltern> elternListe = FXCollections.observableArrayList();
 
 
-@FXML
-public void initialize() {
-    // Spalten mit den richtigen Attributen verknüpfen
+    @FXML
+    public void initialize() {
+        // Spalten mit den richtigen Attributen verknüpfen
 
-    eltern_idColumn.setCellValueFactory(new PropertyValueFactory<>("eltern_id"));
-    vornameColumn.setCellValueFactory(new PropertyValueFactory<>("vorname"));
-    nachnameColumn.setCellValueFactory(new PropertyValueFactory<>("nachname"));
-    emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-    kinderColumn.setCellValueFactory(new PropertyValueFactory<>("kinder"));
-    adresseColumn.setCellValueFactory(new PropertyValueFactory<>("adresse"));
+        eltern_idColumn.setCellValueFactory(new PropertyValueFactory<>("eltern_id"));
+        vornameColumn.setCellValueFactory(new PropertyValueFactory<>("vorname"));
+        nachnameColumn.setCellValueFactory(new PropertyValueFactory<>("nachname"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        kinderColumn.setCellValueFactory(new PropertyValueFactory<>("kinder"));
+        adresseColumn.setCellValueFactory(new PropertyValueFactory<>("adresse"));
 
-    // Daten laden
-    loadElternData();
-}
+        // Daten laden
+        loadElternData();
+    }
 
     private void loadElternData() {
         List<Eltern> elternList = ElternDAO.getEltern(); // Lade Daten aus der DB
@@ -87,40 +86,40 @@ public void initialize() {
         }
     }
 
-@FXML
-private void deleteSelectedEltern() {
-    Eltern selectedEltern = elternTable.getSelectionModel().getSelectedItem();
-    if (selectedEltern != null) {
-        // Confirmation alert
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Löschen bestätigen");
-        alert.setHeaderText("Sind Sie sicher, dass Sie dieses Elternteil löschen möchten?");
-        alert.setContentText(selectedEltern.getVorname() + " " + selectedEltern.getNachname());
+    @FXML
+    private void deleteSelectedEltern() {
+        Eltern selectedEltern = elternTable.getSelectionModel().getSelectedItem();
+        if (selectedEltern != null) {
+            // Confirmation alert
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Löschen bestätigen");
+            alert.setHeaderText("Sind Sie sicher, dass Sie dieses Elternteil löschen möchten?");
+            alert.setContentText(selectedEltern.getVorname() + " " + selectedEltern.getNachname());
 
-        if (alert.showAndWait().get() == ButtonType.OK) {
-            boolean success = ElternDAO.deleteEltern(selectedEltern.getEltern_id());
-            if (success) {
-                elternListe.remove(selectedEltern);
-                //showAlert(Alert.AlertType.INFORMATION, "Erfolg", "Elternteil wurde erfolgreich gelöscht.");
-            } else {
-                showAlert(Alert.AlertType.ERROR, "Fehler", "Fehler beim Löschen des Elternteils.");
+            if (alert.showAndWait().get() == ButtonType.OK) {
+                boolean success = ElternDAO.deleteEltern(selectedEltern.getEltern_id());
+                if (success) {
+                    elternListe.remove(selectedEltern);
+                    //showAlert(Alert.AlertType.INFORMATION, "Erfolg", "Elternteil wurde erfolgreich gelöscht.");
+                } else {
+                    showAlert(Alert.AlertType.ERROR, "Fehler", "Fehler beim Löschen des Elternteils.");
+                }
             }
+        } else {
+            showAlert(Alert.AlertType.WARNING, "Warnung", "Bitte wählen Sie ein Elternteil aus.");
         }
-    } else {
-        showAlert(Alert.AlertType.WARNING, "Warnung", "Bitte wählen Sie ein Elternteil aus.");
+
+
     }
 
 
-}
 
-
-
-private void showAlert(Alert.AlertType alertType, String title, String message) {
-    Alert alert = new Alert(alertType);
-    alert.setTitle(title);
-    alert.setHeaderText(null);
-    alert.setContentText(message);
-    alert.showAndWait();
-}
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+        }
 }
 

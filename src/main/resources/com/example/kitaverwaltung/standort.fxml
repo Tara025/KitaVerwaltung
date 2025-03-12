@@ -3,13 +3,22 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.TextField?>
 
-<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+<VBox stylesheets="@css/style.css" styleClass=""
+      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.example.kitaverwaltung.controller.StandortController" spacing="10" style="-fx-padding: 20;">
 
-    <TableView fx:id="standortTable" style="-fx-padding: 20;">
+    <!-- Label für den Titel -->
+    <Label text="Standort" styleClass="label_main" style="-fx-font-size: 24px;" />
+
+
+    <!-- Tabelle für die Standort-Daten -->
+    <TableView fx:id="standortTable" styleClass="table" style="-fx-padding: 20;">
         <columns>
-            <TableColumn fx:id="standort_idColumn" text="Standort-ID"/>
+            <TableColumn fx:id="standort_idColumn" text="Standort-ID" visible="false"/>
             <TableColumn fx:id="stadtColumn" text="Stadt"/>
             <TableColumn fx:id="nameColumn" text="Name"/>
             <TableColumn fx:id="standortartColumn" text="Standortart"/>
@@ -17,10 +26,29 @@
             <TableColumn fx:id="strasseColumn" text="Adresse"/>
         </columns>
     </TableView>
+
+    <!-- Buttons für Aktionen -->
     <HBox spacing="10" stylesheets="@css/style.css">
         <Button fx:id="btnAdd"  styleClass="action-button, add-button" stylesheets="@css/style.css" text="➕ Hinzufügen" />
         <Button fx:id="btnEdit" styleClass="action-button, edit-button" stylesheets="@css/style.css" text="🖊 Bearbeiten" />
         <Button fx:id="btnDelete"  styleClass="action-button, delete-button" stylesheets="@css/style.css" text="❌ Löschen" />
     </HBox>
+
+    <GridPane hgap="10" vgap="10">
+        <Label text="Stadt:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <TextField fx:id="stadtField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+        <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+        <Label text="Standortart:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextField fx:id="standortartField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+        <Label text="PLZ:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <TextField fx:id="plzField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+        <Label text="Adresse:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <TextField fx:id="strasseField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+    </GridPane>
 
 </VBox>
