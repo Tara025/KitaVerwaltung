@@ -3,6 +3,8 @@ package com.example.kitaverwaltung.dao;
 import com.example.kitaverwaltung.db.DatabaseConnection;
 import com.example.kitaverwaltung.model.Anwesenheit;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -54,6 +56,70 @@ public class AnwesenheitDAO {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
             return Collections.emptyList();
+        }
+    }
+
+    public static int insertArbeitstag(String date) {
+        // Check if the date already exists
+        String checkResponse = DatabaseConnection.getInstance().sendGetRequest("t_arbeitstage?datum=eq." + date);
+        if (checkResponse != null && !checkResponse.isEmpty() && !checkResponse.equals("[]")) {
+            JsonObject jsonObject = JsonParser.parseString(checkResponse).getAsJsonArray().get(0).getAsJsonObject();
+            return jsonObject.get("arbeitstage_id").getAsInt();
+        }
+
+        // If the date does not exist, insert a new record
+        String jsonData = String.format("{\"datum\": \"%s\"}", date);
+        boolean success = DatabaseConnection.getInstance().sendPostRequest("t_arbeitstage", jsonData);
+        if (success) {
+            String response = DatabaseConnection.getInstance().sendGetRequest("t_arbeitstage?datum=eq." + date);
+            if (response != null) {
+                JsonObject jsonObject = JsonParser.parseString(response).getAsJsonArray().get(0).getAsJsonObject();
+                return jsonObject.get("arbeitstage_id").getAsInt();
+            }
+        }
+        return -1;
+    }
+
+    public static boolean insertStatus(String personType, String personName, int arbeitstageId, int statusId) {
+        String tableName = getStatusTableNameByType(personType);
+        String[] nameParts = personName.split(" ");
+        if (nameParts.length < 2) {
+            throw new IllegalArgumentException("Name must include both vorname and nachname");
+        }
+        String vorname = nameParts[0];
+        String nachname = nameParts[1];
+        try {
+            String encodedVorname = URLEncoder.encode(vorname, "UTF-8");
+            String encodedNachname = URLEncoder.encode(nachname, "UTF-8");
+            String viewName = getViewNameByType(personType);
+            String jsonResponse = dbConnection.sendGetRequest(viewName + "?vorname=eq." + encodedVorname + "&nachname=eq." + encodedNachname);
+            //System.out.println("Response: " + jsonResponse);
+
+            if (jsonResponse != null) {
+                JsonObject jsonObject = JsonParser.parseString(jsonResponse).getAsJsonArray().get(0).getAsJsonObject();
+                // dreckiger fix: Wenn personType = "Kinder", dann kind_id, sonst verwalter_id oder erzieher_id
+                String key = personType.equals("Kinder") ? "kind_id" : personType.toLowerCase() + "_id";
+                int personId = jsonObject.get(key).getAsInt();
+                //System.out.println("personId = " + personId);
+                String jsonData = String.format("{\"fk_arbeitstage_id\": %d, \"fk_status_id\": %d, \"fk_%s\": %d}", arbeitstageId, statusId, key, personId);
+                return dbConnection.sendPostRequest(tableName, jsonData);
+            }
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    private static String getStatusTableNameByType(String type) {
+        switch (type) {
+            case "Verwalter":
+                return "vt_verwalter_arbeitstage";
+            case "Erzieher":
+                return "vt_erzieher_arbeitstage";
+            case "Kinder":
+                return "vt_kind_arbeitstage";
+            default:
+                throw new IllegalArgumentException("Invalid type: " + type);
         }
     }
 

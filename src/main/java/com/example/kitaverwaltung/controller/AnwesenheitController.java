@@ -1,7 +1,6 @@
 package com.example.kitaverwaltung.controller;
 
 import com.example.kitaverwaltung.dao.AnwesenheitDAO;
-import com.example.kitaverwaltung.db.DatabaseConnection;
 import com.example.kitaverwaltung.model.Anwesenheit;
 import com.example.kitaverwaltung.util.TableColumnUtil;
 import javafx.collections.FXCollections;
@@ -77,8 +76,31 @@ public class AnwesenheitController {
         String formattedDate = convertDateFormat(dateInput, "dd.MM.yyyy", "yyyy-MM-dd");
 
         // Insert into database
-        if (insertArbeitstag(formattedDate)) {
-            showAlert(Alert.AlertType.INFORMATION, "Erfolg", "Der Arbeitstag wurde erfolgreich gespeichert.");
+        int arbeitstageId = AnwesenheitDAO.insertArbeitstag(formattedDate);
+        //System.out.println("arbeitstage_id = " + arbeitstageId);
+
+        if (arbeitstageId != -1) {
+            // Get the selected person type and name
+            String personType = personTypeComboBox.getValue();
+            String personName = personNameComboBox.getValue();
+            //System.out.println("personType = " + personType);
+            //System.out.println("personName = " + personName);
+
+            // Determine the status ID
+            int statusId = status.equals("anwesend") ? 1 : 2;
+            //System.out.println("statusId = " + statusId);
+
+            // Insert the status into the appropriate table
+            boolean success = AnwesenheitDAO.insertStatus(personType, personName, arbeitstageId, statusId);
+            if (success) {
+                showAlert(Alert.AlertType.INFORMATION, "Erfolg", "Der Arbeitstag und Status wurden erfolgreich gespeichert.");
+                loadAnwesenheitData(); // Reload data and refresh the table
+                // Eingabe-Felder verstecken
+                newEntryBox.setVisible(false);
+                btnSave.setVisible(false);
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Fehler", "Fehler beim Speichern des Status.");
+            }
         } else {
             showAlert(Alert.AlertType.ERROR, "Fehler", "Fehler beim Speichern des Arbeitstags.");
         }
@@ -105,11 +127,6 @@ public class AnwesenheitController {
             e.printStackTrace();
             return null;
         }
-    }
-
-    private boolean insertArbeitstag(String date) {
-        String jsonData = String.format("{\"datum\": \"%s\"}", date);
-        return DatabaseConnection.getInstance().sendPostRequest("t_arbeitstage", jsonData);
     }
 
     private void updatePersonNameComboBox() {
