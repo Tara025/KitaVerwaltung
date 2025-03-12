@@ -5,13 +5,21 @@ import com.example.kitaverwaltung.model.Standort;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.List;
 
 public class StandortController {
+
+    public TextField stadtField;
+    public TextField nameField;
+    public TextField standortartField;
+    public TextField plzField;
+    public TextField strasseField;
 
     @FXML private TableView<Standort> standortTable;
     @FXML private TableColumn<Standort, Integer> standort_idColumn;
@@ -21,7 +29,7 @@ public class StandortController {
     @FXML private TableColumn<Standort, String> plzColumn;
     @FXML private TableColumn<Standort, String> stadtColumn;
 
-    private ObservableList<Standort> standortList = FXCollections.observableArrayList();
+    private final ObservableList<Standort> standortList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
@@ -57,6 +65,7 @@ public class StandortController {
     @FXML
     private void addStandort() {
         // Logik zum Hinzufügen eines neuen Standorts
+
     }
 
     @FXML
@@ -67,5 +76,13 @@ public class StandortController {
     @FXML
     private void deleteStandort() {
         // Logik zum Löschen eines Standorts
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
