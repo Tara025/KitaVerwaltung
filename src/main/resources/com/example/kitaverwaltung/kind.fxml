@@ -2,29 +2,30 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
-
-
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Button?>
-
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+
 <VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      styleClass="" stylesheets="@css/style.css"
       fx:controller="com.example.kitaverwaltung.controller.KindController" spacing="10" style="-fx-padding: 20;">
+
+    <!-- Label für den Titel -->
+    <Label text="Kinder" styleClass="label_main" style="-fx-font-size: 24px;" />
 
     <TableView fx:id="kindTable" style="-fx-padding: 20;">
         <columns>
-
             <TableColumn fx:id="gruppe_nameColumn" text="Gruppenname" />
             <TableColumn fx:id="vornameColumn" text="Vorname" />
             <TableColumn fx:id="nachnameColumn" text="Nachname" />
             <TableColumn fx:id="geburtsdatumColumn" text="Geburtsdatum" />
             <TableColumn fx:id="elternColumn" text="Eltern" />
             <TableColumn fx:id="bemerkungColumn" text="Bemerkungen" />
-
         </columns>
     </TableView>
+
     <HBox spacing="10" stylesheets="@css/style.css">
         <Button fx:id="btnAdd"  styleClass="action-button, add-button" stylesheets="@css/style.css" text="➕ Hinzufügen" />
         <Button fx:id="btnEdit" styleClass="action-button, edit-button" stylesheets="@css/style.css" text="🖊 Bearbeiten" />

@@ -17,26 +17,6 @@
  <!-- Label für den Titel -->
     <Label text="Eltern" styleClass="label_main"  style="-fx-font-size: 24px;" />
 
-
-    <!-- Eingabefelder für Eltern -->
-    <GridPane hgap="10" vgap="10">
-        <Label text="Vorname:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-        <TextField fx:id="vornameField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-
-        <Label text="Nachname:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-        <TextField fx:id="nachnameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-
-        <Label text="Adresse:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-        <TextField fx:id="adresseField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-
-        <Label text="E-Mail:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-        <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-
-        <Label text="Rolle:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-        <TextField fx:id="rolleField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-    </GridPane>
-
-
     <!-- Tabelle für die Eltern-Daten -->
     <TableView fx:id="elternTable" style="-fx-padding: 20;">
         <columns>
@@ -55,6 +35,24 @@
         <Button fx:id="btnEdit" styleClass="action-button, edit-button" stylesheets="@css/style.css" text="🖊 Bearbeiten" />
         <Button fx:id="btnDelete" onAction="#deleteSelectedEltern" styleClass="action-button, delete-button" stylesheets="@css/style.css" text="❌ Löschen" />
     </HBox>
+
+    <!-- Eingabefelder für Eltern -->
+    <GridPane hgap="10" vgap="10">
+        <Label text="Vorname:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <TextField fx:id="vornameField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+        <Label text="Nachname:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="nachnameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+        <Label text="Adresse:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextField fx:id="adresseField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+        <Label text="E-Mail:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+        <Label text="Rolle:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <TextField fx:id="rolleField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+    </GridPane>
 
 
 </VBox>

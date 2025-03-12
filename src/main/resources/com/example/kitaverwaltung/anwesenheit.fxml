@@ -13,7 +13,9 @@
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@css/style.css" fx:controller="com.example.kitaverwaltung.controller.AnwesenheitController" spacing="10" style="-fx-padding: 20;">
     <ComboBox fx:id="personTypeComboBox" promptText="Select Person Type"/>
     <ComboBox fx:id="personNameComboBox" promptText="Select Person Name"/>
-    <TableView fx:id="anwesenheitTable" style="-fx-padding: 20;">
+
+
+    <TableView fx:id="anwesenheitTable" styleClass="table_anw" style="-fx-padding: 20;">
         <columns>
             <TableColumn fx:id="dateColumn" text="Datum"/>
             <TableColumn fx:id="statusColumn" text="Status"/>
