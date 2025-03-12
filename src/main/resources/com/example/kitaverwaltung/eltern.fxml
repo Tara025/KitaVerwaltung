@@ -8,12 +8,11 @@
 <?import javafx.scene.control.Label?>
 
 
+<VBox spacing="10" style="-fx-padding: 20;" stylesheets="@css/style.css"
+      xmlns="http://javafx.com/javafx/17.0.12"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.kitaverwaltung.controller.ElternController">
 
-<VBox spacing="10" style="-fx-padding: 20;"
-      stylesheets="@css/style.css"  styleClass=""
-        xmlns="http://javafx.com/javafx/17.0.12"
-        xmlns:fx="http://javafx.com/fxml/1"
-        fx:controller="com.example.kitaverwaltung.controller.ElternController">
 
  <!-- Label für den Titel -->
     <Label text="Eltern" styleClass="label_main"  style="-fx-font-size: 24px;" />

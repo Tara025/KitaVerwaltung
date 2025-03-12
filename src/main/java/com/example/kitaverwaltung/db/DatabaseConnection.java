@@ -70,6 +70,8 @@ public class DatabaseConnection {
 
             System.out.println("Response Code: " + response.statusCode());
             System.out.println("Response Body: " + response.body());
+            System.out.println("POST URL: " + url);
+            System.out.println("POST Data: " + jsonData);
 
             return response.statusCode() == 201;
         } catch (Exception e) {

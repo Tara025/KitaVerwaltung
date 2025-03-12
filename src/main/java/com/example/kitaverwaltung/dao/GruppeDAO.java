@@ -5,18 +5,20 @@ import com.example.kitaverwaltung.model.Gruppe;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
+import com.google.gson.GsonBuilder;
 
 public class GruppeDAO {
 
-    private static final String TABLE_NAME = "v_gruppen";
+    private static final String VIEW_NAME = "v_gruppen";
+    private static final String TABLE_NAME = "t_gruppe";
     private static final DatabaseConnection dbConnection = DatabaseConnection.getInstance();
-    private static final Gson gson = new Gson();
+    private static final Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
     // Hole alle Gruppen
     public static List<Gruppe> getGruppen() {
         List<Gruppe> gruppeListe = new ArrayList<>();
 
-        String jsonResponse = dbConnection.sendGetRequest(TABLE_NAME);
+    String jsonResponse = dbConnection.sendGetRequest(VIEW_NAME);
 
         if (jsonResponse != null && !jsonResponse.isEmpty()) {
             // JSON-Antwort in ein Gruppe-Array umwandeln
@@ -42,7 +44,7 @@ public class GruppeDAO {
     }
 
     // Lösche eine Gruppe
-    public static boolean deleteGruppe(int gruppeId) {
-        return dbConnection.sendDeleteRequest(TABLE_NAME, gruppeId);
+    public static boolean deleteGruppe(int gruppe_id) {
+        return dbConnection.sendDeleteRequest(TABLE_NAME, gruppe_id);
     }
 }

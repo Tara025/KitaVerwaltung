@@ -1,15 +1,25 @@
 package com.example.kitaverwaltung.model;
 
 
+import com.google.gson.annotations.Expose;
+
 public class Erzieher {
 
-    private transient int erzieher_id;
+    @Expose(serialize = false)
+    private int erzieher_id;
+    @Expose
     private String vorname;
+    @Expose
     private String nachname;
+    @Expose
     private String adresse;
+    @Expose
     private double gehalt;
+    @Expose
     private String email;
+    @Expose
     private String gruppe_name;
+
 
     // Konstruktor
     public Erzieher(int erzieher_id, String vorname, String nachname, String adresse, double gehalt, String email, String gruppe_name) {
@@ -50,6 +60,10 @@ public class Erzieher {
 
     public void setNachname(String nachname) {
         this.nachname = nachname;
+    }
+
+    public String getErzieherFullName() {
+        return vorname + " " + nachname;
     }
 
     public String getAdresse() {

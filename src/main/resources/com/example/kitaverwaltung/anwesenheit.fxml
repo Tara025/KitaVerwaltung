@@ -7,6 +7,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Button?>
 
+<?import javafx.scene.control.TextField?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@css/style.css" fx:controller="com.example.kitaverwaltung.controller.AnwesenheitController" spacing="10" style="-fx-padding: 20;">
     <ComboBox fx:id="personTypeComboBox" promptText="Select Person Type"/>
     <ComboBox fx:id="personNameComboBox" promptText="Select Person Name"/>
@@ -20,8 +23,22 @@
     </TableView>
 
     <HBox spacing="10" stylesheets="@css/style.css">
-        <Button fx:id="btnAdd"  styleClass="action-button, add-button" stylesheets="@css/style.css" text="➕ Hinzufügen" />
-        <Button fx:id="btnEdit" styleClass="action-button, edit-button" stylesheets="@css/style.css" text="🖊 Bearbeiten" />
+        <Button fx:id="btnAdd"  styleClass="action-button, add-button" stylesheets="@css/style.css" text="➕ Hinzufügen" onAction="#handleAddButton" />
+        <Button fx:id="btnEdit" styleClass="action-button, edit-button" stylesheets="@css/style.css" text="🖊 Bearbeiten" onAction="#handleEditButton"/>
     </HBox>
+
+    <!-- versteckte Elemente für den 'Hinzufügen' Button -->
+    <HBox spacing="10" fx:id="newEntryBox" visible="false">
+        <TextField fx:id="arbeitstagField" promptText="Arbeitstag"/>
+        <ComboBox fx:id="statusComboBox">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="anwesend"/>
+                    <String fx:value="nicht anwesend"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+    </HBox>
+    <Button fx:id="btnSave" text="Speichern" visible="false" onAction="#handleSaveButton"/>
 
 </VBox>
