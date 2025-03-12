@@ -26,7 +26,7 @@ public class ErzieherController {
     @FXML private TextField emailField;
     @FXML private TextField gehaltField;
 
-    private ObservableList<Erzieher> erzieherList = FXCollections.observableArrayList();
+    private final ObservableList<Erzieher> erzieherList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
