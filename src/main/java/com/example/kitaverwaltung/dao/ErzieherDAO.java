@@ -67,7 +67,7 @@ public class ErzieherDAO {
     }
 
     // Lösche einen Erzieher
-    public static boolean deleteErzieher(int erzieherId) {
-        return dbConnection.sendDeleteRequest(TABLE_NAME, erzieherId); // DELETE-Anfrage senden
+    public static boolean deleteErzieher(int erzieher_id) {
+        return dbConnection.sendDeleteRequest(TABLE_NAME, erzieher_id); // DELETE-Anfrage senden
     }
 }

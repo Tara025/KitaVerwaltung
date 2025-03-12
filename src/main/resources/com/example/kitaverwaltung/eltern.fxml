@@ -9,10 +9,11 @@
 <?import javafx.scene.control.Label?>
 
 
-<VBox spacing="10" style="-fx-padding: 20;" stylesheets="@css/style.css" 
-xmlns="http://javafx.com/javafx/17.0.12" 
-xmlns:fx="http://javafx.com/fxml/1" 
-fx:controller="com.example.kitaverwaltung.controller.ElternController">
+
+<VBox spacing="10" style="-fx-padding: 20;" stylesheets="@css/style.css"
+      xmlns="http://javafx.com/javafx/17.0.12"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.kitaverwaltung.controller.ElternController">
 
  <!-- Label für den Titel -->
     <Label text="Eltern" style="-fx-font-size: 24px;" />
@@ -33,23 +34,12 @@ fx:controller="com.example.kitaverwaltung.controller.ElternController">
 
         <Label text="Rolle:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
         <TextField fx:id="rolleField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <columnConstraints>
-         <ColumnConstraints />
-         <ColumnConstraints />
-      </columnConstraints>
-      <rowConstraints>
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-      </rowConstraints>
     </GridPane>
 
     <!-- Tabelle für die Eltern-Daten -->
     <TableView fx:id="elternTable" style="-fx-padding: 20;">
         <columns>
-            <TableColumn fx:id="eltern_idColumn" text="ID"/>
+            <TableColumn fx:id="eltern_idColumn" text="ID" visible="false"/>
             <TableColumn fx:id="vornameColumn" text="Vorname"/>
             <TableColumn fx:id="nachnameColumn" text="Nachname"/>
             <TableColumn fx:id="emailColumn" text="E-Mail"/>

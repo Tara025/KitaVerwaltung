@@ -13,6 +13,7 @@ import java.util.List;
 public class ErzieherController {
 
     @FXML private TableView<Erzieher> erzieherTable;
+    @FXML private TableColumn<Erzieher, Integer> erzieher_idColumn;
     @FXML private TableColumn<Erzieher, String> vornameColumn;
     @FXML private TableColumn<Erzieher, String> nachnameColumn;
     @FXML private TableColumn<Erzieher, String> adresseColumn;
@@ -31,6 +32,7 @@ public class ErzieherController {
     @FXML
     public void initialize() {
         // Verknüpfe die Spalten mit den Attributen der Erzieher-Objekte
+        erzieher_idColumn.setCellValueFactory(new PropertyValueFactory<>("erzieher_id"));
         vornameColumn.setCellValueFactory(new PropertyValueFactory<>("vorname"));
         nachnameColumn.setCellValueFactory(new PropertyValueFactory<>("nachname"));
         adresseColumn.setCellValueFactory(new PropertyValueFactory<>("adresse"));
