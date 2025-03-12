@@ -3,6 +3,7 @@ package com.example.kitaverwaltung.dao;
 import com.example.kitaverwaltung.db.DatabaseConnection;
 import com.example.kitaverwaltung.model.Erzieher;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -14,7 +15,7 @@ public class ErzieherDAO {
     private static final String TABLE_NAME = "t_erzieher";
     private static final String VIEW_NAME = "v_erzieher";
     private static final DatabaseConnection dbConnection = DatabaseConnection.getInstance();
-    private static final Gson gson = new Gson();
+    private static final Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
     // Hole alle Erzieher
     public static List<Erzieher> getErzieher() {

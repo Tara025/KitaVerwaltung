@@ -1,17 +1,24 @@
 package com.example.kitaverwaltung.model;
 
 
+import com.google.gson.annotations.Expose;
 
 public class Eltern {
+    @Expose(serialize = false)
     private int eltern_id;
+    @Expose
     private String vorname;
+    @Expose
     private String nachname;
+    @Expose
     private String adresse;
+    @Expose
     private String email;
+    @Expose
     private String rolle;
+    @Expose
     private String kinder;
 
-    public Eltern() {}
 
     // Default constructor für Get (View)
     public Eltern(int eltern_id, String vorname, String nachname, String adresse, String email, String rolle, String kinder) {

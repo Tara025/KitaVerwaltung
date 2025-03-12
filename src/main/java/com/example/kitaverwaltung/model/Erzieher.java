@@ -1,17 +1,25 @@
 package com.example.kitaverwaltung.model;
 
 
+import com.google.gson.annotations.Expose;
+
 public class Erzieher {
 
+    @Expose(serialize = false)
     private int erzieher_id;
+    @Expose
     private String vorname;
+    @Expose
     private String nachname;
+    @Expose
     private String adresse;
+    @Expose
     private double gehalt;
+    @Expose
     private String email;
+    @Expose
     private String gruppe_name;
 
-    public Erzieher() {}
 
     // Konstruktor
     public Erzieher(int erzieher_id, String vorname, String nachname, String adresse, double gehalt, String email, String gruppe_name) {

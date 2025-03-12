@@ -3,6 +3,7 @@ package com.example.kitaverwaltung.dao;
 import com.example.kitaverwaltung.db.DatabaseConnection;
 import com.example.kitaverwaltung.model.Eltern;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ public class ElternDAO {
     private static final String VIEW_NAME = "v_eltern";
     private static final String TABLE_NAME = "t_eltern";
     private static final DatabaseConnection dbConnection = DatabaseConnection.getInstance();
-    private static final Gson gson = new Gson();
+    private static final Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
     // Hole alle Eltern
     public static List<Eltern> getEltern() {
