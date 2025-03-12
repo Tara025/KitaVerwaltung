@@ -50,7 +50,7 @@ fx:controller="com.example.kitaverwaltung.controller.ElternController">
     <!-- Tabelle für die Eltern-Daten -->
     <TableView fx:id="elternTable" style="-fx-padding: 20;">
         <columns>
-            <TableColumn fx:id="eltern_idColumn" text="ID"/>
+            <TableColumn fx:id="eltern_idColumn" text="ID" visible="false"/>
             <TableColumn fx:id="vornameColumn" text="Vorname"/>
             <TableColumn fx:id="nachnameColumn" text="Nachname"/>
             <TableColumn fx:id="emailColumn" text="E-Mail"/>
