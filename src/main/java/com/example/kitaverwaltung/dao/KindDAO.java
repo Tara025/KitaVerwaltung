@@ -10,16 +10,17 @@ import java.util.List;
 public class KindDAO {
 
     private static final String TABLE_NAME = "t_kind";
+    private static final String VIEW_NAME = "v_kind";
     private static final DatabaseConnection dbConnection = DatabaseConnection.getInstance();
     private static final Gson gson = new Gson();
 
-    // Hole alle Kinder
+    // Hole alle Kinder aus der View
     public static List<Kind> getKinder() {
         List<Kind> kinderListe = new ArrayList<>();
 
-        // Anfrage an die Datenbank senden und Antwort erhalten
-        String jsonResponse = dbConnection.sendGetRequest(TABLE_NAME);
-        if (jsonResponse != null) {
+        // Anfrage an die API senden und Antwort empfangen
+        String jsonResponse = dbConnection.sendGetRequest(VIEW_NAME);
+        if (jsonResponse != null && !jsonResponse.isEmpty()) {
             // JSON-Antwort in ein Kind-Array umwandeln
             Kind[] kinderArray = gson.fromJson(jsonResponse, Kind[].class);
             for (Kind kind : kinderArray) {
