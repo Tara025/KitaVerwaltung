@@ -4,6 +4,7 @@ package com.example.kitaverwaltung.dao;
 import com.example.kitaverwaltung.db.DatabaseConnection;
 import com.example.kitaverwaltung.model.Standort;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ public class StandortDAO {
     private static final String VIEW_NAME = "v_standort";
     private static final String TABLE_NAME = "t_standort";
     private static final DatabaseConnection dbConnection = DatabaseConnection.getInstance();
-    private static final Gson gson = new Gson();
+    private static final Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
 
 

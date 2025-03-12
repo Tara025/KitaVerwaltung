@@ -1,12 +1,19 @@
 package com.example.kitaverwaltung.model;
+import com.google.gson.annotations.Expose;
 
 public class Standort {
 
+    @Expose(serialize = false)
     private int standort_id;
+    @Expose
     private String name;
+    @Expose
     private String standortart;
+    @Expose
     private String strasse;
+    @Expose
     private String plz;
+    @Expose
     private String stadt;
 
     // Konstruktor

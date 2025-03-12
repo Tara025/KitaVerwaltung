@@ -5,13 +5,14 @@ import com.example.kitaverwaltung.model.Gruppe;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
+import com.google.gson.GsonBuilder;
 
 public class GruppeDAO {
 
     private static final String VIEW_NAME = "v_gruppen";
     private static final String TABLE_NAME = "t_gruppe";
     private static final DatabaseConnection dbConnection = DatabaseConnection.getInstance();
-    private static final Gson gson = new Gson();
+    private static final Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
     // Hole alle Gruppen
     public static List<Gruppe> getGruppen() {
