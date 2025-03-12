@@ -11,6 +11,7 @@ public class Verwalter {
     private String adresse;
     private double gehalt;
     private String email;
+    private String standort_name;
     private boolean deleted; //noch hinzugefügt, für das Login handling
 
 
@@ -24,6 +25,7 @@ public class Verwalter {
         this.adresse = adresse;
         this.gehalt = gehalt;
         this.email = email;
+        this.standort_name = null;
         this.deleted = false;
     }
 
@@ -90,5 +92,13 @@ public class Verwalter {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getStandort_name() {
+        return standort_name;
+    }
+
+    public void setStandort_name(String standort_name) {
+        this.standort_name = standort_name;
     }
 }

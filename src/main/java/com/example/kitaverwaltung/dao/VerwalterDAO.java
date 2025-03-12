@@ -9,25 +9,27 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VerwalterDAO {
+    public class VerwalterDAO {
 
-    private static final String TABLE_NAME = "t_verwalter";
-    private static final DatabaseConnection dbConnection = DatabaseConnection.getInstance();
-    private static final Gson gson = new Gson();
+        private static final String VIEW_NAME = "v_verwalter";
+        private static final String TABLE_NAME = "t_verwalter";
+        private static final DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+        private static final Gson gson = new Gson();
 
-    // Hole alle Verwalter
-    public static List<Verwalter> getVerwalter() {
-        List<Verwalter> verwalterListe = new ArrayList<>();
+        // Hole alle Verwalter
+        public static List<Verwalter> getVerwalter() {
+            List<Verwalter> verwalterListe = new ArrayList<>();
 
-        String jsonResponse = dbConnection.sendGetRequest(TABLE_NAME + "?deleted=eq.false");
-        if (jsonResponse != null) {
-            Verwalter[] verwalterArray = gson.fromJson(jsonResponse, Verwalter[].class);
-            for (Verwalter verwalter : verwalterArray) {
-                verwalterListe.add(verwalter);
+            String jsonResponse = dbConnection.sendGetRequest(VIEW_NAME);
+
+            if (jsonResponse != null && !jsonResponse.isEmpty()) {
+                Verwalter[] verwalterArray = gson.fromJson(jsonResponse, Verwalter[].class);
+                for (Verwalter verwalter : verwalterArray) {
+                    verwalterListe.add(verwalter);
+                }
             }
+            return verwalterListe;
         }
-        return verwalterListe;
-    }
 
     public static Verwalter getVerwalterByEmailAndPassword(String email, String password) {
         try {
