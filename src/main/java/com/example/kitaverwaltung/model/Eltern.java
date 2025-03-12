@@ -35,7 +35,6 @@ public class Eltern {
     }
 
     public int getEltern_id() { return eltern_id; }
-    public void setEltern_id(int eltern_id) { this.eltern_id = eltern_id; }
 
     public String getVorname() {
         return vorname;

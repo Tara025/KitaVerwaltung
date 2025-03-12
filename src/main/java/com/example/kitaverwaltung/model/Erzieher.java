@@ -3,13 +3,15 @@ package com.example.kitaverwaltung.model;
 
 public class Erzieher {
 
-    private transient int erzieher_id;
+    private int erzieher_id;
     private String vorname;
     private String nachname;
     private String adresse;
     private double gehalt;
     private String email;
     private String gruppe_name;
+
+    public Erzieher() {}
 
     // Konstruktor
     public Erzieher(int erzieher_id, String vorname, String nachname, String adresse, double gehalt, String email, String gruppe_name) {
@@ -50,6 +52,10 @@ public class Erzieher {
 
     public void setNachname(String nachname) {
         this.nachname = nachname;
+    }
+
+    public String getErzieherFullName() {
+        return vorname + " " + nachname;
     }
 
     public String getAdresse() {
