@@ -149,6 +149,14 @@ public class AnwesenheitDAO {
         }
     }
 
+    public static boolean updateStatus(Anwesenheit selectedAnwesenheit, int statusId) {
+       /* String tableName = getStatusTableNameByType(selectedAnwesenheit.getPersonType());
+        String key = selectedAnwesenheit.getPersonType().toLowerCase() + "_arbeitstage_id";
+        String jsonData = String.format("{\"fk_status_id\": %d}", statusId);
+        return dbConnection.sendPatchRequest(tableName, key, selectedAnwesenheit.getPersonArbeitstageId(), jsonData);*/
+        return true;
+    }
+
     public static class Person {
         private String vorname;
         private String nachname;

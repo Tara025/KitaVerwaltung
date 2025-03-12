@@ -22,7 +22,7 @@
 
     <HBox spacing="10" stylesheets="@css/style.css">
         <Button fx:id="btnAdd"  styleClass="action-button, add-button" stylesheets="@css/style.css" text="➕ Hinzufügen" onAction="#handleAddButton" />
-        <Button fx:id="btnEdit" styleClass="action-button, edit-button" stylesheets="@css/style.css" text="🖊 Bearbeiten" />
+        <Button fx:id="btnEdit" styleClass="action-button, edit-button" stylesheets="@css/style.css" text="🖊 Bearbeiten" onAction="#handleEditButton"/>
     </HBox>
 
     <!-- versteckte Elemente für den 'Hinzufügen' Button -->

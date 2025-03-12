@@ -32,6 +32,9 @@ public class AnwesenheitController {
 
     private final ObservableList<Anwesenheit> anwesenheitList = FXCollections.observableArrayList();
 
+    // Add a flag to indicate if we are editing
+    private boolean isEditing = false;
+
     @FXML
     public void initialize() {
         personTypeComboBox.getItems().addAll("Verwalter", "Erzieher", "Kinder");
@@ -51,10 +54,12 @@ public class AnwesenheitController {
         if (personTypeComboBox.getValue() != null && personNameComboBox.getValue() != null) {
             newEntryBox.setVisible(true);
             btnSave.setVisible(true);
+            arbeitstagField.setEditable(true); // Make the field editable
         }
         else showAlert(Alert.AlertType.ERROR, "Fehler", "Bitte wählen Sie zuerst einen Personentyp und eine Person aus.");
     }
 
+    /*
     @FXML
     private void handleSaveButton() {
         String dateInput = arbeitstagField.getText();
@@ -103,6 +108,85 @@ public class AnwesenheitController {
             }
         } else {
             showAlert(Alert.AlertType.ERROR, "Fehler", "Fehler beim Speichern des Arbeitstags.");
+        }
+    }*/
+
+    @FXML
+    private void handleSaveButton() {
+        String dateInput = arbeitstagField.getText();
+        String status = statusComboBox.getValue();
+
+        // Validate date format
+        if (!isValidDateFormat(dateInput, "dd.MM.yyyy")) {
+            showAlert(Alert.AlertType.ERROR, "Ungültiges Datum", "Bitte geben Sie das Datum im Format tt.mm.jjjj ein.");
+            return;
+        }
+
+        // Check if status is selected
+        if (status == null || status.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Kein Status ausgewählt", "Bitte wählen Sie einen Status aus.");
+            return;
+        }
+
+        // Convert date format
+        String formattedDate = convertDateFormat(dateInput, "dd.MM.yyyy", "yyyy-MM-dd");
+
+        // Determine the status ID
+        int statusId = status.equals("anwesend") ? 1 : 2;
+
+        if (isEditing) {
+            // Update the existing entry
+            Anwesenheit selectedAnwesenheit = anwesenheitTable.getSelectionModel().getSelectedItem();
+            if (selectedAnwesenheit != null) {
+                boolean success = AnwesenheitDAO.updateStatus(selectedAnwesenheit, statusId);
+                if (success) {
+                    showAlert(Alert.AlertType.INFORMATION, "Erfolg", "Der Status wurde erfolgreich aktualisiert.");
+                    loadAnwesenheitData(); // Reload data and refresh the table
+                    newEntryBox.setVisible(false);
+                    btnSave.setVisible(false);
+                    isEditing = false; // Reset the flag
+                } else {
+                    showAlert(Alert.AlertType.ERROR, "Fehler", "Fehler beim Aktualisieren des Status.");
+                }
+            }
+        } else {
+            // Insert a new entry
+            int arbeitstageId = AnwesenheitDAO.insertArbeitstag(formattedDate);
+            if (arbeitstageId != -1) {
+                String personType = personTypeComboBox.getValue();
+                String personName = personNameComboBox.getValue();
+                boolean success = AnwesenheitDAO.insertStatus(personType, personName, arbeitstageId, statusId);
+                if (success) {
+                    showAlert(Alert.AlertType.INFORMATION, "Erfolg", "Der Arbeitstag und Status wurden erfolgreich gespeichert.");
+                    loadAnwesenheitData(); // Reload data and refresh the table
+                    newEntryBox.setVisible(false);
+                    btnSave.setVisible(false);
+                } else {
+                    showAlert(Alert.AlertType.ERROR, "Fehler", "Fehler beim Speichern des Status.");
+                }
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Fehler", "Fehler beim Speichern des Arbeitstags.");
+            }
+        }
+    }
+
+    @FXML
+    private void handleEditButton() {
+        Anwesenheit selectedAnwesenheit = anwesenheitTable.getSelectionModel().getSelectedItem();
+        if (selectedAnwesenheit != null) {
+            // Populate the arbeitstagField with the current date
+            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+            arbeitstagField.setText(sdf.format(selectedAnwesenheit.getDatum()));
+            arbeitstagField.setEditable(false); // Make the field non-editable
+
+            // Populate the statusComboBox with the current status
+            statusComboBox.setValue(selectedAnwesenheit.getStatus());
+
+            newEntryBox.setVisible(true);
+            btnSave.setVisible(true);
+            isEditing = true; // Set the flag to true
+        } else {
+            showAlert(Alert.AlertType.WARNING, "Warnung", "Bitte wählen Sie einen Eintrag aus.");
         }
     }
 
