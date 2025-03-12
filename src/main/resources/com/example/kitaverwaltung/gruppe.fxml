@@ -2,13 +2,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
-
-
-
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Button?>
-<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+
+
+<?import javafx.scene.control.Label?>
+<VBox styleClass="" stylesheets="@css/style.css"
+      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.example.kitaverwaltung.controller.GruppeController" spacing="10" style="-fx-padding: 20;">
+
+    <Label text="Gruppen" styleClass="label_main" style="-fx-font-size: 24px;" />
+
 
     <TableView fx:id="gruppeTable" style="-fx-padding: 20;">
         <columns>

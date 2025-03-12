@@ -9,16 +9,17 @@
 
 
 
-<VBox spacing="10" style="-fx-padding: 20;" stylesheets="@css/style.css"  styleClass=""
-xmlns="http://javafx.com/javafx/17.0.12" 
-xmlns:fx="http://javafx.com/fxml/1" 
-fx:controller="com.example.kitaverwaltung.controller.ElternController">
+<VBox spacing="10" style="-fx-padding: 20;"
+      stylesheets="@css/style.css"  styleClass=""
+        xmlns="http://javafx.com/javafx/17.0.12"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="com.example.kitaverwaltung.controller.ElternController">
 
  <!-- Label für den Titel -->
     <Label text="Eltern" styleClass="label_main"  style="-fx-font-size: 24px;" />
 
     <!-- Tabelle für die Eltern-Daten -->
-    <TableView fx:id="elternTable" styleClass="table" style="-fx-padding: 20;">
+    <TableView fx:id="elternTable" style="-fx-padding: 20;">
         <columns>
             <TableColumn fx:id="eltern_idColumn" text="ID" visible="false"/>
             <TableColumn fx:id="vornameColumn" text="Vorname"/>

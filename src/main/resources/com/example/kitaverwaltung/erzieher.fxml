@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
@@ -10,10 +9,32 @@
 <?import javafx.scene.control.TextField?>
 
 <VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.kitaverwaltung.controller.ErzieherController" spacing="10" style="-fx-padding: 10;">
+      styleClass="" stylesheets="@css/style.css"
+      fx:controller="com.example.kitaverwaltung.controller.ErzieherController" spacing="10" style="-fx-padding: 20;">
 
     <!-- Label für den Titel -->
-    <Label text="Erzieher" style="-fx-font-size: 24px;" />
+    <Label text="Erzieher" styleClass="label_main" style="-fx-font-size: 24px;" />
+
+    <!-- Tabelle für die Erzieher -->
+    <TableView fx:id="erzieherTable" style="-fx-padding: 20;">
+        <!-- Table Columns for Erzieher -->
+        <columns>
+
+            <TableColumn fx:id="vornameColumn" text="Vorname"/>
+            <TableColumn fx:id="nachnameColumn" text="Nachname"/>
+            <TableColumn fx:id="emailColumn" text="Email"/>
+            <TableColumn fx:id="adresseColumn" text="Adresse"/>
+            <TableColumn fx:id="gehaltColumn" text="Gehalt"/>
+            <TableColumn fx:id="gruppeNameColumn" text="Gruppe Name"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10" stylesheets="@css/style.css">
+        <Button fx:id="btnAdd"  styleClass="action-button, add-button" stylesheets="@css/style.css" text="➕ Hinzufügen" onAction="#addErzieher" />
+        <Button fx:id="btnEdit" styleClass="action-button, edit-button" stylesheets="@css/style.css" text="🖊 Bearbeiten" />
+        <Button fx:id="btnDelete"  styleClass="action-button, delete-button" stylesheets="@css/style.css" text="❌ Löschen" />
+    </HBox>
+
 
     <!-- Eingabefelder für Erzieher -->
     <GridPane hgap="10" vgap="10">
@@ -33,23 +54,4 @@
         <TextField fx:id="gehaltField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
     </GridPane>
 
-    <!-- Tabelle für die Erzieher -->
-    <TableView fx:id="erzieherTable" style="-fx-padding: 20;">
-        <!-- Table Columns for Erzieher -->
-        <columns>
-            <TableColumn fx:id="vornameColumn" text="Vorname"/>
-            <TableColumn fx:id="nachnameColumn" text="Nachname"/>
-            <TableColumn fx:id="emailColumn" text="Email"/>
-            <TableColumn fx:id="adresseColumn" text="Adresse"/>
-            <TableColumn fx:id="gehaltColumn" text="Gehalt"/>
-            <TableColumn fx:id="gruppeNameColumn" text="Gruppe Name"/>
-        </columns>
-
-    </TableView>
-
-    <HBox spacing="10" stylesheets="@css/style.css">
-        <Button fx:id="btnAdd"  styleClass="action-button, add-button" stylesheets="@css/style.css" text="➕ Hinzufügen" onAction="#addErzieher" />
-        <Button fx:id="btnEdit" styleClass="action-button, edit-button" stylesheets="@css/style.css" text="🖊 Bearbeiten" />
-        <Button fx:id="btnDelete"  styleClass="action-button, delete-button" stylesheets="@css/style.css" text="❌ Löschen" />
-    </HBox>
 </VBox>
