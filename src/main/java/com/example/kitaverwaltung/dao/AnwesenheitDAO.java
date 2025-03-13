@@ -110,6 +110,32 @@ public class AnwesenheitDAO {
         return false;
     }
 
+    public static boolean updateStatus(String personType, String personName, int arbeitstageId, int statusId) {
+        String tableName = getStatusTableNameByType(personType);
+        String[] nameParts = personName.split(" ");
+        if (nameParts.length < 2) {
+            throw new IllegalArgumentException("Name must include both vorname and nachname");
+        }
+        String vorname = nameParts[0];
+        String nachname = nameParts[1];
+        try {
+            String encodedVorname = URLEncoder.encode(vorname, "UTF-8");
+            String encodedNachname = URLEncoder.encode(nachname, "UTF-8");
+            String viewName = getViewNameByType(personType);
+            String jsonResponse = dbConnection.sendGetRequest(viewName + "?vorname=eq." + encodedVorname + "&nachname=eq." + encodedNachname);
+            if (jsonResponse != null) {
+                JsonObject jsonObject = JsonParser.parseString(jsonResponse).getAsJsonArray().get(0).getAsJsonObject();
+                String key = personType.equals("Kinder") ? "kind_id" : personType.toLowerCase() + "_id";
+                int personId = jsonObject.get(key).getAsInt();
+                String jsonData = String.format("{\"fk_arbeitstage_id\": %d, \"fk_status_id\": %d, \"fk_%s\": %d}", arbeitstageId, statusId, key, personId);
+                return dbConnection.sendPutRequest(tableName + "?fk_arbeitstage_id=eq." + arbeitstageId + "&fk_" + key + "=eq." + personId, jsonData);
+            }
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     private static String getStatusTableNameByType(String type) {
         switch (type) {
             case "Verwalter":
@@ -149,12 +175,13 @@ public class AnwesenheitDAO {
         }
     }
 
-    public static boolean updateStatus(Anwesenheit selectedAnwesenheit, int statusId) {
-       /* String tableName = getStatusTableNameByType(selectedAnwesenheit.getPersonType());
-        String key = selectedAnwesenheit.getPersonType().toLowerCase() + "_arbeitstage_id";
-        String jsonData = String.format("{\"fk_status_id\": %d}", statusId);
-        return dbConnection.sendPatchRequest(tableName, key, selectedAnwesenheit.getPersonArbeitstageId(), jsonData);*/
-        return true;
+    public static int getArbeitstageIdByDate(String formattedDate) {
+        String jsonResponse = dbConnection.sendGetRequest("t_arbeitstage?datum=eq." + formattedDate);
+        if (jsonResponse != null) {
+            JsonObject jsonObject = JsonParser.parseString(jsonResponse).getAsJsonArray().get(0).getAsJsonObject();
+            return jsonObject.get("arbeitstage_id").getAsInt();
+        }
+        return -1;
     }
 
     public static class Person {
