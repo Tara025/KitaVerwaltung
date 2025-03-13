@@ -56,10 +56,9 @@ public class AnwesenheitController {
             btnSave.setVisible(true);
             arbeitstagField.setEditable(true); // Make the field editable
         }
-        else showAlert(Alert.AlertType.ERROR, "Fehler", "Bitte wählen Sie zuerst einen Personentyp und eine Person aus.");
+        else showAlert(Alert.AlertType.ERROR, "Fehler", "Bitte wählen Sie zuerst eine Personenart und einen Namen aus.");
     }
 
-    /*
     @FXML
     private void handleSaveButton() {
         String dateInput = arbeitstagField.getText();
@@ -67,58 +66,7 @@ public class AnwesenheitController {
 
         // Validate date format
         if (!isValidDateFormat(dateInput, "dd.MM.yyyy")) {
-            showAlert(Alert.AlertType.ERROR, "Ungültiges Datum", "Bitte geben Sie das Datum im Format tt.mm.jjjj ein.");
-            return;
-        }
-
-        // Check if status is selected
-        if (status == null || status.isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, "Kein Status ausgewählt", "Bitte wählen Sie einen Status aus.");
-            return;
-        }
-
-        // Convert date format
-        String formattedDate = convertDateFormat(dateInput, "dd.MM.yyyy", "yyyy-MM-dd");
-
-        // Insert into database
-        int arbeitstageId = AnwesenheitDAO.insertArbeitstag(formattedDate);
-        //System.out.println("arbeitstage_id = " + arbeitstageId);
-
-        if (arbeitstageId != -1) {
-            // Get the selected person type and name
-            String personType = personTypeComboBox.getValue();
-            String personName = personNameComboBox.getValue();
-            //System.out.println("personType = " + personType);
-            //System.out.println("personName = " + personName);
-
-            // Determine the status ID
-            int statusId = status.equals("anwesend") ? 1 : 2;
-            //System.out.println("statusId = " + statusId);
-
-            // Insert the status into the appropriate table
-            boolean success = AnwesenheitDAO.insertStatus(personType, personName, arbeitstageId, statusId);
-            if (success) {
-                showAlert(Alert.AlertType.INFORMATION, "Erfolg", "Der Arbeitstag und Status wurden erfolgreich gespeichert.");
-                loadAnwesenheitData(); // Reload data and refresh the table
-                // Eingabe-Felder verstecken
-                newEntryBox.setVisible(false);
-                btnSave.setVisible(false);
-            } else {
-                showAlert(Alert.AlertType.ERROR, "Fehler", "Fehler beim Speichern des Status.");
-            }
-        } else {
-            showAlert(Alert.AlertType.ERROR, "Fehler", "Fehler beim Speichern des Arbeitstags.");
-        }
-    }*/
-
-    @FXML
-    private void handleSaveButton() {
-        String dateInput = arbeitstagField.getText();
-        String status = statusComboBox.getValue();
-
-        // Validate date format
-        if (!isValidDateFormat(dateInput, "dd.MM.yyyy")) {
-            showAlert(Alert.AlertType.ERROR, "Ungültiges Datum", "Bitte geben Sie das Datum im Format tt.mm.jjjj ein.");
+            showAlert(Alert.AlertType.ERROR, "Ungültiges Datum", "Bitte geben Sie das Datum im Format TT.MM.JJJJ ein.");
             return;
         }
 
@@ -138,20 +86,28 @@ public class AnwesenheitController {
             // Update the existing entry
             Anwesenheit selectedAnwesenheit = anwesenheitTable.getSelectionModel().getSelectedItem();
             if (selectedAnwesenheit != null) {
-                boolean success = AnwesenheitDAO.updateStatus(selectedAnwesenheit, statusId);
-                if (success) {
-                    showAlert(Alert.AlertType.INFORMATION, "Erfolg", "Der Status wurde erfolgreich aktualisiert.");
-                    loadAnwesenheitData(); // Reload data and refresh the table
-                    newEntryBox.setVisible(false);
-                    btnSave.setVisible(false);
-                    isEditing = false; // Reset the flag
+                String personType = personTypeComboBox.getValue();
+                String personName = personNameComboBox.getValue();
+                int arbeitstageId = AnwesenheitDAO.getArbeitstageIdByDate(formattedDate);
+
+                if (arbeitstageId != -1) {
+                    boolean success = AnwesenheitDAO.updateStatus(personType, personName, arbeitstageId, statusId);
+                    if (success) {
+                        showAlert(Alert.AlertType.INFORMATION, "Erfolg", "Der Status wurde erfolgreich aktualisiert.");
+                        loadAnwesenheitData(); // Reload data and refresh the table
+                        newEntryBox.setVisible(false);
+                        btnSave.setVisible(false);
+                        isEditing = false; // Reset the flag
+                    } else {
+                        showAlert(Alert.AlertType.ERROR, "Fehler", "Fehler beim Aktualisieren des Status.");
+                    }
                 } else {
-                    showAlert(Alert.AlertType.ERROR, "Fehler", "Fehler beim Aktualisieren des Status.");
+                    showAlert(Alert.AlertType.ERROR, "Fehler", "Fehler beim Abrufen der Arbeitstage-ID.");
                 }
             }
         } else {
             // Insert a new entry
-            int arbeitstageId = AnwesenheitDAO.insertArbeitstag(formattedDate);
+            int arbeitstageId = AnwesenheitDAO.insertArbeitstag(formattedDate);  // gibt die von der Datenbank generierte ID zurück
             if (arbeitstageId != -1) {
                 String personType = personTypeComboBox.getValue();
                 String personName = personNameComboBox.getValue();

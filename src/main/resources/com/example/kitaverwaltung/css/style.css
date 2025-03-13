@@ -95,6 +95,30 @@
     -fx-padding: 10px;
 }
 
+/* Styling für die CheckBox */
+.check-box {
+    -fx-font-size: 14px;
+    -fx-text-fill: #1d2f3e;
+    -fx-padding: 10px;
+}
+
+.check-box .box {
+    -fx-border-width: 2px;
+    -fx-background-color: white;
+    -fx-background-radius: 3px;
+    -fx-border-radius: 3px;
+}
+
+.check-box:selected .box {
+    -fx-background-color: #4ca1af;
+}
+
+
+.check-box:selected .box:hover {
+    -fx-background-color: #1E4563;
+}
+
+
 /* Willkommensbereich */
 .welcome-container {
     -fx-padding: 15px;
@@ -177,6 +201,27 @@
     -fx-cursor: hand;
 }
 
+/* Styling für den Tabellenkopf */
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(to right, #4ca1af, #435e76);
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px;
+}
+
+.table-view .column-header .label:hover {
+    -fx-text-fill: #98bfc4;
+}
+
 
 .table-column {
     -fx-alignment: CENTER;
@@ -207,6 +252,25 @@
     -fx-font-weight: bold;
 }
 
+/* Eingabefeld (TextField) */
+.eingabeField {
+    -fx-font-size: 14px;
+    -fx-padding: 5px 8px;
+    -fx-background-color: white;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-min-height: 40px;
+    -fx-text-fill: #333333;
+}
+
+.eingabeField:hover {
+    -fx-border-color: #4ca1af;
+}
+
+.eingabeField:focused {
+    -fx-border-color: #2c3e50;
+}
 
 
 /* Hauptinhalt Buttons */
@@ -248,3 +312,49 @@
     -fx-background-color: #B69593;
 }
 
+
+.save-button {
+    -fx-background-color: linear-gradient(to top, #9575CD, #B39DDB);
+    -fx-text-fill: white;
+    -fx-min-height: 40px;
+    -fx-padding: 5px 15px;
+}
+
+.save-button:hover {
+    -fx-background-color: #7E57C2;
+}
+
+/* Combobox */
+.combo-box {
+    -fx-font-size: 14px;
+    -fx-padding: 5px 8px;
+    -fx-background-color: white;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-min-height: 40px;
+    -fx-text-fill: #333333;
+}
+
+.combo-box:hover {
+    -fx-border-color: #4ca1af;
+}
+
+.combo-box:focused {
+    -fx-border-color: #2c3e50;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: #333333;
+    -fx-background-color: white;
+}
+
+.combo-box .list-view {
+    -fx-background-color: white;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}

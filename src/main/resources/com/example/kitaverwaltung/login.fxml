@@ -7,44 +7,52 @@
 <VBox alignment="CENTER" spacing="20" styleClass="login-container" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kitaverwaltung.controller.LoginController">
 
     <!-- Header -->
-        <VBox alignment="CENTER" spacing="10" styleClass="top-panel" stylesheets="@css/style.css">
-            <Label styleClass="header-title" stylesheets="@css/style.css" text="Kita Verwaltungssoftware" />
-            <Label styleClass="subheader" stylesheets="@css/style.css" text="Willkommen zurück 😊">
-         <effect>
-            <Glow level="0.77" />
-         </effect></Label>
-        </VBox>
-
-        <!-- Anmeldeformular -->
-        <VBox spacing="15" styleClass="form-box" stylesheets="@css/style.css">
-            <Label styleClass="form-label" stylesheets="@css/style.css" text="Login:">
-         <effect>
-            <Glow />
-         </effect></Label>
-            <TextField fx:id="emailField" accessibleHelp="E-Mail" accessibleText="E-Mail" onKeyPressed="#handleEnterKey" promptText="E-Mail-Adresse" styleClass="input-field" stylesheets="@css/style.css">
-         <effect>
-            <InnerShadow />
-         </effect></TextField>
-            <Label styleClass="form-label" stylesheets="@css/style.css" text="Passwort:">
-         <effect>
-            <Glow />
-         </effect></Label>
-            <PasswordField fx:id="passwordField" onKeyPressed="#handleEnterKey" promptText="Passwort" styleClass="input-field" stylesheets="@css/style.css">
-         <effect>
-            <InnerShadow />
-         </effect>
-      </PasswordField>
-
-            <HBox spacing="10" styleClass="hbox-buttons" stylesheets="@css/style.css">
-                <Button onAction="#handleLogin" styleClass="primary-button" stylesheets="@css/style.css" text="Anmelden" />
-                <Button onAction="#handleCancel" styleClass="secondary-button" stylesheets="@css/style.css" text="Abbrechen" />
-
-            </HBox>
-
-            <HBox spacing="10" styleClass="hbox-buttons" stylesheets="@css/style.css">
-                <Hyperlink styleClass="hyperlink" stylesheets="@css/style.css" text="Passwort vergessen?" />
-            </HBox>
-
-        </VBox>
-
+    <VBox alignment="CENTER" spacing="10" styleClass="top-panel" stylesheets="@css/style.css">
+        <Label styleClass="header-title" stylesheets="@css/style.css" text="Kita Verwaltungssoftware" />
+        <Label styleClass="subheader" stylesheets="@css/style.css" text="Willkommen zurück 😊">
+            <effect>
+                <Glow level="0.77" />
+            </effect>
+        </Label>
     </VBox>
+
+    <!-- Anmeldeformular -->
+    <VBox spacing="15" styleClass="form-box" stylesheets="@css/style.css">
+        <Label styleClass="form-label" stylesheets="@css/style.css" text="Login:">
+            <effect>
+                <Glow />
+            </effect>
+        </Label>
+        <TextField fx:id="emailField" accessibleHelp="E-Mail" accessibleText="E-Mail" onKeyPressed="#handleEnterKey" promptText="E-Mail-Adresse" styleClass="input-field" stylesheets="@css/style.css">
+            <effect>
+                <InnerShadow />
+            </effect>
+        </TextField>
+        <Label styleClass="form-label" stylesheets="@css/style.css" text="Passwort:">
+            <effect>
+                <Glow />
+            </effect>
+        </Label>
+        <PasswordField fx:id="passwordField" onKeyPressed="#handleEnterKey" promptText="Passwort" styleClass="input-field" stylesheets="@css/style.css">
+            <effect>
+                <InnerShadow />
+            </effect>
+        </PasswordField>
+        <TextField fx:id="passwordTextField" onKeyPressed="#handleEnterKey" promptText="Passwort" styleClass="input-field" stylesheets="@css/style.css" visible="false">
+            <effect>
+                <InnerShadow />
+            </effect>
+        </TextField>
+        <CheckBox fx:id="showPasswordCheckBox" text="Passwort anzeigen" />
+
+        <HBox spacing="10" styleClass="hbox-buttons" stylesheets="@css/style.css">
+            <Button onAction="#handleLogin" styleClass="primary-button" stylesheets="@css/style.css" text="Anmelden" />
+            <Button onAction="#handleCancel" styleClass="secondary-button" stylesheets="@css/style.css" text="Abbrechen" />
+        </HBox>
+
+        <HBox spacing="10" styleClass="hbox-buttons" stylesheets="@css/style.css">
+            <Hyperlink styleClass="hyperlink" stylesheets="@css/style.css" text="Passwort vergessen?" />
+        </HBox>
+    </VBox>
+
+</VBox>
