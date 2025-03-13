@@ -59,7 +59,7 @@
             <children>
                  <Button fx:id="btnEdit" prefHeight="36.0" prefWidth="125.0" styleClass="action-button, edit-button" stylesheets="@css/style.css" text="🖊 Bearbeiten" />
                <Separator orientation="VERTICAL" prefHeight="1.0" prefWidth="6.0" visible="false" />
-                 <Button fx:id="btnDelete" prefHeight="36.0" prefWidth="119.0" styleClass="action-button, delete-button" stylesheets="@css/style.css" text="❌ Löschen" />
+                 <Button fx:id="btnDelete" prefHeight="36.0" prefWidth="119.0" styleClass="action-button, delete-button" stylesheets="@css/style.css" text="❌ Löschen"  onAction="#deleteKind" />
             </children>
          </HBox>
       </children>
@@ -67,7 +67,7 @@
 
           <HBox spacing="10" stylesheets="@css/style.css">
       <children>
-           <Button fx:id="btnAdd" alignment="TOP_LEFT" onAction="#addKind" prefHeight="36.0" prefWidth="137.0" styleClass="action-button, add-button" stylesheets="@css/style.css" text="➕ Hinzufügen" />
+           <Button fx:id="btnAdd" alignment="TOP_LEFT" prefHeight="36.0" prefWidth="137.0" styleClass="action-button, add-button" stylesheets="@css/style.css" text="➕ Hinzufügen" onAction="#addKind" />
       </children>
     </HBox>
 </VBox>

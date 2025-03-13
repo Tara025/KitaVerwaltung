@@ -13,6 +13,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -27,7 +30,7 @@ public class AnwesenheitController {
     @FXML private Button btnAdd;
     @FXML private Button btnSave;
     @FXML private HBox newEntryBox;
-    @FXML private TextField arbeitstagField;
+    @FXML private DatePicker arbeitstagDatePicker;
     @FXML private ComboBox<String> statusComboBox;
 
     private final ObservableList<Anwesenheit> anwesenheitList = FXCollections.observableArrayList();
@@ -54,19 +57,19 @@ public class AnwesenheitController {
         if (personTypeComboBox.getValue() != null && personNameComboBox.getValue() != null) {
             newEntryBox.setVisible(true);
             btnSave.setVisible(true);
-            arbeitstagField.setEditable(true); // Make the field editable
+            arbeitstagDatePicker.setDisable(false); // enable DatePicker
         }
         else showAlert(Alert.AlertType.ERROR, "Fehler", "Bitte wählen Sie zuerst eine Personenart und einen Namen aus.");
     }
 
     @FXML
     private void handleSaveButton() {
-        String dateInput = arbeitstagField.getText();
+        LocalDate dateInput = arbeitstagDatePicker.getValue();
         String status = statusComboBox.getValue();
 
-        // Validate date format
-        if (!isValidDateFormat(dateInput, "dd.MM.yyyy")) {
-            showAlert(Alert.AlertType.ERROR, "Ungültiges Datum", "Bitte geben Sie das Datum im Format TT.MM.JJJJ ein.");
+        // Validate date selection
+        if (dateInput == null) {
+            showAlert(Alert.AlertType.ERROR, "Ungültiges Datum", "Bitte wählen Sie ein Datum aus.");
             return;
         }
 
@@ -76,8 +79,8 @@ public class AnwesenheitController {
             return;
         }
 
-        // Convert date format
-        String formattedDate = convertDateFormat(dateInput, "dd.MM.yyyy", "yyyy-MM-dd");
+        // Convert date to string format
+        String formattedDate = dateInput.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         // Determine the status ID
         int statusId = status.equals("anwesend") ? 1 : 2;
@@ -130,10 +133,9 @@ public class AnwesenheitController {
     private void handleEditButton() {
         Anwesenheit selectedAnwesenheit = anwesenheitTable.getSelectionModel().getSelectedItem();
         if (selectedAnwesenheit != null) {
-            // Populate the arbeitstagField with the current date
-            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-            arbeitstagField.setText(sdf.format(selectedAnwesenheit.getDatum()));
-            arbeitstagField.setEditable(false); // Make the field non-editable
+            // Populate the arbeitstagDatePicker with the current date
+            arbeitstagDatePicker.setValue(selectedAnwesenheit.getDatum().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+            arbeitstagDatePicker.setDisable(true); // Disable the DatePicker
 
             // Populate the statusComboBox with the current status
             statusComboBox.setValue(selectedAnwesenheit.getStatus());
