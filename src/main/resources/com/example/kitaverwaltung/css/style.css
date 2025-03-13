@@ -256,3 +256,38 @@
 .save-button:hover {
     -fx-background-color: #7E57C2;
 }
+
+/* Combobox */
+.combo-box {
+    -fx-font-size: 14px;
+    -fx-padding: 5px 8px;
+    -fx-background-color: white;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-min-height: 35px;
+    -fx-text-fill: #333333;
+}
+
+.combo-box:hover {
+    -fx-border-color: #4ca1af;
+}
+
+.combo-box:focused {
+    -fx-border-color: #2c3e50;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: #333333;
+    -fx-background-color: white;
+}
+
+.combo-box .list-view {
+    -fx-background-color: white;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
