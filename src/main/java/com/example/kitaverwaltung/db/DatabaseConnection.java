@@ -94,7 +94,7 @@ public class DatabaseConnection {
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            return response.statusCode() == 200;  // Erfolgreich bei Status 200
+            return response.statusCode() == 204;  // Erfolgreich bei Status 204
         } catch (Exception e) {
             e.printStackTrace();
             return false;
