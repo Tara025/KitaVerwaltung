@@ -4,17 +4,17 @@
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.Label?>
-<VBox spacing="10" style="-fx-padding: 20;" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kitaverwaltung.controller.AnwesenheitController">
+<VBox prefHeight="659.0" prefWidth="518.0" spacing="10" style="-fx-padding: 20;" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kitaverwaltung.controller.AnwesenheitController">
 
     <!-- Label für den Titel -->
-    <Label text="Anwesenheit" styleClass="label_main" style="-fx-font-size: 24px;" />
+    <Label style="-fx-font-size: 24px;" styleClass="label_main" text="Anwesenheit" />
 
     <HBox>
       <children>
@@ -37,8 +37,8 @@
     </HBox>
 
     <!-- versteckte Elemente für den 'Hinzufügen' Button -->
-    <HBox fx:id="newEntryBox" spacing="10" visible="false">
-        <TextField fx:id="arbeitstagField" promptText="Arbeitstag" />
+    <HBox fx:id="newEntryBox" spacing="10" stylesheets="@css/style.css" visible="false">
+        <TextField fx:id="arbeitstagField" prefHeight="42.0" prefWidth="150.0" promptText="Arbeitstag" styleClass="eingabeField" stylesheets="@css/style.css" />
         <ComboBox fx:id="statusComboBox">
             <items>
                 <FXCollections fx:factory="observableArrayList">
@@ -47,7 +47,7 @@
                 </FXCollections>
             </items>
         </ComboBox>
+       <Button fx:id="btnSave" onAction="#handleSaveButton" prefHeight="43.0" prefWidth="129.0" styleClass="action-button, save-button" stylesheets="@css/style.css" text="💾 Speichern" visible="false" />
     </HBox>
-    <Button fx:id="btnSave" onAction="#handleSaveButton" styleClass="action-button, save-button" stylesheets="@css/style.css" text="Speichern" visible="false" />
 
 </VBox>

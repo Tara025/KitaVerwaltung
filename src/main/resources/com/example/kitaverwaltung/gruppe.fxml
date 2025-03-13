@@ -24,8 +24,8 @@
         </columns>
     </TableView>
 
-    <HBox spacing="10">
-        <TextField fx:id="gruppennameField" promptText="Gruppenname" />
+    <HBox spacing="10" stylesheets="@css/style.css">
+        <TextField fx:id="gruppennameField" styleClass="eingabeField" promptText="Gruppenname" />
         <ComboBox fx:id="erzieherComboBox" promptText="Erzieher" />
         <ComboBox fx:id="standortComboBox" promptText="Standort" />
     </HBox>

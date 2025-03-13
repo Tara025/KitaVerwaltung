@@ -208,6 +208,27 @@
     -fx-font-weight: bold;
 }
 
+/* Eingabefeld (TextField) */
+.eingabeField {
+    -fx-font-size: 14px;
+    -fx-padding: 5px 8px;
+    -fx-background-color: white;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-min-height: 40px;
+    -fx-text-fill: #333333;
+}
+
+.eingabeField:hover {
+    -fx-border-color: #4ca1af;
+}
+
+.eingabeField:focused {
+    -fx-border-color: #2c3e50;
+}
+
+
 /* Hauptinhalt Buttons */
 
 .action-button {
@@ -251,6 +272,8 @@
 .save-button {
     -fx-background-color: linear-gradient(to top, #9575CD, #B39DDB);
     -fx-text-fill: white;
+    -fx-min-height: 40px;
+    -fx-padding: 5px 15px;
 }
 
 .save-button:hover {
