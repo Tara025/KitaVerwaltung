@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
@@ -45,7 +46,7 @@
 
     <!-- versteckte Elemente für den 'Hinzufügen' Button -->
     <HBox fx:id="newEntryBox" spacing="10" stylesheets="@css/style.css" visible="false">
-        <TextField fx:id="arbeitstagField" prefHeight="42.0" prefWidth="150.0" promptText="Arbeitstag" styleClass="eingabeField" stylesheets="@css/style.css" />
+        <DatePicker fx:id="arbeitstagDatePicker" prefHeight="42.0" prefWidth="150.0" styleClass="eingabeField" stylesheets="@css/style.css" />
         <ComboBox fx:id="statusComboBox">
             <items>
                 <FXCollections fx:factory="observableArrayList">
