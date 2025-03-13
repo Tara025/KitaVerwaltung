@@ -95,6 +95,29 @@
     -fx-padding: 10px;
 }
 
+/* Styling für die CheckBox */
+.check-box {
+    -fx-font-size: 14px;
+    -fx-text-fill: #1d2f3e;
+    -fx-padding: 10px;
+}
+
+.check-box .box {
+    -fx-border-width: 2px;
+    -fx-background-color: white;
+    -fx-background-radius: 3px;
+    -fx-border-radius: 3px;
+}
+
+.check-box:selected .box {
+    -fx-background-color: #4ca1af;
+}
+
+
+.check-box:selected .box:hover {
+    -fx-background-color: #1E4563;
+}
+
 
 /* Willkommensbereich */
 .welcome-container {
