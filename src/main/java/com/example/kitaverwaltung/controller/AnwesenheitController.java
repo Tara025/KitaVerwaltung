@@ -30,7 +30,6 @@ public class AnwesenheitController {
     @FXML private Button btnAdd;
     @FXML private Button btnSave;
     @FXML private HBox newEntryBox;
-    @FXML private TextField arbeitstagField;
     @FXML private DatePicker arbeitstagDatePicker;
     @FXML private ComboBox<String> statusComboBox;
 
