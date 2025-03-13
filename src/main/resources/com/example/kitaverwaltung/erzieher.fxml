@@ -56,7 +56,7 @@
                 </rowConstraints>
                 <children>
                     <TextField fx:id="vornameField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="220.0" promptText="Vorname" styleClass="eingabeField" />
-                    <TextField fx:id="nachnameField" minHeight="-Infinity" prefHeight="61.0" prefWidth="180.0" promptText="Nachname" styleClass="eingabeField" GridPane.columnIndex="1" />
+                    <TextField fx:id="nachnameField" minHeight="-Infinity" prefHeight="40.0" prefWidth="220.0" promptText="Nachname" styleClass="eingabeField" GridPane.columnIndex="1" />
                     <TextField fx:id="adresseField" prefHeight="40.0" prefWidth="220.0" promptText="Adresse" styleClass="eingabeField" GridPane.columnIndex="2" />
                     <TextField fx:id="emailField" minHeight="29.0" prefHeight="40.0" prefWidth="180.0" promptText="E-Mail" styleClass="eingabeField" GridPane.rowIndex="2" />
                     <TextField fx:id="gehaltField" prefHeight="40.0" prefWidth="192.0" promptText="Gehalt" styleClass="eingabeField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
