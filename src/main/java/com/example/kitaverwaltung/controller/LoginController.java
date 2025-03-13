@@ -7,6 +7,7 @@ import com.example.kitaverwaltung.model.Verwalter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -20,6 +21,34 @@ public class LoginController {
 
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
+
+    @FXML
+    private TextField passwordTextField;
+
+    @FXML
+    private CheckBox showPasswordCheckBox;
+
+    @FXML
+    public void initialize() {
+        // Initially, the TextField should be hidden
+        passwordTextField.setVisible(false);
+        passwordTextField.managedProperty().bind(passwordTextField.visibleProperty());
+        passwordField.managedProperty().bind(passwordField.visibleProperty());
+
+        // Bind the text properties so they stay in sync
+        passwordTextField.textProperty().bindBidirectional(passwordField.textProperty());
+
+        // Add a listener to the CheckBox to toggle visibility
+        showPasswordCheckBox.selectedProperty().addListener((obs, wasSelected, isSelected) -> {
+            if (isSelected) {
+                passwordTextField.setVisible(true);
+                passwordField.setVisible(false);
+            } else {
+                passwordTextField.setVisible(false);
+                passwordField.setVisible(true);
+            }
+        });
+    }
 
 
     @FXML
