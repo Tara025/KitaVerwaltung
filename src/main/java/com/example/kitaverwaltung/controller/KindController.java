@@ -3,18 +3,16 @@ package com.example.kitaverwaltung.controller;
 import com.example.kitaverwaltung.dao.KindDAO;
 import com.example.kitaverwaltung.dao.ElternDAO;
 import com.example.kitaverwaltung.dao.GruppeDAO;
+import com.example.kitaverwaltung.dao.VerwalterDAO;
 import com.example.kitaverwaltung.model.Kind;
 import com.example.kitaverwaltung.model.Eltern;
 import com.example.kitaverwaltung.model.Gruppe;
+import com.example.kitaverwaltung.model.Verwalter;
 import com.example.kitaverwaltung.util.TableColumnUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.StringConverter;
 
@@ -164,6 +162,35 @@ public class KindController {
 
     @FXML
     private void deleteKind() {
-        // Logik zum Löschen eines Kindes
+
+        Kind selectedKind = kindTable.getSelectionModel().getSelectedItem();
+        if (selectedKind != null) {
+            // Confirmation alert
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Löschen bestätigen");
+            alert.setHeaderText("Sind Sie sicher, dass Sie dieses Kind löschen möchten?");
+            alert.setContentText(selectedKind.getVorname() + " " + selectedKind.getNachname());
+
+            if (alert.showAndWait().get() == ButtonType.OK) {
+                boolean success = KindDAO.deleteKind(selectedKind.getKind_id());
+                if (success) {
+                    kindList.remove(selectedKind);
+
+                } else {
+                    showAlert(Alert.AlertType.ERROR, "Fehler", "Fehler beim Löschen des Kindes.");
+                }
+            }
+        } else {
+            showAlert(Alert.AlertType.WARNING, "Warnung", "Bitte wählen Sie ein Kind aus.");
+        }
     }
+
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 }
