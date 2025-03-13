@@ -1,59 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-      stylesheets="@css/style.css"
-      fx:controller="com.example.kitaverwaltung.controller.ErzieherController" spacing="10" style="-fx-padding: 20;">
+<VBox spacing="10" style="-fx-padding: 20;" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kitaverwaltung.controller.ErzieherController">
 
     <!-- Label für den Titel -->
-    <Label text="Erzieher" styleClass="label_main" style="-fx-font-size: 24px;" />
-
-    <!-- Tabelle für die Erzieher -->
-    <TableView fx:id="erzieherTable" style="-fx-padding: 20;">
-        <!-- Table Columns for Erzieher -->
-        <columns>
-            <TableColumn fx:id="erzieher_idColumn" text="erzieher_id" visible="false"/>
-            <TableColumn fx:id="vornameColumn" text="Vorname"/>
-            <TableColumn fx:id="nachnameColumn" text="Nachname"/>
-            <TableColumn fx:id="emailColumn" text="Email"/>
-            <TableColumn fx:id="adresseColumn" text="Adresse"/>
-            <TableColumn fx:id="gehaltColumn" text="Gehalt"/>
-            <TableColumn fx:id="gruppeNameColumn" text="Gruppe Name"/>
-        </columns>
-
-    </TableView>
+    <Label style="-fx-font-size: 24px;" styleClass="label_main" text="Erzieher" />
+   <VBox>
+      <children>
+      
+          <!-- Tabelle für die Erzieher -->
+          <TableView fx:id="erzieherTable" prefHeight="400.0" prefWidth="680.0" style="-fx-padding: 20;">
+              <!-- Table Columns for Erzieher -->
+              <columns>
+                  <TableColumn fx:id="erzieher_idColumn" text="erzieher_id" visible="false" />
+                  <TableColumn fx:id="vornameColumn" text="Vorname" />
+                  <TableColumn fx:id="nachnameColumn" text="Nachname" />
+                  <TableColumn fx:id="emailColumn" text="Email" />
+                  <TableColumn fx:id="adresseColumn" text="Adresse" />
+                  <TableColumn fx:id="gehaltColumn" text="Gehalt" />
+                  <TableColumn fx:id="gruppeNameColumn" text="Gruppe Name" />
+              </columns>
+            <columnResizePolicy>
+               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+      
+          </TableView>
+      </children>
+   </VBox>
 
     <HBox spacing="10" stylesheets="@css/style.css">
-        <Button fx:id="btnAdd"  styleClass="action-button, add-button" stylesheets="@css/style.css" text="➕ Hinzufügen" onAction="#addErzieher" />
+        <Button fx:id="btnAdd" onAction="#addErzieher" styleClass="action-button, add-button" stylesheets="@css/style.css" text="➕ Hinzufügen" />
         <Button fx:id="btnEdit" styleClass="action-button, edit-button" stylesheets="@css/style.css" text="🖊 Bearbeiten" />
-        <Button fx:id="btnDelete"  styleClass="action-button, delete-button" stylesheets="@css/style.css" text="❌ Löschen" onAction="#deleteErzieher"/>
+        <Button fx:id="btnDelete" onAction="#deleteErzieher" styleClass="action-button, delete-button" stylesheets="@css/style.css" text="❌ Löschen" />
     </HBox>
-
-
-    <!-- Eingabefelder für Erzieher -->
-    <GridPane hgap="10" vgap="10">
-        <Label text="Vorname:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-        <TextField fx:id="vornameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-
-        <Label text="Nachname:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-        <TextField fx:id="nachnameField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-
-        <Label text="Adresse:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-        <TextField fx:id="adresseField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-
-        <Label text="E-Mail:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-        <TextField fx:id="emailField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
-
-        <Label text="Gehalt:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-        <TextField fx:id="gehaltField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
-    </GridPane>
+   <VBox>
+      <children>
+      
+      
+          <!-- Eingabefelder für Erzieher -->
+          <GridPane hgap="10" vgap="10">
+              <TextField fx:id="vornameField" promptText="Vorname" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+              <TextField fx:id="nachnameField" promptText="Nachname" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+              <TextField fx:id="adresseField" promptText="Adresse" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+              <TextField fx:id="emailField" promptText="E-Mail" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+              <TextField fx:id="gehaltField" promptText="Gehalt" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <columnConstraints>
+               <ColumnConstraints />
+               <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
+          </GridPane>
+      </children>
+   </VBox>
 
 </VBox>
