@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -11,7 +12,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox spacing="10" style="-fx-padding: 20;" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kitaverwaltung.controller.ElternController">
+
+<VBox prefHeight="686.0" prefWidth="984.0" spacing="10" style="-fx-padding: 20;" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kitaverwaltung.controller.ElternController">
 
 
  <!-- Label für den Titel -->
@@ -35,37 +37,43 @@
           </TableView>
       </children>
    </VBox>
-
-    <!-- Buttons für Aktionen -->
-    <HBox spacing="10" stylesheets="@css/style.css">
-        <Button fx:id="btnAdd" onAction="#addEltern" styleClass="action-button, add-button" stylesheets="@css/style.css" text="➕ Hinzufügen" />
-        <Button fx:id="btnEdit" styleClass="action-button, edit-button" stylesheets="@css/style.css" text="🖊 Bearbeiten" />
-        <Button fx:id="btnDelete" onAction="#deleteSelectedEltern" styleClass="action-button, delete-button" stylesheets="@css/style.css" text="❌ Löschen" />
-    </HBox>
-   <VBox>
+   <VBox prefHeight="111.0" prefWidth="944.0">
       <children>
       
           <!-- Eingabefelder für Eltern -->
-          <GridPane hgap="10" vgap="10">
-              <TextField fx:id="vornameField" promptText="Vorname" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-              <TextField fx:id="nachnameField" promptText="Nachname" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-              <TextField fx:id="adresseField" promptText="Adresse" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-              <TextField fx:id="emailField" promptText="E-Mail" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-              <TextField fx:id="rolleField" promptText="Rolle" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <columnConstraints>
-               <ColumnConstraints />
-               <ColumnConstraints />
-            </columnConstraints>
-            <rowConstraints>
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-            </rowConstraints>
+          <GridPane alignment="CENTER" hgap="10" vgap="10">
+              <columnConstraints>
+                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="426.0" minWidth="180.0" prefWidth="190.0" />
+                  <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="SOMETIMES" maxWidth="426.0" minWidth="180.0" prefWidth="220.0" />
+                  <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="SOMETIMES" maxWidth="426.0" minWidth="180.0" prefWidth="220.0" />
+                  <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="981.0" minWidth="10.0" prefWidth="566.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="42.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+              <children>
+                  <TextField fx:id="vornameField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="220.0" promptText="Vorname" styleClass="eingabeField" />
+                  <TextField fx:id="nachnameField" minHeight="-Infinity" prefHeight="40.0" prefWidth="220.0" promptText="Nachname" styleClass="eingabeField" GridPane.columnIndex="1" />
+                  <TextField fx:id="adresseField" prefHeight="40.0" prefWidth="220.0" promptText="Adresse" styleClass="eingabeField" GridPane.columnIndex="2" />
+                  <TextField fx:id="emailField" minHeight="29.0" prefHeight="40.0" prefWidth="180.0" promptText="E-Mail" styleClass="eingabeField" GridPane.rowIndex="2" />
+                  <TextField fx:id="rolleField" prefHeight="40.0" prefWidth="180.0" promptText="Rolle" styleClass="eingabeField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <HBox alignment="CENTER_RIGHT" prefHeight="53.0" prefWidth="550.0" GridPane.columnIndex="3">
+                      <children>
+                          <Button fx:id="btnEdit" prefHeight="36.0" prefWidth="125.0" styleClass="action-button, edit-button" stylesheets="@css/style.css" text="🖊 Bearbeiten" />
+                          <Separator orientation="VERTICAL" prefHeight="1.0" prefWidth="6.0" visible="false" />
+                          <Button fx:id="btnDelete" onAction="#deleteSelectedEltern" prefHeight="36.0" prefWidth="119.0" styleClass="action-button, delete-button" stylesheets="@css/style.css" text="❌ Löschen" />
+                      </children>
+                  </HBox>
+              </children>
           </GridPane>
       </children>
    </VBox>
 
+    <!-- Buttons für Aktionen -->
+    <HBox spacing="10" stylesheets="@css/style.css">
+        <Button fx:id="btnAdd" alignment="TOP_LEFT" onAction="#addEltern" prefHeight="36.0" prefWidth="137.0" styleClass="action-button, add-button" stylesheets="@css/style.css" text="➕ Hinzufügen" />
+    </HBox>
 
 </VBox>
