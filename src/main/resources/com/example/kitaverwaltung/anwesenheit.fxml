@@ -39,6 +39,6 @@
             </items>
         </ComboBox>
     </HBox>
-    <Button fx:id="btnSave" text="Speichern" visible="false" onAction="#handleSaveButton"/>
+    <Button fx:id="btnSave" styleClass="action-button, save-button" text="Speichern" stylesheets="@css/style.css" visible="false" onAction="#handleSaveButton"/>
 
 </VBox>

@@ -95,6 +95,7 @@
     -fx-padding: 10px;
 }
 
+
 /* Willkommensbereich */
 .welcome-container {
     -fx-padding: 15px;
@@ -207,8 +208,6 @@
     -fx-font-weight: bold;
 }
 
-
-
 /* Hauptinhalt Buttons */
 
 .action-button {
@@ -248,3 +247,12 @@
     -fx-background-color: #B69593;
 }
 
+
+.save-button {
+    -fx-background-color: linear-gradient(to top, #9575CD, #B39DDB);
+    -fx-text-fill: white;
+}
+
+.save-button:hover {
+    -fx-background-color: #7E57C2;
+}
