@@ -334,12 +334,11 @@
     -fx-background-radius: 5px;
     -fx-min-height: 40px;
     -fx-text-fill: #333333;
-    -fx-cursor: hand;
 }
 
 .combo-box:hover {
     -fx-border-color: #4ca1af;
-
+    -fx-cursor: hand;
 }
 
 .combo-box:focused {
@@ -353,7 +352,13 @@
 .combo-box .list-cell {
     -fx-text-fill: #333333;
     -fx-background-color: white;
+    -fx-cursor: hand;
 }
+
+.combo-box .list-cell:hover {
+    -fx-background-color: #e0f7fa; /* Highlight color on hover */
+}
+
 
 .combo-box .list-view {
     -fx-background-color: white;
