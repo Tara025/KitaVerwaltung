@@ -44,6 +44,8 @@ public class ErzieherController {
         loadErzieherData();
     }
 
+
+
     private void loadErzieherData() {
         List<Erzieher> erzieher = ErzieherDAO.getErzieher(); // Lade Daten aus der DB
 

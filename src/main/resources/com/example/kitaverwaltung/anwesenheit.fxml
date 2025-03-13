@@ -1,44 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.Button?>
-
 <?import javafx.scene.control.TextField?>
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@css/style.css" fx:controller="com.example.kitaverwaltung.controller.AnwesenheitController" spacing="10" style="-fx-padding: 20;">
-    <ComboBox fx:id="personTypeComboBox" promptText="Select Person Type"/>
-    <ComboBox fx:id="personNameComboBox" promptText="Select Person Name"/>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="659.0" prefWidth="518.0" spacing="10" style="-fx-padding: 20;" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kitaverwaltung.controller.AnwesenheitController">
+
+    <!-- Label für den Titel -->
+    <Label style="-fx-font-size: 24px;" styleClass="label_main" text="Anwesenheit" />
+
+    <HBox>
+      <children>
+          <ComboBox fx:id="personTypeComboBox" promptText="Personenart Auswählen" />
+          <ComboBox fx:id="personNameComboBox" promptText="Name Auswählen" />
+      </children>
+   </HBox>
 
 
-    <TableView fx:id="anwesenheitTable" styleClass="table_anw" style="-fx-padding: 20;">
+    <TableView fx:id="anwesenheitTable" style="-fx-padding: 20;" styleClass="table_anw">
         <columns>
-            <TableColumn fx:id="dateColumn" text="Datum"/>
-            <TableColumn fx:id="statusColumn" text="Status"/>
+            <TableColumn fx:id="dateColumn" text="Datum" />
+            <TableColumn fx:id="statusColumn" text="Status" />
         </columns>
     </TableView>
 
     <HBox spacing="10" stylesheets="@css/style.css">
-        <Button fx:id="btnAdd"  styleClass="action-button, add-button" stylesheets="@css/style.css" text="➕ Hinzufügen" onAction="#handleAddButton" />
-        <Button fx:id="btnEdit" styleClass="action-button, edit-button" stylesheets="@css/style.css" text="🖊 Bearbeiten" onAction="#handleEditButton"/>
+        <Button fx:id="btnAdd" onAction="#handleAddButton" styleClass="action-button, add-button" stylesheets="@css/style.css" text="➕ Hinzufügen" />
+        <Button fx:id="btnEdit" onAction="#handleEditButton" styleClass="action-button, edit-button" stylesheets="@css/style.css" text="🖊 Bearbeiten" />
     </HBox>
 
     <!-- versteckte Elemente für den 'Hinzufügen' Button -->
-    <HBox spacing="10" fx:id="newEntryBox" visible="false">
-        <TextField fx:id="arbeitstagField" promptText="Arbeitstag"/>
+    <HBox fx:id="newEntryBox" spacing="10" stylesheets="@css/style.css" visible="false">
+        <TextField fx:id="arbeitstagField" prefHeight="42.0" prefWidth="150.0" promptText="Arbeitstag" styleClass="eingabeField" stylesheets="@css/style.css" />
         <ComboBox fx:id="statusComboBox">
             <items>
                 <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="anwesend"/>
-                    <String fx:value="nicht anwesend"/>
+                    <String fx:value="anwesend" />
+                    <String fx:value="nicht anwesend" />
                 </FXCollections>
             </items>
         </ComboBox>
+       <Button fx:id="btnSave" onAction="#handleSaveButton" prefHeight="43.0" prefWidth="129.0" styleClass="action-button, save-button" stylesheets="@css/style.css" text="💾 Speichern" visible="false" />
     </HBox>
-    <Button fx:id="btnSave" text="Speichern" visible="false" onAction="#handleSaveButton"/>
 
 </VBox>
