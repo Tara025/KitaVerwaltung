@@ -8,6 +8,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
       styleClass="" stylesheets="@css/style.css"
       fx:controller="com.example.kitaverwaltung.controller.KindController" spacing="10" style="-fx-padding: 20;">
@@ -27,7 +29,7 @@
     </TableView>
 
     <HBox spacing="10" stylesheets="@css/style.css">
-        <Button fx:id="btnAdd"  styleClass="action-button, add-button" stylesheets="@css/style.css" text="➕ Hinzufügen" />
+        <Button fx:id="btnAdd"  styleClass="action-button, add-button" stylesheets="@css/style.css" text="➕ Hinzufügen" onAction="#addKind"/>
         <Button fx:id="btnEdit" styleClass="action-button, edit-button" stylesheets="@css/style.css" text="🖊 Bearbeiten" />
         <Button fx:id="btnDelete"  styleClass="action-button, delete-button" stylesheets="@css/style.css" text="❌ Löschen" />
     </HBox>
@@ -41,12 +43,15 @@
         <TextField fx:id="nachnameField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
         <Label text="Geburtsdatum:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-        <TextField fx:id="geburtsdatumField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        <DatePicker fx:id="geburtsdatumPicker" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
         <Label text="Gruppenname" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-        <TextField fx:id="gruppe_nameField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+        <ComboBox fx:id="gruppeComboBox" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
         <Label text="Eltern" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-        <TextField fx:id="elternField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+        <ComboBox fx:id="elternComboBox" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+        <Label text="Bemerkung" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+        <TextField fx:id="bemerkungField" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
     </GridPane>
 </VBox>

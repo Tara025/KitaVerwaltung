@@ -1,38 +1,58 @@
 package com.example.kitaverwaltung.model;
 
+import com.google.gson.annotations.Expose;
 
 import java.util.Date;
 
 public class Kind {
 
-    //private int fk_gruppe_id;
-    private String gruppe_name;
-    private int kind_id;
-    private String vorname;
-    private String nachname;
-    private Date geburtsdatum;
-    private String bemerkung;
-    private String eltern;
 
-    // Konstruktor
-    public Kind(String gruppe_name, int kind_id, String vorname, String nachname, Date geburtsdatum, String bemerkung, String eltern) {
-        //this.fk_gruppe_id = fk_gruppe_id;
+    @Expose(serialize = false)
+    private int kind_id;
+    @Expose
+    private int fk_gruppe_id;
+    @Expose
+    private String vorname;
+    @Expose
+    private String nachname;
+    @Expose
+    private String geburtsdatum;
+    @Expose
+    private String bemerkung;
+    @Expose
+    private String eltern;
+    @Expose
+    private String gruppe_name;
+
+    // Constructor for view
+    public Kind(int fk_gruppe_id, int kind_id, String vorname, String nachname, String geburtsdatum, String bemerkung, String eltern, String gruppe_name) {
+        this.fk_gruppe_id = fk_gruppe_id;
         this.kind_id = kind_id;
         this.vorname = vorname;
         this.nachname = nachname;
         this.geburtsdatum = geburtsdatum;
         this.bemerkung = bemerkung;
-        this.gruppe_name = gruppe_name;
         this.eltern = eltern;
+        this.gruppe_name = gruppe_name;
     }
 
-    // Getter und Setter
-
-    public String getGruppe_name() {
-        return gruppe_name;
+    // Constructor
+    public Kind(int fk_gruppe_id, String vorname, String nachname, String geburtsdatum, String bemerkung) {
+        this.fk_gruppe_id = fk_gruppe_id;
+        this.vorname = vorname;
+        this.nachname = nachname;
+        this.geburtsdatum = geburtsdatum;
+        this.bemerkung = bemerkung;
     }
-    public void setGruppe_name(String gruppe_name) {}
 
+    // Getters and Setters
+    public int getFk_gruppe_id() {
+        return fk_gruppe_id;
+    }
+
+    public void setFk_gruppe_id(int fk_gruppe_id) {
+        this.fk_gruppe_id = fk_gruppe_id;
+    }
 
     public int getKind_id() {
         return kind_id;
@@ -58,11 +78,11 @@ public class Kind {
         this.nachname = nachname;
     }
 
-    public Date getGeburtsdatum() {
+    public String getGeburtsdatum() {
         return geburtsdatum;
     }
 
-    public void setGeburtsdatum(Date geburtsdatum) {
+    public void setGeburtsdatum(String geburtsdatum) {
         this.geburtsdatum = geburtsdatum;
     }
 
@@ -80,5 +100,13 @@ public class Kind {
 
     public void setEltern(String eltern) {
         this.eltern = eltern;
+    }
+
+    public String getGruppe_name() {
+        return gruppe_name;
+    }
+
+    public void setGruppe_name(String gruppe_name) {
+        this.gruppe_name = gruppe_name;
     }
 }

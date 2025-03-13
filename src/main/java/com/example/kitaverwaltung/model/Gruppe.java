@@ -45,6 +45,7 @@ public class Gruppe {
     public int getGruppe_id() {
         return gruppe_id;
     }
+
     public String getName() {
         return name;
     }
