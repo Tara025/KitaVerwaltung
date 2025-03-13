@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 
-<VBox alignment="CENTER" spacing="20" styleClass="login-container" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kitaverwaltung.controller.LoginController">
+<VBox alignment="CENTER" spacing="20" styleClass="login-container" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kitaverwaltung.controller.LoginController">
 
     <!-- Header -->
     <VBox alignment="CENTER" spacing="10" styleClass="top-panel" stylesheets="@css/style.css">
@@ -43,7 +51,14 @@
                 <InnerShadow />
             </effect>
         </TextField>
-        <CheckBox fx:id="showPasswordCheckBox" text="Passwort anzeigen" />
+        <CheckBox fx:id="showPasswordCheckBox" text="Passwort anzeigen">
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="0.17080000042915344" green="0.263619989156723" blue="0.2800000011920929" />
+               </color>
+            </InnerShadow>
+         </effect></CheckBox>
 
         <HBox spacing="10" styleClass="hbox-buttons" stylesheets="@css/style.css">
             <Button onAction="#handleLogin" styleClass="primary-button" stylesheets="@css/style.css" text="Anmelden" />
