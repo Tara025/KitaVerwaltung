@@ -54,10 +54,10 @@
                   <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
               </rowConstraints>
               <children>
-                  <TextField fx:id="vornameField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="220.0" promptText="Vorname" styleClass="eingabeField" />
+                  <TextField fx:id="vornameField" maxHeight="-Infinity" maxWidth="220" prefHeight="40.0" prefWidth="220.0" promptText="Vorname" styleClass="eingabeField" />
                   <TextField fx:id="nachnameField" minHeight="-Infinity" prefHeight="40.0" prefWidth="220.0" promptText="Nachname" styleClass="eingabeField" GridPane.columnIndex="1" />
                   <TextField fx:id="adresseField" prefHeight="40.0" prefWidth="220.0" promptText="Adresse" styleClass="eingabeField" GridPane.columnIndex="2" />
-                  <TextField fx:id="emailField" minHeight="29.0" prefHeight="40.0" prefWidth="180.0" promptText="E-Mail" styleClass="eingabeField" GridPane.rowIndex="2" />
+                  <TextField fx:id="emailField" minHeight="29.0" prefHeight="40.0" prefWidth="220.0" promptText="E-Mail" styleClass="eingabeField" GridPane.rowIndex="2" />
                   <TextField fx:id="rolleField" prefHeight="40.0" prefWidth="220" promptText="Rolle" styleClass="eingabeField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <HBox alignment="CENTER_RIGHT" prefHeight="53.0" prefWidth="550.0" GridPane.columnIndex="3">
                       <children>
