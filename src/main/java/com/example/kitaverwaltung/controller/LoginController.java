@@ -86,7 +86,7 @@ public class LoginController {
             Stage stage = (Stage) emailField.getScene().getWindow();
 
             // Setzen der Startgröße für das Dashboard-Fenster
-            stage.setWidth(1200);
+            stage.setWidth(1500);
             stage.setHeight(800);
             stage.centerOnScreen(); // Fenster zentrieren
 
